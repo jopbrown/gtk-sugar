@@ -1,0 +1,6 @@
+debug
+debug*
+dist
+.vscode
+*.code-workspace
+.gtk-server
