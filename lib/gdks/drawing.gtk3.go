@@ -2,6 +2,6 @@ package gdks
 
 import sugar "github.com/jopbrown/gtk-sugar"
 
-type Color struct {
+type RGBA struct {
 	sugar.CandyWrapper
 }

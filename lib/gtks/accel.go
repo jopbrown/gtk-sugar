@@ -1,7 +1,7 @@
-package gdks
+package gtks
 
 import sugar "github.com/jopbrown/gtk-sugar"
 
-type Color struct {
+type AccelGroup struct {
 	sugar.CandyWrapper
 }

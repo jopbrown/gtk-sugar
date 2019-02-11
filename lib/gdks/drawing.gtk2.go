@@ -14,12 +14,14 @@ type Cursor struct {
 	sugar.CandyWrapper
 }
 
-type Color struct {
+type Colormap struct {
 	sugar.CandyWrapper
 }
 
-type Colormap struct {
-	sugar.CandyWrapper
+func NewColormap(candy sugar.Candy, id string) *Colormap {
+	w := Colormap{}
+	w.CandyWrapper = candy.NewWrapper(id)
+	return &w
 }
 
 type GC struct {

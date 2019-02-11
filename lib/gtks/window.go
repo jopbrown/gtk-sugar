@@ -1,6 +1,7 @@
 package gtks
 
 import (
+	sugar "github.com/jopbrown/gtk-sugar"
 	"github.com/jopbrown/gtk-sugar/lib/gdks"
 )
 
@@ -11,8 +12,12 @@ type Window struct {
 // FUNCTION_NAME = gtk_window_new, delete-event, WIDGET, 1, INT
 func (gtk *Gtk) NewWindow(t WindowType) *Window {
 	id := gtk.Guify("gtk_window_new", t).String()
+	return NewWindow(gtk, id)
+}
+
+func NewWindow(candy sugar.Candy, id string) *Window {
 	win := Window{}
-	win.CandyWrapper = gtk.NewWrapper(id)
+	win.CandyWrapper = candy.NewWrapper(id)
 	return &win
 }
 

@@ -145,3 +145,15 @@ func (fields RespFields) MustUnmarshal(packer *Base64Packer) {
 		panic(fmt.Sprintf("%+v", err))
 	}
 }
+
+func (fields RespFields) String() string {
+	var sb strings.Builder
+	for _, field := range fields[:len(fields)-1] {
+		sb.WriteString(field.String())
+		sb.WriteByte(' ')
+	}
+
+	sb.WriteString(fields[len(fields)-1].String())
+
+	return sb.String()
+}

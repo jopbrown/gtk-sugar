@@ -109,12 +109,12 @@ func (args Varargs) String() string {
 type Base64Packer reflect.Value
 
 func NewBase64Packer(s interface{}) *Base64Packer {
-	v := reflect.ValueOf(s)
+	v := reflect.ValueOf(s).Elem()
 	if v.Kind() != reflect.Struct {
 		panic(errors.Errorf("invalid value to base64 packer: not struct but %v", v.Type()))
 	}
-	arg := Base64Packer(v)
-	return &arg
+	packer := Base64Packer(v)
+	return &packer
 }
 
 func (packer *Base64Packer) Format() string {
@@ -158,39 +158,35 @@ func (packer *Base64Packer) Args() Args {
 
 func (packer *Base64Packer) Unmarshal(fields RespFields) error {
 	v := (*reflect.Value)(packer)
-	if v.Kind() != reflect.Struct {
-		return errors.Errorf("invalid value to base64 packer: not struct but %v", v.Type())
-	}
-
 	n := v.NumField()
-	if len(fields) != n {
-		return errors.Errorf("mismatch number of fields, expect %v but %v", n, len(fields))
-	}
-
 	for i := 0; i < n; i++ {
 		f := v.Field(i)
+		if i >= len(fields) {
+			return errors.Errorf("number of RespFields(%v) is less than struct", fields)
+		}
+		resp := fields[i]
 		switch f.Kind() {
 		case reflect.String:
-			v, err := fields[i].Unquote()
-			if nil == err {
+			v, err := resp.Unquote()
+			if nil != err {
 				return errors.WithStack(err)
 			}
 			f.SetString(v)
 		case reflect.Int64, reflect.Uint64, reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32:
-			v, err := fields[i].Int64()
-			if nil == err {
+			v, err := resp.Int64()
+			if nil != err {
 				return errors.WithStack(err)
 			}
 			f.SetInt(v)
 		case reflect.Float32, reflect.Float64:
-			v, err := fields[i].Float64()
-			if nil == err {
+			v, err := resp.Float64()
+			if nil != err {
 				return errors.WithStack(err)
 			}
 			f.SetFloat(v)
 		case reflect.Bool:
-			v, err := fields[i].Bool()
-			if nil == err {
+			v, err := resp.Bool()
+			if nil != err {
 				return errors.WithStack(err)
 			}
 			f.SetBool(v)
