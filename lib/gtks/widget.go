@@ -33,11 +33,46 @@ func (widget *Widget) Hide() {
 }
 
 // FUNCTION_NAME = gtk_widget_realize, NONE, NONE, 1, WIDGET
+func (widget *Widget) Realize() {
+	widget.Candy().Guify("gtk_widget_realize", widget)
+}
+
 // FUNCTION_NAME = gtk_widget_unrealize, NONE, NONE, 1, WIDGET
+func (widget *Widget) Unrealize() {
+	widget.Candy().Guify("gtk_widget_unrealize", widget)
+}
+
 // FUNCTION_NAME = gtk_widget_destroy, NONE, NONE, 1, WIDGET
+func (widget *Widget) Destroy() {
+	widget.Candy().Guify("gtk_widget_destroy", widget)
+}
+
 // FUNCTION_NAME = gtk_widget_grab_focus, NONE, NONE, 1, WIDGET
+func (widget *Widget) GrabFocus() {
+	widget.Candy().Guify("gtk_widget_grab_focus", widget)
+}
+
 // FUNCTION_NAME = gtk_widget_set_size_request, NONE, NONE, 3, WIDGET, INT, INT
-// FUNCTION_NAME = gtk_widget_size_request, NONE, NONE, 2, WIDGET, WIDGET
+func (widget *Widget) SetSizeRequest(width, height int) {
+	widget.Candy().Guify("gtk_widget_set_size_request", widget, width, height)
+}
+
+type Requisition struct {
+	width, height int
+}
+
+// FUNCTION_NAME = gtk_widget_size_request, NONE, NONE, 2, WIDGET, PTR_BASE64
+func (widget *Widget) SizeRequest(width, height int) *Requisition {
+	r := Requisition{}
+	packer := sugar.NewBase64Packer(&r)
+	format := packer.Format()
+	widget.Candy().ServerDataFormat(format)
+	base64Data := widget.Candy().Guify("gtk_widget_size_request", widget, 0).String()
+	fields := widget.Candy().ServerUnpack(format, base64Data)
+	fields.MustUnmarshal(packer)
+	return &r
+}
+
 // FUNCTION_NAME = gtk_widget_set_usize, NONE, NONE, 3, WIDGET, INT, INT
 // FUNCTION_NAME = gtk_widget_modify_base, NONE, NONE, 3, WIDGET, INT, WIDGET
 // FUNCTION_NAME = gtk_widget_override_background_color, NONE, NONE, 3, WIDGET, INT, WIDGET
@@ -61,6 +96,10 @@ func (w *Widget) SetSensitive(sensitive bool) {
 // FUNCTION_NAME = gtk_widget_get_allocated_height, NONE, INT, 1, WIDGET
 
 // FUNCTION_NAME = gtk_widget_queue_draw, NONE, NONE, 1, WIDGET
+func (widget *Widget) QueueDraw() {
+	widget.Candy().Guify("gtk_widget_queue_draw", widget)
+}
+
 // FUNCTION_NAME = gtk_widget_get_colormap, NONE, WIDGET, 1, WIDGET
 // FUNCTION_NAME = gtk_widget_get_parent_window, NONE, WIDGET, 1, WIDGET
 // FUNCTION_NAME = gtk_widget_create_pango_layout, NONE, WIDGET, 2, WIDGET, STRING

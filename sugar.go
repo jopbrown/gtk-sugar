@@ -12,6 +12,13 @@ type Sugar interface {
 	ServerDisconnect(widget, signal string)
 	ServerExit()
 	ServerEcho(msg string) string
+	ServerDefine(define string)
+	ServerRedefine(define string)
+	ServerRequire(libName string) bool
+	ServerPack(format string, values ...interface{}) string
+	ServerPackStruct(s interface{}) string
+	ServerUnpack(format, base64 string) RespFields
+	ServerDataFormat(format string)
 	ServerCallback(t ServerCallbackType) string
 	ServerCallbackValue(argIdx int, argType ServerValueType) Response
 	ServerOpaque() string
@@ -80,6 +87,35 @@ func (sugar *sugar) ServerExit() {
 func (sugar *sugar) ServerEcho(msg string) string {
 	res := sugar.Guify("gtk_server_echo", msg)
 	return res.String()
+}
+
+func (sugar *sugar) ServerDefine(define string) {
+	sugar.Guify("gtk_server_define", define)
+}
+
+func (sugar *sugar) ServerRedefine(define string) {
+	sugar.Guify("gtk_server_redefine", define)
+}
+
+func (sugar *sugar) ServerRequire(libName string) bool {
+	return sugar.Guify("gtk_server_require", libName).MustBool()
+}
+
+func (sugar *sugar) ServerPack(format string, values ...interface{}) string {
+	return sugar.Guify("gtk_server_pack", format, Args(values)).String()
+}
+
+func (sugar *sugar) ServerPackStruct(s interface{}) string {
+	packer := NewBase64Packer(s)
+	return sugar.Guify("gtk_server_pack", packer.Format(), packer.Args()).String()
+}
+
+func (sugar *sugar) ServerUnpack(format, base64 string) RespFields {
+	return sugar.Guify("gtk_server_unpack", format, base64).Fields()
+}
+
+func (sugar *sugar) ServerDataFormat(format string) {
+	sugar.Guify("gtk_server_data_format", format)
 }
 
 type ServerCallbackType int

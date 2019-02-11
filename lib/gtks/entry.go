@@ -36,7 +36,7 @@ func (e *Editable) GetPosition() int {
 
 // FUNCTION_NAME = gtk_editable_get_selection_bounds, NONE, BOOL, 3, WIDGET, PTR_INT, PTR_INT
 func (e *Editable) GetSelectionBounds() (isSelected bool, startPos, endPos int) {
-	fields := e.Candy().Guify("gtk_editable_get_selection_bounds", e, startPos, endPos).Fields()
+	fields := e.Candy().Guify("gtk_editable_get_selection_bounds", e, 0, 0).Fields()
 	isSelected = fields[0].MustBool()
 	startPos = fields[1].MustInt()
 	endPos = fields[2].MustInt()
