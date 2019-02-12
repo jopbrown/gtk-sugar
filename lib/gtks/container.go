@@ -1,7 +1,15 @@
 package gtks
 
+import sugar "github.com/jopbrown/gtk-sugar"
+
 type Container struct {
 	Widget
+}
+
+func NewContainer(candy sugar.Candy, id string) *Container {
+	v := Container{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
 }
 
 // FUNCTION_NAME = gtk_container_add, NONE, NONE, 2, WIDGET, WIDGET

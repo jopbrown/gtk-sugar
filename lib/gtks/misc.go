@@ -6,24 +6,46 @@ type Misc struct {
 	Widget
 }
 
+func NewMisc(candy sugar.Candy, id string) *Misc {
+	v := Misc{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 type Clipboard struct {
 	sugar.CandyWrapper
+}
+
+func NewClipboard(candy sugar.Candy, id string) *Clipboard {
+	v := Clipboard{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
 }
 
 type Adjustment struct {
 	sugar.CandyWrapper
 }
 
+func NewAdjustment(candy sugar.Candy, id string) *Adjustment {
+	v := Adjustment{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 type ScrolledWindow struct {
 	Bin
+}
+
+func NewScrolledWindow(candy sugar.Candy, id string) *ScrolledWindow {
+	v := ScrolledWindow{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
 }
 
 // FUNCTION_NAME = gtk_scrolled_window_new, NONE, WIDGET, 2, WIDGET, WIDGET
 func (gtk *Gtk) NewScrolledWindow(h, v *Adjustment) *ScrolledWindow {
 	id := gtk.Guify("gtk_scrolled_window_new", h, v).String()
-	sw := ScrolledWindow{}
-	sw.CandyWrapper = gtk.NewWrapper(id)
-	return &sw
+	return NewScrolledWindow(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_scrolled_window_set_policy, NONE, NONE, 3, WIDGET, INT, INT

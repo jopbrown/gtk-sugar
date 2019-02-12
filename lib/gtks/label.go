@@ -1,6 +1,7 @@
 package gtks
 
 import (
+	sugar "github.com/jopbrown/gtk-sugar"
 	"github.com/jopbrown/gtk-sugar/lib/pangos"
 )
 
@@ -8,12 +9,16 @@ type Label struct {
 	Misc
 }
 
+func NewLabel(candy sugar.Candy, id string) *Label {
+	v := Label{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 // FUNCTION_NAME = gtk_label_new, NONE, WIDGET, 1, STRING
 func (gtk *Gtk) NewLabel(str string) *Label {
 	id := gtk.Guify("gtk_label_new", str).String()
-	w := Label{}
-	w.CandyWrapper = gtk.NewWrapper(id)
-	return &w
+	return NewLabel(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_label_set_text, NONE, NONE, 2, WIDGET, STRING

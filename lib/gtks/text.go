@@ -6,16 +6,26 @@ type TextMark struct {
 	sugar.CandyWrapper
 }
 
+func NewTextMark(candy sugar.Candy, id string) *TextMark {
+	v := TextMark{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 type TextBuffer struct {
 	sugar.CandyWrapper
+}
+
+func NewTextBuffer(candy sugar.Candy, id string) *TextBuffer {
+	v := TextBuffer{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
 }
 
 // FUNCTION_NAME = gtk_text_buffer_new, NONE, WIDGET, 1, NULL
 func (gtk *Gtk) NewTextBuffer() *TextBuffer {
 	id := gtk.Guify("gtk_text_buffer_new").String()
-	tb := TextBuffer{}
-	tb.CandyWrapper = gtk.NewWrapper(id)
-	return &tb
+	return NewTextBuffer(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_set_text, NONE, NONE, 3, WIDGET, STRING, INT
@@ -213,20 +223,22 @@ type TextView struct {
 	Container
 }
 
+func NewTextView(candy sugar.Candy, id string) *TextView {
+	v := TextView{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 // FUNCTION_NAME = gtk_text_view_new, NONE, WIDGET, 0
 func (gtk *Gtk) NewTextView() *TextView {
 	id := gtk.Guify("gtk_text_view_new").String()
-	v := TextView{}
-	v.CandyWrapper = gtk.NewWrapper(id)
-	return &v
+	return NewTextView(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_text_view_new_with_buffer, NONE, WIDGET, 1, WIDGET
 func (gtk *Gtk) NewTextViewWithBuffer(tb *TextBuffer) *TextView {
 	id := gtk.Guify("gtk_text_view_new_with_buffer").String()
-	v := TextView{}
-	v.CandyWrapper = gtk.NewWrapper(id)
-	return &v
+	return NewTextView(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_text_view_set_wrap_mode, NONE, NONE, 2, WIDGET, INT
@@ -304,6 +316,12 @@ type TextIter struct {
 	sugar.CandyWrapper
 }
 
+func NewTextIter(candy sugar.Candy, id string) *TextIter {
+	v := TextIter{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 // FUNCTION_NAME = gtk_text_iter_forward_search, NONE, BOOL, 6, WIDGET, STRING, INT, WIDGET, WIDGET, WIDGET
 func (w *TextIter) ForwardSearch(str string, flags TextSearchFlags, start, end, limit *TextIter) bool {
 	return w.Candy().Guify("gtk_text_iter_forward_search", w, str, flags, start, end, limit).MustBool()
@@ -338,8 +356,20 @@ type TextTag struct {
 	sugar.CandyWrapper
 }
 
+func NewTextTag(candy sugar.Candy, id string) *TextTag {
+	v := TextTag{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 type TextTagTable struct {
 	sugar.CandyWrapper
+}
+
+func NewTextTagTable(candy sugar.Candy, id string) *TextTagTable {
+	v := TextTagTable{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
 }
 
 // FUNCTION_NAME = gtk_text_tag_table_add, NONE, BOOL, 2, WIDGET, WIDGET

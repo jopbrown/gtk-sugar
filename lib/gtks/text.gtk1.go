@@ -1,15 +1,21 @@
 package gtks
 
+import sugar "github.com/jopbrown/gtk-sugar"
+
 type Text struct {
 	Editable
+}
+
+func NewText(candy sugar.Candy, id string) *Text {
+	v := Text{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
 }
 
 // FUNCTION_NAME = gtk_text_new, NONE, WIDGET, 2, NULL, NULL
 func (gtk *Gtk) NewText() *Text {
 	id := gtk.Guify("gtk_button_new", nil, nil).String()
-	w := Text{}
-	w.CandyWrapper = gtk.NewWrapper(id)
-	return &w
+	return NewText(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_text_set_editable, NONE, NONE, 2, WIDGET, BOOL

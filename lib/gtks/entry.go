@@ -1,7 +1,15 @@
 package gtks
 
+import sugar "github.com/jopbrown/gtk-sugar"
+
 type Editable struct {
 	Widget
+}
+
+func NewEditable(candy sugar.Candy, id string) *Editable {
+	v := Editable{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
 }
 
 // FUNCTION_NAME = gtk_editable_delete_text, NONE, NONE, 3, WIDGET, INT, INT
@@ -52,12 +60,16 @@ type Entry struct {
 	Editable
 }
 
+func NewEntry(candy sugar.Candy, id string) *Entry {
+	v := Entry{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 // FUNCTION_NAME = gtk_entry_new, activate, WIDGET, 0
 func (gtk *Gtk) NewEntry() *Entry {
 	id := gtk.Guify("gtk_entry_new").String()
-	entry := Entry{}
-	entry.CandyWrapper = gtk.NewWrapper(id)
-	return &entry
+	return NewEntry(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_entry_get_text, NONE, STRING, 1, WIDGET

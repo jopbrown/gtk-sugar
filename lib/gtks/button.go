@@ -1,39 +1,39 @@
 package gtks
 
+import sugar "github.com/jopbrown/gtk-sugar"
+
 type Button struct {
 	Bin
+}
+
+func NewButton(candy sugar.Candy, id string) *Button {
+	v := Button{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
 }
 
 // FUNCTION_NAME = gtk_button_new, clicked, WIDGET, 0
 func (gtk *Gtk) NewButton() *Button {
 	id := gtk.Guify("gtk_button_new").String()
-	btn := Button{}
-	btn.CandyWrapper = gtk.NewWrapper(id)
-	return &btn
+	return NewButton(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_button_new_with_label, clicked, WIDGET, 1, STRING
 func (gtk *Gtk) NewButtonWithLabel(label string) *Button {
 	id := gtk.Guify("gtk_button_new_with_label", label).String()
-	btn := Button{}
-	btn.CandyWrapper = gtk.NewWrapper(id)
-	return &btn
+	return NewButton(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_button_new_with_mnemonic, clicked, WIDGET, 1, STRING
 func (gtk *Gtk) NewButtonWithMnemonic(label string) *Button {
 	id := gtk.Guify("gtk_button_new_with_mnemonic", label).String()
-	btn := Button{}
-	btn.CandyWrapper = gtk.NewWrapper(id)
-	return &btn
+	return NewButton(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_button_new_from_stock, clicked, WIDGET, 1, STRING
 func (gtk *Gtk) NewButtonWithStock(stockID string) *Button {
 	id := gtk.Guify("gtk_button_new_from_stock", stockID).String()
-	btn := Button{}
-	btn.CandyWrapper = gtk.NewWrapper(id)
-	return &btn
+	return NewButton(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_button_set_use_stock, NONE, NONE, 2, WIDGET, BOOL
@@ -60,28 +60,28 @@ type ToggleButton struct {
 	Button
 }
 
+func NewToggleButton(candy sugar.Candy, id string) *ToggleButton {
+	v := ToggleButton{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 // FUNCTION_NAME = gtk_toggle_button_new, clicked, WIDGET, 0
 func (gtk *Gtk) NewToggleButton() *ToggleButton {
 	id := gtk.Guify("gtk_toggle_button_new").String()
-	btn := ToggleButton{}
-	btn.CandyWrapper = gtk.NewWrapper(id)
-	return &btn
+	return NewToggleButton(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_toggle_button_new_with_label, clicked, WIDGET, 1, STRING
 func (gtk *Gtk) NewToggleButtonWithLabel(label string) *ToggleButton {
 	id := gtk.Guify("gtk_toggle_button_new_with_label", label).String()
-	btn := ToggleButton{}
-	btn.CandyWrapper = gtk.NewWrapper(id)
-	return &btn
+	return NewToggleButton(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_toggle_button_new_with_mnemonic, clicked, WIDGET, 1, STRING
 func (gtk *Gtk) NewToggleButtonWithMnemonic(label string) *ToggleButton {
 	id := gtk.Guify("gtk_toggle_button_new_with_mnemonic", label).String()
-	btn := ToggleButton{}
-	btn.CandyWrapper = gtk.NewWrapper(id)
-	return &btn
+	return NewToggleButton(gtk, id)
 }
 
 // FUNCTION_NAME = gtk_toggle_button_get_active, NONE, BOOL, 1, WIDGET
@@ -123,16 +123,26 @@ type CheckButton struct {
 	ToggleButton
 }
 
+func NewCheckButton(candy sugar.Candy, id string) *CheckButton {
+	v := CheckButton{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 // FUNCTION_NAME = gtk_check_button_new_with_label, clicked, WIDGET, 1, STRING
 func (gtk *Gtk) NewCheckButtonWithLabel(label string) *CheckButton {
 	id := gtk.Guify("gtk_check_button_new_with_label", label).String()
-	btn := CheckButton{}
-	btn.CandyWrapper = gtk.NewWrapper(id)
-	return &btn
+	return NewCheckButton(gtk, id)
 }
 
 type ButtonBox struct {
 	Button
+}
+
+func NewButtonBox(candy sugar.Candy, id string) *ButtonBox {
+	v := ButtonBox{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
 }
 
 // FUNCTION_NAME = gtk_button_box_set_layout, NONE, NONE, 2, WIDGET, INT
@@ -144,22 +154,30 @@ type HButtonBox struct {
 	ButtonBox
 }
 
+func NewHButtonBox(candy sugar.Candy, id string) *HButtonBox {
+	v := HButtonBox{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 // FUNCTION_NAME = gtk_hbutton_box_new, NONE, WIDGET, 0
 func (gtk *Gtk) NewHButtonBox() *HButtonBox {
 	id := gtk.Guify("gtk_hbutton_box_new").String()
-	btn := HButtonBox{}
-	btn.CandyWrapper = gtk.NewWrapper(id)
-	return &btn
+	return NewHButtonBox(gtk, id)
 }
 
 type VButtonBox struct {
 	ButtonBox
 }
 
+func NewVButtonBox(candy sugar.Candy, id string) *VButtonBox {
+	v := VButtonBox{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 // FUNCTION_NAME = gtk_vbutton_box_new, NONE, WIDGET, 0
 func (gtk *Gtk) NewVButtonBox() *VButtonBox {
 	id := gtk.Guify("gtk_vbutton_box_new").String()
-	btn := VButtonBox{}
-	btn.CandyWrapper = gtk.NewWrapper(id)
-	return &btn
+	return NewVButtonBox(gtk, id)
 }

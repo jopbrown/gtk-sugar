@@ -1,7 +1,15 @@
 package gtks
 
+import sugar "github.com/jopbrown/gtk-sugar"
+
 type Box struct {
 	Container
+}
+
+func NewBox(candy sugar.Candy, id string) *Box {
+	v := Box{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
 }
 
 // FUNCTION_NAME = gtk_box_pack_start, NONE, NONE, 5, WIDGET, WIDGET, BOOL, BOOL, INT
@@ -28,22 +36,30 @@ type Hbox struct {
 	Box
 }
 
+func NewHbox(candy sugar.Candy, id string) *Hbox {
+	v := Hbox{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 // FUNCTION_NAME = gtk_hbox_new, NONE, WIDGET, 2, BOOL, INT
 func (gtk *Gtk) NewHbox(homogeneous bool, spacing int) *Hbox {
 	id := gtk.Guify("gtk_hbox_new", homogeneous, spacing).String()
-	box := Hbox{}
-	box.CandyWrapper = gtk.NewWrapper(id)
-	return &box
+	return NewHbox(gtk, id)
 }
 
 type Vbox struct {
 	Box
 }
 
+func NewVbox(candy sugar.Candy, id string) *Vbox {
+	v := Vbox{}
+	v.CandyWrapper = candy.NewWrapper(id)
+	return &v
+}
+
 // FUNCTION_NAME = gtk_vbox_new, NONE, WIDGET, 2, BOOL, INT
 func (gtk *Gtk) NewVbox(homogeneous bool, spacing int) *Vbox {
 	id := gtk.Guify("gtk_vbox_new", homogeneous, spacing).String()
-	box := Vbox{}
-	box.CandyWrapper = gtk.NewWrapper(id)
-	return &box
+	return NewVbox(gtk, id)
 }

@@ -10,8 +10,20 @@ type Drawable struct {
 	sugar.CandyWrapper
 }
 
+func NewDrawable(candy sugar.Candy, id string) *Drawable {
+	obj := Drawable{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
+}
+
 type Cursor struct {
 	sugar.CandyWrapper
+}
+
+func NewCursor(candy sugar.Candy, id string) *Cursor {
+	obj := Cursor{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
 }
 
 type Colormap struct {
@@ -26,6 +38,12 @@ func NewColormap(candy sugar.Candy, id string) *Colormap {
 
 type GC struct {
 	sugar.CandyWrapper
+}
+
+func NewGC(candy sugar.Candy, id string) *GC {
+	obj := GC{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
 }
 
 // FUNCTION_NAME = gdk_gc_new, NONE, WIDGET, 1, WIDGET
@@ -65,6 +83,12 @@ type Font struct {
 	sugar.CandyWrapper
 }
 
+func NewFont(candy sugar.Candy, id string) *Font {
+	obj := Font{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
+}
+
 // FUNCTION_NAME = gdk_font_load, NONE, WIDGET, 1, STRING
 func (gdk *Gdk) FontLoad(fontName string) *Font {
 	id := gdk.Guify("gdk_font_load", fontName).String()
@@ -76,6 +100,12 @@ func (gdk *Gdk) FontLoad(fontName string) *Font {
 
 type Pixmap struct {
 	Drawable
+}
+
+func NewPixmap(candy sugar.Candy, id string) *Pixmap {
+	obj := Pixmap{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
 }
 
 // FUNCTION_NAME = gdk_pixmap_new, NONE, WIDGET, 4, WIDGET, INT, INT, INT

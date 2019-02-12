@@ -1,7 +1,15 @@
 package gdks
 
+import sugar "github.com/jopbrown/gtk-sugar"
+
 type Window struct {
 	Drawable
+}
+
+func NewWindow(candy sugar.Candy, id string) *Window {
+	obj := Window{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
 }
 
 // FUNCTION_NAME = gdk_window_process_all_updates, NONE, NONE, 0
