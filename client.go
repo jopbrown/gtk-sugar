@@ -10,10 +10,11 @@ import (
 )
 
 const (
-	DEFAULT_BIN_PATH    = "gtk-server"
-	WINDOWS_PIPEIN      = `\\.\pipe\in`
-	WINDOWS_PIPEOUT     = `\\.\pipe\out`
-	DEFAULT_START_DELAY = 100 * time.Millisecond
+	DEFAULT_BIN_PATH     = "gtk-server"
+	DEFAULT_CFG_FILENAME = "gtk-server.cfg"
+	WINDOWS_PIPEIN       = `\\.\pipe\in`
+	WINDOWS_PIPEOUT      = `\\.\pipe\out`
+	DEFAULT_START_DELAY  = 100 * time.Millisecond
 )
 
 type Client interface {
