@@ -135,6 +135,82 @@ func (gtk *Gtk) NewCheckButtonWithLabel(label string) *CheckButton {
 	return NewCheckButton(gtk, id)
 }
 
+type RadioButton struct {
+	CheckButton
+}
+
+func NewRadioButton(candy sugar.Candy, id string) *RadioButton {
+	obj := RadioButton{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
+}
+
+// FUNCTION_NAME = gtk_radio_button_new, clicked, WIDGET, 1, WIDGET
+func (gtk *Gtk) NewRadioButton() *RadioButton {
+	id := gtk.Guify("gtk_radio_button_new", nil).String()
+	return NewRadioButton(gtk, id)
+}
+
+// FUNCTION_NAME = gtk_radio_button_new_with_label, clicked, WIDGET, 2, WIDGET, STRING
+func (gtk *Gtk) NewRadioButtonWithLabel(label string) *RadioButton {
+	id := gtk.Guify("gtk_radio_button_new_with_label", nil, label).String()
+	return NewRadioButton(gtk, id)
+}
+
+// FUNCTION_NAME = gtk_radio_button_new_from_widget, clicked, WIDGET, 1, WIDGET
+func (gtk *Gtk) NewRadioButtonFromWidget(radioGroupMember *RadioButton) *RadioButton {
+	id := gtk.Guify("gtk_radio_button_new_from_widget", radioGroupMember).String()
+	return NewRadioButton(gtk, id)
+}
+
+// FUNCTION_NAME = gtk_radio_button_new_with_label_from_widget, clicked, WIDGET, 2, WIDGET, STRING
+func (gtk *Gtk) NewRadioButtonWithLabelFromWidget(radioGroupMember *RadioButton, label string) *RadioButton {
+	id := gtk.Guify("gtk_radio_button_new_with_label_from_widget", radioGroupMember, label).String()
+	return NewRadioButton(gtk, id)
+}
+
+type SpinButton struct {
+	Entry
+}
+
+func NewSpinButton(candy sugar.Candy, id string) *SpinButton {
+	obj := SpinButton{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
+}
+
+// FUNCTION_NAME = gtk_spin_button_new, NONE, WIDGET, 3, WIDGET, DOUBLE, INT
+func (gtk *Gtk) NewSpinButton(adjustment Adjustment, climbRate float64, digits uint) *SpinButton {
+	id := gtk.Guify("gtk_spin_button_new", adjustment, climbRate, digits).String()
+	return NewSpinButton(gtk, id)
+}
+
+// FUNCTION_NAME = gtk_spin_button_new_with_range, NONE, WIDGET, 3, DOUBLE, DOUBLE, DOUBLE
+func (gtk *Gtk) NewSpinButtonWithRange(min, max, step float64) *SpinButton {
+	id := gtk.Guify("gtk_spin_button_new_with_range", min, max, step).String()
+	return NewSpinButton(gtk, id)
+}
+
+// FUNCTION_NAME = gtk_spin_button_get_value_as_int, NONE, INT, 1, WIDGET
+func (obj *SpinButton) GetValueAsInt() int {
+	return obj.Candy().Guify("gtk_spin_button_get_value_as_int", obj).MustInt()
+}
+
+// FUNCTION_NAME = gtk_spin_button_get_value, NONE, FLOAT, 1, WIDGET
+func (obj *SpinButton) GetValue() float64 {
+	return obj.Candy().Guify("gtk_spin_button_get_value", obj).MustFloat64()
+}
+
+// FUNCTION_NAME = gtk_spin_button_set_value, NONE, NONE, 2, WIDGET, DOUBLE
+func (obj *SpinButton) SetValue(value float64) {
+	obj.Candy().Guify("gtk_spin_button_set_value", obj, value)
+}
+
+// FUNCTION_NAME = gtk_spin_button_set_wrap, NONE, NONE, 2, WIDGET, BOOL
+func (obj *SpinButton) SetWrap(wrap bool) {
+	obj.Candy().Guify("gtk_spin_button_set_wrap", obj, wrap)
+}
+
 type ButtonBox struct {
 	Button
 }
@@ -181,15 +257,3 @@ func (gtk *Gtk) NewVButtonBox() *VButtonBox {
 	id := gtk.Guify("gtk_vbutton_box_new").String()
 	return NewVButtonBox(gtk, id)
 }
-
-// FUNCTION_NAME = gtk_radio_button_new, clicked, WIDGET, 1, NULL
-// FUNCTION_NAME = gtk_radio_button_new_with_label, clicked, WIDGET, 2, WIDGET, STRING
-// FUNCTION_NAME = gtk_radio_button_new_from_widget, clicked, WIDGET, 1, WIDGET
-// FUNCTION_NAME = gtk_radio_button_new_with_label_from_widget, clicked, WIDGET, 2, WIDGET, STRING
-
-// FUNCTION_NAME = gtk_spin_button_new, NONE, WIDGET, 3, WIDGET, DOUBLE, INT
-// FUNCTION_NAME = gtk_spin_button_new_with_range, NONE, WIDGET, 3, DOUBLE, DOUBLE, DOUBLE
-// FUNCTION_NAME = gtk_spin_button_get_value_as_int, NONE, INT, 1, WIDGET
-// FUNCTION_NAME = gtk_spin_button_get_value, NONE, FLOAT, 1, WIDGET
-// FUNCTION_NAME = gtk_spin_button_set_wrap, NONE, NONE, 2, WIDGET, BOOL
-// FUNCTION_NAME = gtk_spin_button_set_value, NONE, NONE, 2, WIDGET, DOUBLE

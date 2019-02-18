@@ -15,7 +15,7 @@ type IWidget interface {
 }
 
 type Widget struct {
-	glibs.GObject
+	glibs.Object
 }
 
 func NewWidget(candy sugar.Candy, id string) *Widget {

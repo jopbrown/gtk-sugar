@@ -72,6 +72,32 @@ func (resp Response) MustInt() int {
 	return must.Int(resp.Int())
 }
 
+func (resp Response) Uint64() (uint64, error) {
+	return strconv.ParseUint(resp.String(), 0, 64)
+}
+
+func (resp Response) MustUint64() uint64 {
+	return must.Uint64(resp.Uint64())
+}
+
+func (resp Response) Uint32() (uint32, error) {
+	i, err := strconv.ParseUint(resp.String(), 0, 32)
+	return uint32(i), err
+}
+
+func (resp Response) MustUint32() uint32 {
+	return must.Uint32(resp.Uint32())
+}
+
+func (resp Response) Uint() (uint, error) {
+	i, err := strconv.ParseUint(resp.String(), 0, 64)
+	return uint(i), err
+}
+
+func (resp Response) MustUint() uint {
+	return must.Uint(resp.Uint())
+}
+
 func (resp Response) Float32() (float32, error) {
 	v, err := strconv.ParseFloat(resp.String(), 64)
 	return float32(v), err

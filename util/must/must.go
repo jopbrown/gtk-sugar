@@ -36,6 +36,30 @@ func Int64(v int64, err error) int64 {
 	return v
 }
 
+func Uint(v uint, err error) uint {
+	if err != nil {
+		panic(fmt.Sprintf("%+v", err))
+	}
+
+	return v
+}
+
+func Uint32(v uint32, err error) uint32 {
+	if err != nil {
+		panic(fmt.Sprintf("%+v", err))
+	}
+
+	return v
+}
+
+func Uint64(v uint64, err error) uint64 {
+	if err != nil {
+		panic(fmt.Sprintf("%+v", err))
+	}
+
+	return v
+}
+
 func Float32(v float32, err error) float32 {
 	if err != nil {
 		panic(fmt.Sprintf("%+v", err))

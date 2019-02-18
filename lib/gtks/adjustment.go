@@ -1,9 +1,12 @@
 package gtks
 
-import sugar "github.com/jopbrown/gtk-sugar"
+import (
+	sugar "github.com/jopbrown/gtk-sugar"
+	"github.com/jopbrown/gtk-sugar/lib/glibs"
+)
 
 type Adjustment struct {
-	sugar.CandyWrapper
+	glibs.Object
 }
 
 func NewAdjustment(candy sugar.Candy, id string) *Adjustment {
@@ -13,6 +16,22 @@ func NewAdjustment(candy sugar.Candy, id string) *Adjustment {
 }
 
 // FUNCTION_NAME = gtk_adjustment_new, NONE, WIDGET, 6, DOUBLE, DOUBLE, DOUBLE, DOUBLE, DOUBLE, DOUBLE
+func (gtk *Gtk) NewAdjustment(value, lower, upper, stepIncrement, pageIncrement, pageSize float64) *Adjustment {
+	id := gtk.Guify("gtk_adjustment_new", value, lower, upper, stepIncrement, pageIncrement, pageSize).String()
+	return NewAdjustment(gtk, id)
+}
+
 // FUNCTION_NAME = gtk_adjustment_get_value, NONE, DOUBLE, 1, WIDGET
+func (obj *Adjustment) GetValue() float64 {
+	return obj.Candy().Guify("gtk_adjustment_get_value", obj).MustFloat64()
+}
+
 // FUNCTION_NAME = gtk_adjustment_set_value, NONE, NONE, 2, WIDGET, DOUBLE
+func (obj *Adjustment) SetValue(value float64) {
+	obj.Candy().Guify("gtk_adjustment_set_value", obj, value)
+}
+
 // FUNCTION_NAME = gtk_adjustment_clamp_page, NONE, NONE, 3, WIDGET, DOUBLE, DOUBLE
+func (obj *Adjustment) ClampPage(lower, upper float64) {
+	obj.Candy().Guify("gtk_adjustment_clamp_page", obj, lower, upper)
+}

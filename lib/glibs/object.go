@@ -2,12 +2,12 @@ package glibs
 
 import sugar "github.com/jopbrown/gtk-sugar"
 
-type GObject struct {
+type Object struct {
 	sugar.CandyWrapper
 }
 
-func NewGObject(candy sugar.Candy, id string) *GObject {
-	obj := GObject{}
+func NewObject(candy sugar.Candy, id string) *Object {
+	obj := Object{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
 }
@@ -16,11 +16,11 @@ func NewGObject(candy sugar.Candy, id string) *GObject {
 // FUNCTION_NAME = g_object_set, NONE, NONE, 4, WIDGET, STRING, INT, NULL
 
 // FUNCTION_NAME = g_object_ref_sink, NONE, NONE, 1, WIDGET
-func (obj *GObject) RefSink() {
+func (obj *Object) RefSink() {
 	obj.Candy().Guify("g_object_ref_sink", obj)
 }
 
 // FUNCTION_NAME = g_object_unref, NONE, NONE, 1, WIDGET
-func (obj *GObject) Unref() {
+func (obj *Object) Unref() {
 	obj.Candy().Guify("g_object_unref", obj)
 }
