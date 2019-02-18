@@ -181,3 +181,15 @@ func (gtk *Gtk) NewVButtonBox() *VButtonBox {
 	id := gtk.Guify("gtk_vbutton_box_new").String()
 	return NewVButtonBox(gtk, id)
 }
+
+// FUNCTION_NAME = gtk_radio_button_new, clicked, WIDGET, 1, NULL
+// FUNCTION_NAME = gtk_radio_button_new_with_label, clicked, WIDGET, 2, WIDGET, STRING
+// FUNCTION_NAME = gtk_radio_button_new_from_widget, clicked, WIDGET, 1, WIDGET
+// FUNCTION_NAME = gtk_radio_button_new_with_label_from_widget, clicked, WIDGET, 2, WIDGET, STRING
+
+// FUNCTION_NAME = gtk_spin_button_new, NONE, WIDGET, 3, WIDGET, DOUBLE, INT
+// FUNCTION_NAME = gtk_spin_button_new_with_range, NONE, WIDGET, 3, DOUBLE, DOUBLE, DOUBLE
+// FUNCTION_NAME = gtk_spin_button_get_value_as_int, NONE, INT, 1, WIDGET
+// FUNCTION_NAME = gtk_spin_button_get_value, NONE, FLOAT, 1, WIDGET
+// FUNCTION_NAME = gtk_spin_button_set_wrap, NONE, NONE, 2, WIDGET, BOOL
+// FUNCTION_NAME = gtk_spin_button_set_value, NONE, NONE, 2, WIDGET, DOUBLE

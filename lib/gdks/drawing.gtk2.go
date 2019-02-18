@@ -36,6 +36,22 @@ func NewColormap(candy sugar.Candy, id string) *Colormap {
 	return &w
 }
 
+// FUNCTION_NAME = gdk_colormap_get_system, NONE, WIDGET, 0
+// FUNCTION_NAME = gdk_colormap_alloc_color, NONE, BOOL, 4, WIDGET, WIDGET, BOOL, BOOL
+
+type Color struct {
+	sugar.CandyWrapper
+}
+
+func NewColor(candy sugar.Candy, id string) *Color {
+	obj := Color{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
+}
+
+// FUNCTION_NAME = gdk_color_alloc, NONE, INT, 2, WIDGET, WIDGET
+// FUNCTION_NAME = gdk_color_parse, NONE, NONE, 2, STRING, WIDGET
+
 type GC struct {
 	sugar.CandyWrapper
 }
@@ -144,10 +160,6 @@ func (gdk *Gdk) DrawPoint(drawable IDrawable, gc *GC, x, y int) {
 // FUNCTION_NAME = gdk_draw_layout, NONE, NONE, 5, WIDGET, WIDGET, INT, INT, WIDGET
 // FUNCTION_NAME = gdk_draw_layout_with_colors, NONE, NONE, 7, WIDGET, WIDGET, INT, INT, WIDGET, WIDGET, WIDGET
 // FUNCTION_NAME = gdk_draw_drawable, NONE, NONE, 9, WIDGET, WIDGET, WIDGET, INT, INT, INT, INT, INT, INT
-// FUNCTION_NAME = gdk_color_alloc, NONE, INT, 2, WIDGET, WIDGET
-// FUNCTION_NAME = gdk_color_parse, NONE, NONE, 2, STRING, WIDGET
-// FUNCTION_NAME = gdk_colormap_get_system, NONE, WIDGET, 0
-// FUNCTION_NAME = gdk_colormap_alloc_color, NONE, BOOL, 4, WIDGET, WIDGET, BOOL, BOOL
 // FUNCTION_NAME = gdk_get_default_root_window, NONE, WIDGET, 0
 // FUNCTION_NAME = gdk_rgb_find_color, NONE, NONE, 2, WIDGET, WIDGET
 // FUNCTION_NAME = gdk_drawable_set_colormap, NONE, NONE, 2, WIDGET, WIDGET

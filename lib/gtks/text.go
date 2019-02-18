@@ -352,6 +352,16 @@ func (w *TextIter) SetLineIndex(byteOnLine int) {
 	w.Candy().Guify("gtk_text_iter_set_line_index", w, byteOnLine)
 }
 
+// FUNCTION_NAME = gtk_text_iter_get_line, NONE, INT, 1, WIDGET
+func (w *TextIter) GetLine() int {
+	return w.Candy().Guify("gtk_text_iter_get_line", w).MustInt()
+}
+
+// FUNCTION_NAME = gtk_text_iter_get_text, NONE, STRING, 2, WIDGET, WIDGET
+func (gtk *Gtk) TextIterGetText(start, end *TextIter) string {
+	return gtk.Guify("gtk_text_iter_get_text", start, end).String()
+}
+
 type TextTag struct {
 	sugar.CandyWrapper
 }

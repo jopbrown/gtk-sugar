@@ -97,6 +97,11 @@ func (win *Window) SetIconName(name string) {
 	win.Candy().Guify("gtk_window_set_icon_name", win, name)
 }
 
+// FUNCTION_NAME = gtk_window_add_accel_group, NONE, NONE, 2, WIDGET, WIDGET
+func (win *Window) AddAccelGroup(accelGroup *AccelGroup) {
+	win.Candy().Guify("gtk_window_add_accel_group", win, accelGroup)
+}
+
 // FUNCTION_NAME = gtk_window_set_type_hint, NONE, NONE, 2, WIDGET, INT
 func (win *Window) SetTypeHint(hint gdks.WindowTypeHint) {
 	win.Candy().Guify("gtk_window_set_type_hint", win, hint)
