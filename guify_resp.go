@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/jopbrown/gtk-sugar/util/must"
+
 	"github.com/pkg/errors"
 )
 
@@ -25,12 +27,7 @@ func (resp Response) Unquote() (string, error) {
 }
 
 func (resp Response) MustUnquote() string {
-	s, err := resp.Unquote()
-	if err != nil {
-		panic(fmt.Sprintf("%+v", err))
-	}
-
-	return s
+	return must.String(resp.Unquote())
 }
 
 func (resp Response) Bool() (bool, error) {
@@ -46,12 +43,7 @@ func (resp Response) Bool() (bool, error) {
 }
 
 func (resp Response) MustBool() bool {
-	bo, err := resp.Bool()
-	if err != nil {
-		panic(fmt.Sprintf("%+v", err))
-	}
-
-	return bo
+	return must.Bool(resp.Bool())
 }
 
 func (resp Response) Int64() (int64, error) {
@@ -59,12 +51,7 @@ func (resp Response) Int64() (int64, error) {
 }
 
 func (resp Response) MustInt64() int64 {
-	i, err := resp.Int64()
-	if err != nil {
-		panic(fmt.Sprintf("%+v", err))
-	}
-
-	return i
+	return must.Int64(resp.Int64())
 }
 
 func (resp Response) Int32() (int32, error) {
@@ -73,12 +60,7 @@ func (resp Response) Int32() (int32, error) {
 }
 
 func (resp Response) MustInt32() int32 {
-	i, err := resp.Int32()
-	if err != nil {
-		panic(fmt.Sprintf("%+v", err))
-	}
-
-	return i
+	return must.Int32(resp.Int32())
 }
 
 func (resp Response) Int() (int, error) {
@@ -87,12 +69,7 @@ func (resp Response) Int() (int, error) {
 }
 
 func (resp Response) MustInt() int {
-	i, err := resp.Int()
-	if err != nil {
-		panic(fmt.Sprintf("%+v", err))
-	}
-
-	return i
+	return must.Int(resp.Int())
 }
 
 func (resp Response) Float32() (float32, error) {
@@ -101,12 +78,7 @@ func (resp Response) Float32() (float32, error) {
 }
 
 func (resp Response) MustFloat32() float32 {
-	i, err := resp.Float32()
-	if err != nil {
-		panic(fmt.Sprintf("%+v", err))
-	}
-
-	return i
+	return must.Float32(resp.Float32())
 }
 
 func (resp Response) Float64() (float64, error) {
@@ -115,12 +87,7 @@ func (resp Response) Float64() (float64, error) {
 }
 
 func (resp Response) MustFloat64() float64 {
-	i, err := resp.Float64()
-	if err != nil {
-		panic(fmt.Sprintf("%+v", err))
-	}
-
-	return i
+	return must.Float64(resp.Float64())
 }
 
 type RespFields []Response
