@@ -57,5 +57,16 @@ func (e *Editable) InsertText(text string, position int) int {
 }
 
 // FUNCTION_NAME = gtk_editable_copy_clipboard, NONE, NONE, 1, WIDGET
+func (e *Editable) CopyClipboard() {
+	e.Candy().Guify("gtk_editable_copy_clipboard", e)
+}
+
 // FUNCTION_NAME = gtk_editable_cut_clipboard, NONE, NONE, 1, WIDGET
+func (e *Editable) CutClipboard() {
+	e.Candy().Guify("gtk_editable_cut_clipboard", e)
+}
+
 // FUNCTION_NAME = gtk_editable_paste_clipboard, NONE, NONE, 1, WIDGET
+func (e *Editable) PasteClipboard() {
+	e.Candy().Guify("gtk_editable_paste_clipboard", e)
+}

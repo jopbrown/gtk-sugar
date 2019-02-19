@@ -6,6 +6,15 @@ import (
 	sugar "github.com/jopbrown/gtk-sugar"
 )
 
+type DialogButton struct {
+	Name string
+	ID   int
+}
+
+func WithDialogButton(name string, id int) DialogButton {
+	return DialogButton{Name: name, ID: id}
+}
+
 type Dialog struct {
 	Window
 }
@@ -45,27 +54,28 @@ func (gtk *Gtk) NewMessageDialogWithMarkup(parent *Window, flags DialogFlags, ms
 	return NewMessageDialog(gtk, id)
 }
 
-// FUNCTION_NAME = gtk_file_chooser_dialog_new, NONE, WIDGET, 8, STRING, WIDGET, INT, STRING, INT, STRING, INT, NULL
-// FUNCTION_NAME = gtk_file_chooser_widget_new, NONE, WIDGET, 1, INT
-// FUNCTION_NAME = gtk_file_chooser_set_local_only, NONE, NONE, 2, WIDGET, BOOL
-// FUNCTION_NAME = gtk_file_chooser_get_filename, NONE, STRING, 1, WIDGET
-// FUNCTION_NAME = gtk_file_chooser_get_uri, NONE, STRING, 1, WIDGET
-// FUNCTION_NAME = gtk_file_chooser_get_current_folder, NONE, STRING, 1, WIDGET
-// FUNCTION_NAME = gtk_file_chooser_set_filename, NONE, BOOL, 2, WIDGET, STRING
-// FUNCTION_NAME = gtk_file_filter_new, NONE, WIDGET, 0
-// FUNCTION_NAME = gtk_file_filter_add_pattern, NONE, NONE, 2, WIDGET, STRING
-// FUNCTION_NAME = gtk_file_filter_set_name, NONE, NONE, 2, WIDGET, STRING
-// FUNCTION_NAME = gtk_file_chooser_add_filter, NONE, NONE, 2, WIDGET, WIDGET
-// FUNCTION_NAME = gtk_file_chooser_set_select_multiple, NONE, NONE, 2, WIDGET, BOOL
+type FontSelectionDialog struct {
+	Dialog
+}
+
+func NewFontSelectionDialog(candy sugar.Candy, id string) *FontSelectionDialog {
+	obj := FontSelectionDialog{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
+}
 
 // FUNCTION_NAME = gtk_font_selection_dialog_new, button-press-event, WIDGET, 1, STRING
-// FUNCTION_NAME = gtk_font_selection_dialog_get_font_name, NONE, STRING, 1, WIDGET
-// FUNCTION_NAME = gtk_font_selection_new, NONE, WIDGET, 0
-// FUNCTION_NAME = gtk_font_selection_get_font_name, NONE, STRING, 1, WIDGET
-// FUNCTION_NAME = gtk_font_selection_set_font_name, NONE, BOOL, 2, WIDGET, STRING
+func (gtk *Gtk) NewFontSelectionDialog(title string) *FontSelectionDialog {
+	id := gtk.Guify("gtk_font_selection_dialog_new", title).String()
+	return NewFontSelectionDialog(gtk, id)
+}
 
-// FUNCTION_NAME = gtk_color_selection_new, NONE, WIDGET, 0
-// FUNCTION_NAME = gtk_color_selection_set_has_opacity_control, NONE, NONE, 2, WIDGET, BOOL
-// FUNCTION_NAME = gtk_color_selection_set_current_color, NONE, NONE, 2, WIDGET, STRING
-// FUNCTION_NAME = gtk_color_selection_get_current_color, NONE, NONE, 2, WIDGET, WIDGET
-// FUNCTION_NAME = gtk_color_selection_set_color, NONE, NONE, 2, WIDGET, STRING
+// FUNCTION_NAME = gtk_font_selection_dialog_get_font_name, NONE, STRING, 1, WIDGET
+func (obj *FontSelectionDialog) GetFontName() string {
+	return obj.Candy().Guify("gtk_font_selection_dialog_get_font_name", obj).String()
+}
+
+// FUNCTION_NAME = gtk_font_selection_dialog_set_font_name, NONE, NONE, 2, WIDGET, STRING
+func (obj *FontSelectionDialog) SetFontName(name string) {
+	obj.Candy().Guify("gtk_font_selection_dialog_set_font_name", obj, name)
+}

@@ -1,6 +1,8 @@
 package gtks
 
-import sugar "github.com/jopbrown/gtk-sugar"
+import (
+	sugar "github.com/jopbrown/gtk-sugar"
+)
 
 type TextMark struct {
 	sugar.CandyWrapper
@@ -94,9 +96,11 @@ func (tb *TextBuffer) GetText(start, end *TextIter, includeHiddenChars bool) str
 }
 
 // FUNCTION_NAME = gtk_text_buffer_create_tag, NONE, WIDGET, 4, WIDGET, STRING, STRING, VARARGS
-func (tb *TextBuffer) CreateTag(tagName, firstPropertyName string, namesAndValues ...interface{}) *TextTag {
-	namesAndValues = append(namesAndValues, nil)
-	id := tb.Candy().Guify("gtk_text_buffer_create_tag", tb, tagName, firstPropertyName, sugar.Varargs(namesAndValues)).String()
+func (tb *TextBuffer) CreateTag(tagName, firstPropertyName string, firstPropertyValue interface{}, namesAndValues ...interface{}) *TextTag {
+	args := make(sugar.Varargs, 0, len(namesAndValues)+1)
+	args = append(args, firstPropertyValue)
+	args = append(args, namesAndValues...)
+	id := tb.Candy().Guify("gtk_text_buffer_create_tag", tb, tagName, firstPropertyName, args, nil).String()
 	w := TextTag{}
 	w.CandyWrapper = tb.Candy().NewWrapper(id)
 	return &w
@@ -113,9 +117,12 @@ func (tb *TextBuffer) InsertAtCursor(text string) {
 }
 
 // FUNCTION_NAME = gtk_text_buffer_insert_with_tags_by_name, NONE, NONE, 5, WIDGET, WIDGET, STRING, INT, VARARGS
-func (tb *TextBuffer) InsertWithTagsByName(iter *TextIter, text string, length int, firstTagName string, moreTagNames ...interface{}) {
-	moreTagNames = append(moreTagNames, nil)
-	tb.Candy().Guify("gtk_text_buffer_insert_with_tags_by_name", tb, iter, text, length, sugar.Varargs(moreTagNames))
+func (tb *TextBuffer) InsertWithTagsByName(iter *TextIter, text string, length int, firstTagName string, moreTagNames ...string) {
+	args := make(sugar.Varargs, len(moreTagNames))
+	for i, n := range moreTagNames {
+		args[i] = n
+	}
+	tb.Candy().Guify("gtk_text_buffer_insert_with_tags_by_name", tb, iter, text, length, args, nil)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_apply_tag_by_name, NONE, NONE, 4, WIDGET, STRING, WIDGET, WIDGET
