@@ -78,7 +78,7 @@ func main() {
 
 	fmt.Fprintf(w, "# makecfg with os=%v, lib=%v, with-enum=%v\n", target, lib, makeEnum)
 
-	w.WriteString(libDep)
+	_, _ = w.WriteString(libDep)
 
 	fmt.Fprintln(w)
 
@@ -108,8 +108,8 @@ func main() {
 			for s.Scan() {
 				line := s.Bytes()
 				if bytes.HasPrefix(line, prefix_function) || (makeEnum && bytes.HasPrefix(line, prefix_enum)) {
-					w.Write(line[3:])
-					w.WriteString("\n")
+					_, _ = w.Write(line[3:])
+					_, _ = w.WriteString("\n")
 				}
 			}
 

@@ -25,43 +25,43 @@ func NewWidget(candy sugar.Candy, id string) *Widget {
 }
 
 // FUNCTION_NAME = gtk_widget_show_all, NONE, NONE, 1, WIDGET
-func (widget *Widget) ShowAll() {
-	widget.Candy().Guify("gtk_widget_show_all", widget)
+func (w *Widget) ShowAll() {
+	w.Candy().Guify("gtk_widget_show_all", w)
 }
 
 // FUNCTION_NAME = gtk_widget_show, NONE, NONE, 1, WIDGET
-func (widget *Widget) Show() {
-	widget.Candy().Guify("gtk_widget_show", widget)
+func (w *Widget) Show() {
+	w.Candy().Guify("gtk_widget_show", w)
 }
 
 // FUNCTION_NAME = gtk_widget_hide, NONE, NONE, 1, WIDGET
-func (widget *Widget) Hide() {
-	widget.Candy().Guify("gtk_widget_hide", widget)
+func (w *Widget) Hide() {
+	w.Candy().Guify("gtk_widget_hide", w)
 }
 
 // FUNCTION_NAME = gtk_widget_realize, NONE, NONE, 1, WIDGET
-func (widget *Widget) Realize() {
-	widget.Candy().Guify("gtk_widget_realize", widget)
+func (w *Widget) Realize() {
+	w.Candy().Guify("gtk_widget_realize", w)
 }
 
 // FUNCTION_NAME = gtk_widget_unrealize, NONE, NONE, 1, WIDGET
-func (widget *Widget) Unrealize() {
-	widget.Candy().Guify("gtk_widget_unrealize", widget)
+func (w *Widget) Unrealize() {
+	w.Candy().Guify("gtk_widget_unrealize", w)
 }
 
 // FUNCTION_NAME = gtk_widget_destroy, NONE, NONE, 1, WIDGET
-func (widget *Widget) Destroy() {
-	widget.Candy().Guify("gtk_widget_destroy", widget)
+func (w *Widget) Destroy() {
+	w.Candy().Guify("gtk_widget_destroy", w)
 }
 
 // FUNCTION_NAME = gtk_widget_grab_focus, NONE, NONE, 1, WIDGET
-func (widget *Widget) GrabFocus() {
-	widget.Candy().Guify("gtk_widget_grab_focus", widget)
+func (w *Widget) GrabFocus() {
+	w.Candy().Guify("gtk_widget_grab_focus", w)
 }
 
 // FUNCTION_NAME = gtk_widget_set_size_request, NONE, NONE, 3, WIDGET, INT, INT
-func (widget *Widget) SetSizeRequest(width, height int) {
-	widget.Candy().Guify("gtk_widget_set_size_request", widget, width, height)
+func (w *Widget) SetSizeRequest(width, height int) {
+	w.Candy().Guify("gtk_widget_set_size_request", w, width, height)
 }
 
 type Requisition struct {
@@ -69,13 +69,13 @@ type Requisition struct {
 }
 
 // FUNCTION_NAME = gtk_widget_size_request, NONE, NONE, 2, WIDGET, PTR_BASE64
-func (widget *Widget) SizeRequest() *Requisition {
+func (w *Widget) SizeRequest() *Requisition {
 	r := Requisition{}
 	packer := sugar.NewBase64Packer(&r)
 	format := packer.Format()
-	widget.Candy().ServerDataFormat(format)
-	base64Data := widget.Candy().Guify("gtk_widget_size_request", widget, 0).String()
-	fields := widget.Candy().ServerUnpack(format, base64Data)
+	w.Candy().ServerDataFormat(format)
+	base64Data := w.Candy().Guify("gtk_widget_size_request", w, 0).String()
+	fields := w.Candy().ServerUnpack(format, base64Data)
 	fields.MustUnmarshal(packer)
 	return &r
 }
@@ -121,29 +121,29 @@ func (w *Widget) AddEvents(events int) {
 }
 
 // FUNCTION_NAME = gtk_widget_queue_draw, NONE, NONE, 1, WIDGET
-func (widget *Widget) QueueDraw() {
-	widget.Candy().Guify("gtk_widget_queue_draw", widget)
+func (w *Widget) QueueDraw() {
+	w.Candy().Guify("gtk_widget_queue_draw", w)
 }
 
 // FUNCTION_NAME = gtk_widget_get_parent_window, NONE, WIDGET, 1, WIDGET
-func (widget *Widget) GetParentWindow() *Window {
-	id := widget.Candy().Guify("gtk_widget_get_parent_window", widget).String()
-	return NewWindow(widget.Candy(), id)
+func (w *Widget) GetParentWindow() *Window {
+	id := w.Candy().Guify("gtk_widget_get_parent_window", w).String()
+	return NewWindow(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_widget_create_pango_layout, NONE, WIDGET, 2, WIDGET, STRING
-func (widget *Widget) CreatePangoLayout() *pangos.Layout {
-	id := widget.Candy().Guify("gtk_widget_create_pango_layout", widget).String()
-	return pangos.NewLayout(widget.Candy(), id)
+func (w *Widget) CreatePangoLayout() *pangos.Layout {
+	id := w.Candy().Guify("gtk_widget_create_pango_layout", w).String()
+	return pangos.NewLayout(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_widget_get_window, NONE, WIDGET, 1, WIDGET
-func (widget *Widget) GetWindow() *Window {
-	id := widget.Candy().Guify("gtk_widget_get_window", widget).String()
-	return NewWindow(widget.Candy(), id)
+func (w *Widget) GetWindow() *Window {
+	id := w.Candy().Guify("gtk_widget_get_window", w).String()
+	return NewWindow(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_widget_set_tooltip_text, NONE, NONE, 2, WIDGET, STRING
-func (widget *Widget) SetTooltipText(text string) {
-	widget.Candy().Guify("gtk_widget_set_tooltip_text", widget, text)
+func (w *Widget) SetTooltipText(text string) {
+	w.Candy().Guify("gtk_widget_set_tooltip_text", w, text)
 }
