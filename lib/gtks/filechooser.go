@@ -26,12 +26,12 @@ func (obj *FileChooser) SetFilename(filename string) bool {
 }
 
 // FUNCTION_NAME = gtk_file_chooser_get_uri, NONE, STRING, 1, WIDGET
-func (obj *FileChooser) GetUri() string {
+func (obj *FileChooser) GetURI() string {
 	return obj.Candy().Guify("gtk_file_chooser_get_uri", obj).String()
 }
 
 // FUNCTION_NAME = gtk_file_chooser_set_uri, NONE, BOOL, 2, WIDGET, STRING
-func (obj *FileChooser) SetUri(uri string) bool {
+func (obj *FileChooser) SetURI(uri string) bool {
 	return obj.Candy().Guify("gtk_file_chooser_set_uri", obj, uri).MustBool()
 }
 

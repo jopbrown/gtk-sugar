@@ -27,14 +27,14 @@ func (obj *Clipboard) Clear() {
 	obj.Candy().Guify("gtk_clipboard_clear", obj)
 }
 
-// FUNCTION_NAME = gtk_clipboard_set_image, NONE, NONE, 3, WIDGET, STRING, INT
+// FUNCTION_NAME = gtk_clipboard_set_text, NONE, NONE, 3, WIDGET, STRING, INT
 func (obj *Clipboard) SetText(text string) {
-	obj.Candy().Guify("gtk_clipboard_set_image", obj, text, len(text))
+	obj.Candy().Guify("gtk_clipboard_set_text", obj, text, len(text))
 }
 
-// FUNCTION_NAME = gtk_clipboard_wait_for_image, NONE, STRING, 1, WIDGET
+// FUNCTION_NAME = gtk_clipboard_wait_for_text, NONE, STRING, 1, WIDGET
 func (obj *Clipboard) WaitForText() string {
-	return obj.Candy().Guify("gtk_clipboard_wait_for_image", obj).String()
+	return obj.Candy().Guify("gtk_clipboard_wait_for_text", obj).String()
 }
 
 // FUNCTION_NAME = gtk_clipboard_set_image, NONE, NONE, 2, WIDGET, WIDGET
