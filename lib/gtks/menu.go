@@ -16,3 +16,4 @@ package gtks
 // FUNCTION_NAME = gtk_check_menu_item_get_active, NONE, BOOL, 1, WIDGET
 // FUNCTION_NAME = gtk_check_menu_item_set_active, NONE, NONE, 2, WIDGET, BOOL
 // FUNCTION_NAME = gtk_menu_popup, NONE, NONE, 7, WIDGET, NULL, NULL, NULL, NULL, INT, INT
+// FUNCTION_NAME = gtk_image_menu_item_new_from_stock, NONE, WIDGET, 2, STRING, WIDGET

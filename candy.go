@@ -29,7 +29,6 @@ type invoke struct {
 type candy struct {
 	Sugar
 	signalCallback map[string]func()
-	signalNameToID map[string]string
 	invokeChan     chan *invoke
 	quitMain       bool
 }
@@ -38,7 +37,6 @@ func NewCandy(conn io.ReadWriter) Candy {
 	candy := &candy{}
 	candy.Sugar = NewSugar(conn)
 	candy.signalCallback = make(map[string]func())
-	candy.signalNameToID = make(map[string]string)
 	candy.invokeChan = make(chan *invoke)
 
 	return candy
@@ -49,11 +47,9 @@ func signalName(widget, signal string) string {
 }
 
 func (candy *candy) Connect(widget, signal string, callback func()) {
-	callbackID := candy.ServerConnect(widget, signal)
-	candy.signalCallback[callbackID] = callback
-
 	signalName := signalName(widget, signal)
-	candy.signalNameToID[signalName] = callbackID
+	candy.ServerConnect(widget, signal, signalName)
+	candy.signalCallback[signalName] = callback
 }
 
 func (candy *candy) ConnectDefault(widget string, callback func()) {
@@ -62,12 +58,12 @@ func (candy *candy) ConnectDefault(widget string, callback func()) {
 
 func (candy *candy) DisConnect(widget, signal string) {
 	signalName := signalName(widget, signal)
-	callbackID, ok := candy.signalNameToID[signalName]
+
+	_, ok := candy.signalCallback[signalName]
 
 	if ok {
-		candy.ServerDisconnect(widget, signal)
-		delete(candy.signalCallback, callbackID)
-		delete(candy.signalNameToID, signalName)
+		candy.ServerDisconnect(widget, signalName)
+		delete(candy.signalCallback, signalName)
 	}
 }
 
@@ -80,8 +76,8 @@ func (candy *candy) Invoke(callback func()) {
 func (candy *candy) Main() {
 	candy.quitMain = false
 	for {
-		signalID := candy.ServerCallback(SERVER_CALLBACK_UPDATE)
-		if callback, ok := candy.signalCallback[signalID]; ok {
+		signalName := candy.ServerCallback(SERVER_CALLBACK_UPDATE)
+		if callback, ok := candy.signalCallback[signalName]; ok {
 			callback()
 		}
 

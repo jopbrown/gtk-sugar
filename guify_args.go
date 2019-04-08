@@ -59,7 +59,7 @@ func writeArgs(sb *strings.Builder, args []interface{}) {
 type Args []interface{}
 
 func (args Args) String() string {
-	return formatArgs(args)
+	return formatArgs(args...)
 }
 
 type Varargs []interface{}
@@ -123,18 +123,18 @@ func (packer *Base64Packer) Format() string {
 	n := t.NumField()
 	for i := 0; i < n; i++ {
 		switch t.Field(i).Type.Kind() {
-		case reflect.String:
+		case reflect.Int8, reflect.Uint8:
+			sb.WriteString("%c")
+		case reflect.Int16, reflect.Uint16:
 			sb.WriteString("%s")
-		case reflect.Int64, reflect.Uint64:
+		case reflect.Int32, reflect.Uint32, reflect.Int64, reflect.Uint64:
 			sb.WriteString("%l")
-		case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32:
+		case reflect.Bool, reflect.Int, reflect.Uint:
 			sb.WriteString("%i")
 		case reflect.Float32:
 			sb.WriteString("%f")
 		case reflect.Float64:
 			sb.WriteString("%d")
-		case reflect.Bool:
-			sb.WriteString("%b")
 		}
 	}
 
@@ -166,12 +166,6 @@ func (packer *Base64Packer) Unmarshal(fields RespFields) error {
 		}
 		resp := fields[i]
 		switch f.Kind() {
-		case reflect.String:
-			v, err := resp.Unquote()
-			if nil != err {
-				return errors.WithStack(err)
-			}
-			f.SetString(v)
 		case reflect.Int64, reflect.Uint64, reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32:
 			v, err := resp.Int64()
 			if nil != err {

@@ -38,10 +38,6 @@ func (gtk *Gtk) Init() {
 // FUNCTION_NAME = gtk_target_list_new, NONE, WIDGET, 2, NULL, INT
 // FUNCTION_NAME = gtk_target_list_add, NONE, NONE, 4, WIDGET, WIDGET, INT, INT
 // FUNCTION_NAME = gtk_target_table_new_from_list, NONE, WIDGET, 2, WIDGET, WIDGET
-// FUNCTION_NAME = gtk_alignment_new, NONE, WIDGET, 4, FLOAT, FLOAT, FLOAT, FLOAT
-// FUNCTION_NAME = gtk_alignment_set, NONE, NONE, 5, WIDGET, FLOAT, FLOAT, FLOAT, FLOAT
-// FUNCTION_NAME = gtk_alignment_set_padding, NONE, NONE, 5, WIDGET, INT, INT, INT, INT
-// FUNCTION_NAME = gtk_alignment_get_padding, NONE, NONE, 5, WIDGET, PTR_INT, PTR_INT, PTR_INT, PTR_INT
 // FUNCTION_NAME = gtk_object_set_data, NONE, NONE, 3, WIDGET, STRING, INT
 // FUNCTION_NAME = gtk_object_get_data, NONE, INT, 2, WIDGET, STRING
 // FUNCTION_NAME = gtk_object_ref, NONE, WIDGET, 1, WIDGET

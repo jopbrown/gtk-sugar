@@ -107,3 +107,11 @@ func InterfaceSlice(v []interface{}, err error) []interface{} {
 
 	return v
 }
+
+func Bytes(v []byte, err error) []byte {
+	if err != nil {
+		panic(fmt.Sprintf("%+v", err))
+	}
+
+	return v
+}

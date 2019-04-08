@@ -27,9 +27,10 @@ func main() {
 	btn := gtk.NewButtonWithLabel("Size Request")
 	btn.ConnectDefault(func() {
 		r := win.SizeRequest()
-		dialog := gtk.NewMessageDialog(win, gtks.DIALOG_MODAL, gtks.MESSAGE_OTHER, gtks.BUTTONS_CLOSE, "W:\t%v\nH:\t%v", r.Width, r.Height)
-		dialog.ConnectDefault(dialog.Destroy)
-		dialog.ShowAll()
+		a := win.GetAllocation()
+		dialog := gtk.NewMessageDialog(win, gtks.DIALOG_MODAL, gtks.MESSAGE_OTHER, gtks.BUTTONS_CLOSE, "SizeRequest\t= W: %v H: %v\nGetAllocation\t= X: %v Y: %v W: %v H: %v", r.Width, r.Height, a.X, a.Y, a.Width, a.Height)
+		dialog.ConnectDefault(dialog.Hide)
+		dialog.Run()
 	})
 	win.Add(btn)
 
