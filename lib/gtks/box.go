@@ -32,34 +32,34 @@ func (box *Box) GetSpacing() int {
 	return box.Candy().Guify("gtk_box_get_spacing ", box).MustInt()
 }
 
-type Hbox struct {
+type HBox struct {
 	Box
 }
 
-func NewHbox(candy sugar.Candy, id string) *Hbox {
-	v := Hbox{}
+func NewHBox(candy sugar.Candy, id string) *HBox {
+	v := HBox{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
 }
 
 // FUNCTION_NAME = gtk_hbox_new, NONE, WIDGET, 2, BOOL, INT
-func (gtk *Gtk) NewHbox(homogeneous bool, spacing int) *Hbox {
+func (gtk *Gtk) NewHBox(homogeneous bool, spacing int) *HBox {
 	id := gtk.Guify("gtk_hbox_new", homogeneous, spacing).String()
-	return NewHbox(gtk, id)
+	return NewHBox(gtk, id)
 }
 
-type Vbox struct {
+type VBox struct {
 	Box
 }
 
-func NewVbox(candy sugar.Candy, id string) *Vbox {
-	v := Vbox{}
+func NewVBox(candy sugar.Candy, id string) *VBox {
+	v := VBox{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
 }
 
 // FUNCTION_NAME = gtk_vbox_new, NONE, WIDGET, 2, BOOL, INT
-func (gtk *Gtk) NewVbox(homogeneous bool, spacing int) *Vbox {
+func (gtk *Gtk) NewVBox(homogeneous bool, spacing int) *VBox {
 	id := gtk.Guify("gtk_vbox_new", homogeneous, spacing).String()
-	return NewVbox(gtk, id)
+	return NewVBox(gtk, id)
 }

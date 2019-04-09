@@ -17,6 +17,6 @@ func init() {
 	case [2]byte{0xAB, 0xCD}:
 		nativeEndian = binary.BigEndian
 	default:
-		panic("Could not determine native endianness.")
+		panic("unable to determine native endian")
 	}
 }

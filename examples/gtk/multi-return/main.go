@@ -24,10 +24,10 @@ func main() {
 	win.SetPosition(gtks.WIN_POS_CENTER)
 	win.ConnectDefault(gtk.MainQuit)
 
-	hbox := gtk.NewHbox(false, 10)
+	hbox := gtk.NewHBox(false, 10)
 	win.Add(hbox)
 
-	vbox := gtk.NewVbox(false, 10)
+	vbox := gtk.NewVBox(false, 10)
 	hbox.PackStart(vbox, true, true, 50)
 
 	entry := gtk.NewEntry()
