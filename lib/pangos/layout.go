@@ -1,9 +1,12 @@
 package pangos
 
-import sugar "github.com/jopbrown/gtk-sugar"
+import (
+	sugar "github.com/jopbrown/gtk-sugar"
+	"github.com/jopbrown/gtk-sugar/lib/glibs"
+)
 
 type Layout struct {
-	sugar.CandyWrapper
+	glibs.Object
 }
 
 func NewLayout(candy sugar.Candy, id string) *Layout {

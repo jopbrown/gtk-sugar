@@ -2,10 +2,11 @@ package gtks
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
+	"github.com/jopbrown/gtk-sugar/lib/glibs"
 )
 
 type TextMark struct {
-	sugar.CandyWrapper
+	glibs.Object
 }
 
 func NewTextMark(candy sugar.Candy, id string) *TextMark {
@@ -15,7 +16,7 @@ func NewTextMark(candy sugar.Candy, id string) *TextMark {
 }
 
 type TextBuffer struct {
-	sugar.CandyWrapper
+	glibs.Object
 }
 
 func NewTextBuffer(candy sugar.Candy, id string) *TextBuffer {
@@ -320,7 +321,7 @@ func (w *TextView) GetBuffer() *TextBuffer {
 }
 
 type TextIter struct {
-	sugar.CandyWrapper
+	glibs.Object
 }
 
 func NewTextIter(candy sugar.Candy, id string) *TextIter {
@@ -370,7 +371,7 @@ func (gtk *Gtk) TextIterGetText(start, end *TextIter) string {
 }
 
 type TextTag struct {
-	sugar.CandyWrapper
+	glibs.Object
 }
 
 func NewTextTag(candy sugar.Candy, id string) *TextTag {
@@ -380,7 +381,7 @@ func NewTextTag(candy sugar.Candy, id string) *TextTag {
 }
 
 type TextTagTable struct {
-	sugar.CandyWrapper
+	glibs.Object
 }
 
 func NewTextTagTable(candy sugar.Candy, id string) *TextTagTable {

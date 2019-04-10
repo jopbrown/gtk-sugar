@@ -90,3 +90,16 @@ const (
 	STATE_SELECTED
 	STATE_INSENSITIVE
 )
+
+// ENUM_NAME = GTK_POS_LEFT, 0
+// ENUM_NAME = GTK_POS_RIGHT, 1
+// ENUM_NAME = GTK_POS_TOP, 2
+// ENUM_NAME = GTK_POS_BOTTOM, 3
+type PositionType int
+
+const (
+	POS_LEFT PositionType = iota
+	POS_RIGHT
+	POS_TOP
+	POS_BOTTOM
+)

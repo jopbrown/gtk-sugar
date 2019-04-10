@@ -23,7 +23,7 @@ func (gtk *Gtk) NewVSeparator() *VSeparator {
 }
 
 type HSeparator struct {
-	sugar.CandyWrapper
+	Separator
 }
 
 func NewHSeparator(candy sugar.Candy, id string) *HSeparator {

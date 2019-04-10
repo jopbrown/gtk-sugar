@@ -99,7 +99,7 @@ func main() {
 }
 
 func makeupOfElapsed(startTime time.Time) string {
-	return fmt.Sprintf("<span font='40'>%s</span>", time.Since(startTime).Round(100*time.Millisecond).String())
+	return fmt.Sprintf("<span font_desc='40'>%s</span>", time.Since(startTime).Round(100*time.Millisecond).String())
 }
 
 func setFlag(runFlag *int32, isSet bool) {

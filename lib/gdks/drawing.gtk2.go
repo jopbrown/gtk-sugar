@@ -183,4 +183,3 @@ func (gdk *Gdk) DrawPoint(drawable IDrawable, gc *GC, x, y int) {
 // FUNCTION_NAME = gdk_threads_leave, NONE, NONE, 0
 // FUNCTION_NAME = gdk_cairo_create, NONE, WIDGET, 1, WIDGET
 // FUNCTION_NAME = gdk_cairo_set_source_rgba, NONE, NONE, 2, WIDGET, WIDGET
-// FUNCTION_NAME = gdk_rgba_parse, NONE, INT, 2, WIDGET, STRING
