@@ -27,11 +27,12 @@ Embedded API is work in process, breaking change will be made.
 		* Download [prebuilded GTK-server](https://github.com/jopbrown/gtk-server/releases)
 	* Others
 		* Install [GTK+](https://www.gtk.org/download/)
+		* Install [libffi](http://sourceware.org/libffi/)
 		* Build GTK-server from [source](http://www.gtk-server.org/download.html)
 		```bash
 		tar zxvf gtk-server-2.x.x.tar.gz
 		cd gtk-server-2.x.x/src
-		./configure --with-gtk2
+		./configure --with-gtk2 --with-ffi
 		make
 		make install
 		```
