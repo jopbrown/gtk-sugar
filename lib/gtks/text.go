@@ -67,8 +67,8 @@ func (tb *TextBuffer) GetBounds() (start, end *TextIter) {
 	sid := tb.Candy().ServerOpaque()
 	eid := tb.Candy().ServerOpaque()
 	tb.Candy().Guify("gtk_text_buffer_get_bounds", tb, sid, eid)
-	start = &TextIter{CandyWrapper: tb.Candy().NewWrapper(sid)}
-	end = &TextIter{CandyWrapper: tb.Candy().NewWrapper(eid)}
+	start = NewTextIter(tb.Candy(), sid)
+	end = NewTextIter(tb.Candy(), eid)
 	return
 }
 
@@ -77,8 +77,8 @@ func (tb *TextBuffer) GetSelectionBounds() (start, end *TextIter) {
 	sid := tb.Candy().ServerOpaque()
 	eid := tb.Candy().ServerOpaque()
 	tb.Candy().Guify("gtk_text_buffer_get_selection_bounds", tb, sid, eid)
-	start = &TextIter{CandyWrapper: tb.Candy().NewWrapper(sid)}
-	end = &TextIter{CandyWrapper: tb.Candy().NewWrapper(eid)}
+	start = NewTextIter(tb.Candy(), sid)
+	end = NewTextIter(tb.Candy(), eid)
 	return
 }
 
@@ -321,7 +321,7 @@ func (w *TextView) GetBuffer() *TextBuffer {
 }
 
 type TextIter struct {
-	glibs.Object
+	sugar.CandyWrapper
 }
 
 func NewTextIter(candy sugar.Candy, id string) *TextIter {

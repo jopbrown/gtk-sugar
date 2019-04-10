@@ -29,7 +29,7 @@ type Sugar interface {
 	ServerUnpack(format, b64 string) RespFields
 	ServerDataFormat(format string)
 	ServerCallback(t ServerCallbackType) string
-	ServerCallbackValue(argIdx int, argType ServerValueType) Response
+	ServerCallbackValue(argIdx int, argType CallValueType) Response
 	ServerOpaque() string
 	ServerKey() int
 	ServerKeyState() int
@@ -45,40 +45,40 @@ func NewSugar(conn io.ReadWriter) Sugar {
 	return &sugar{Guifyer: NewGuifyer(conn)}
 }
 
-type ServerValueType int
+type CallValueType int
 
 const (
-	SERVER_VALUE_TYPE_NULL ServerValueType = iota
-	SERVER_VALUE_TYPE_WIDGET
-	SERVER_VALUE_TYPE_BOOL
-	SERVER_VALUE_TYPE_STRING
-	SERVER_VALUE_TYPE_INT
-	SERVER_VALUE_TYPE_LONG
-	SERVER_VALUE_TYPE_DOUBLE
-	SERVER_VALUE_TYPE_FLOAT
+	CALLBACK_VALUE_TYPE_INT CallValueType = iota
+	CALLBACK_VALUE_TYPE_STRING
+	// CALLBACK_VALUE_TYPE_NULL
+	// CALLBACK_VALUE_TYPE_WIDGET
+	// CALLBACK_VALUE_TYPE_BOOL
+	// CALLBACK_VALUE_TYPE_LONG
+	// CALLBACK_VALUE_TYPE_DOUBLE
+	// CALLBACK_VALUE_TYPE_FLOAT
 )
 
-func (t ServerValueType) String() string {
+func (t CallValueType) String() string {
 	switch t {
-	case SERVER_VALUE_TYPE_NULL:
-		return "NULL"
-	case SERVER_VALUE_TYPE_WIDGET:
-		return "WIDGET"
-	case SERVER_VALUE_TYPE_BOOL:
-		return "BOOL"
-	case SERVER_VALUE_TYPE_STRING:
-		return "STRING"
-	case SERVER_VALUE_TYPE_INT:
+	case CALLBACK_VALUE_TYPE_INT:
 		return "INT"
-	case SERVER_VALUE_TYPE_LONG:
-		return "LONG"
-	case SERVER_VALUE_TYPE_DOUBLE:
-		return "DOUBLE"
-	case SERVER_VALUE_TYPE_FLOAT:
-		return "FLOAT"
+	case CALLBACK_VALUE_TYPE_STRING:
+		return "STRING"
+		// case CALLBACK_VALUE_TYPE_NULL:
+		// 	return "NULL"
+		// case CALLBACK_VALUE_TYPE_WIDGET:
+		// 	return "WIDGET"
+		// case CALLBACK_VALUE_TYPE_BOOL:
+		// 	return "BOOL"
+		// case CALLBACK_VALUE_TYPE_LONG:
+		// 	return "LONG"
+		// case CALLBACK_VALUE_TYPE_DOUBLE:
+		// 	return "DOUBLE"
+		// case CALLBACK_VALUE_TYPE_FLOAT:
+		// 	return "FLOAT"
 	}
 
-	return "NONE"
+	return ""
 }
 
 func (sugar *sugar) ServerConnect(widget, signal, description string) string {
@@ -182,7 +182,7 @@ func (sugar *sugar) ServerCallback(t ServerCallbackType) string {
 	return resp.String()
 }
 
-func (sugar *sugar) ServerCallbackValue(argIdx int, argType ServerValueType) Response {
+func (sugar *sugar) ServerCallbackValue(argIdx int, argType CallValueType) Response {
 	return sugar.Guify("gtk_server_callback_value", argIdx, argType.String())
 }
 
