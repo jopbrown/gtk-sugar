@@ -18,7 +18,6 @@ func (gtk *Gtk) Init() {
 }
 
 // FUNCTION_NAME = gtk_settings_get_default, NONE, WIDGET, 0
-// FUNCTION_NAME = gtk_misc_set_alignment, NONE, NONE, 3, WIDGET, FLOAT, FLOAT
 // FUNCTION_NAME = gtk_main, NONE, NONE, 0
 // FUNCTION_NAME = gtk_main_iteration, NONE, BOOL, 0
 // FUNCTION_NAME = gtk_main_iteration_do, NONE, BOOL, 1, BOOL

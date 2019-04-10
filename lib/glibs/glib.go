@@ -1,6 +1,12 @@
 package glibs
 
+import sugar "github.com/jopbrown/gtk-sugar"
+
 // FUNCTION_NAME = g_free, NONE, NONE, 1, WIDGET
+func Free(obj sugar.CandyWrapper) {
+	obj.Candy().Guify("g_free", obj)
+}
+
 // FUNCTION_NAME = g_io_channel_read_line_string, NONE, INT, 4, WIDGET, STRING, NULL, NULL
 // FUNCTION_NAME = g_io_channel_unix_new, NONE, WIDGET, 1, INT
 // FUNCTION_NAME = g_locale_from_utf8, NONE, STRING, 5, STRING, LONG, NULL, NULL, NULL

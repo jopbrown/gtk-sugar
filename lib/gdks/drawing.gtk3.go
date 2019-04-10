@@ -1,6 +1,9 @@
 package gdks
 
-import sugar "github.com/jopbrown/gtk-sugar"
+import (
+	sugar "github.com/jopbrown/gtk-sugar"
+	"github.com/jopbrown/gtk-sugar/lib/glibs"
+)
 
 type RGBA struct {
 	sugar.CandyWrapper
@@ -26,5 +29,5 @@ func (obj *RGBA) Parse(spec string) bool {
 }
 
 func (obj *RGBA) Free() {
-	obj.Candy().Guify("g_free", obj)
+	glibs.Free(obj)
 }
