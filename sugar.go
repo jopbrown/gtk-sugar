@@ -2,16 +2,7 @@
 package sugar
 
 import (
-	"encoding/base64"
-	"fmt"
 	"io"
-	"math"
-	"runtime"
-	"strings"
-
-	"github.com/pkg/errors"
-
-	"github.com/jopbrown/gtk-sugar/util/must"
 )
 
 // Sugar provide a high level api to communicate with gtk-server.
@@ -120,49 +111,7 @@ func (sugar *sugar) ServerPackStruct(s interface{}) string {
 }
 
 func (sugar *sugar) ServerUnpack(format, b64 string) RespFields {
-	// gtk_server_unpack is not work correctly
-	// return sugar.Guify("gtk_server_unpack", format, b64).Fields()
-
-	bin := must.Bytes(base64.StdEncoding.DecodeString(b64))
-	start := 0
-	end := 0
-	argTypes := strings.Split(format, "%")[1:]
-	fields := make(RespFields, len(argTypes))
-	var v interface{}
-	for i, argType := range argTypes {
-		switch argType {
-		case "i":
-			end = start + 4
-			v = int32(nativeEndian.Uint32(bin[start:end]))
-		case "s":
-			end = start + 2
-			v = int16(nativeEndian.Uint16(bin[start:end]))
-		case "c":
-			end = start + 1
-			v = bin[start]
-		case "l":
-			if runtime.GOOS == "windows" {
-				end = start + 2
-				v = int32(nativeEndian.Uint32(bin[start:end]))
-			} else {
-				end = start + 4
-				v = int64(nativeEndian.Uint64(bin[start:end]))
-			}
-		case "f":
-			end = start + 2
-			v = math.Float32frombits(nativeEndian.Uint32(bin[start:end]))
-		case "d":
-			end = start + 4
-			v = math.Float64frombits(nativeEndian.Uint64(bin[start:end]))
-		default:
-			panic(errors.Errorf("unknow pack format %s in %s", argType, format))
-		}
-
-		fields[i] = Response(fmt.Sprintf("%v", v))
-		start = end
-	}
-
-	return fields
+	return sugar.Guify("gtk_server_unpack", format, b64).Fields()
 }
 
 func (sugar *sugar) ServerDataFormat(format string) {
