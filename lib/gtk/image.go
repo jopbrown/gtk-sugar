@@ -4,7 +4,7 @@ import (
 	"runtime"
 
 	sugar "github.com/jopbrown/gtk-sugar"
-	"github.com/jopbrown/gtk-sugar/lib/gdks"
+	"github.com/jopbrown/gtk-sugar/lib/gdk"
 )
 
 type Image struct {
@@ -24,7 +24,7 @@ func NewImage() *Image {
 }
 
 // FUNCTION_NAME = gtk_image_new_from_pixbuf, NONE, WIDGET, 1, WIDGET
-func NewImageFromPixbuf(pixbuf *gdks.Pixbuf) *Image {
+func NewImageFromPixbuf(pixbuf *gdk.Pixbuf) *Image {
 	id := Candy().Guify("gtk_image_new_from_pixbuf", pixbuf).String()
 	return NewImageFromCandy(Candy(), id)
 }
@@ -47,7 +47,7 @@ func NewImageFromStock(stockID string, size IconSize) *Image {
 }
 
 // FUNCTION_NAME = gtk_image_set_from_pixbuf, NONE, WIDGET, 2, WIDGET, WIDGET
-func (obj *Image) SetFromPixbuf(pixbuf *gdks.Pixbuf) {
+func (obj *Image) SetFromPixbuf(pixbuf *gdk.Pixbuf) {
 	obj.Candy().Guify("gtk_image_set_from_pixbuf", obj, pixbuf)
 }
 
@@ -57,7 +57,7 @@ func (obj *Image) SetFromFile(filename string) {
 }
 
 // FUNCTION_NAME = gtk_image_get_pixbuf, NONE, WIDGET, 1, WIDGET
-func (obj *Image) GetPixbuf() *gdks.Pixbuf {
+func (obj *Image) GetPixbuf() *gdk.Pixbuf {
 	id := obj.Candy().Guify("gtk_image_get_pixbuf", obj).String()
-	return gdks.NewPixbufFromCandy(obj.Candy(), id)
+	return gdk.NewPixbufFromCandy(obj.Candy(), id)
 }

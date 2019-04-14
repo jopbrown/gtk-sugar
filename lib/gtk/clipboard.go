@@ -2,12 +2,12 @@ package gtk
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
-	"github.com/jopbrown/gtk-sugar/lib/gdks"
-	"github.com/jopbrown/gtk-sugar/lib/glibs"
+	"github.com/jopbrown/gtk-sugar/lib/gdk"
+	"github.com/jopbrown/gtk-sugar/lib/glib"
 )
 
 type Clipboard struct {
-	glibs.Object
+	glib.Object
 }
 
 func NewClipboardFromCandy(candy sugar.Candy, id string) *Clipboard {
@@ -17,7 +17,7 @@ func NewClipboardFromCandy(candy sugar.Candy, id string) *Clipboard {
 }
 
 // FUNCTION_NAME = gtk_clipboard_get, NONE, WIDGET, 1, INT
-func NewClipboard(selection gdks.Atom) *Clipboard {
+func NewClipboard(selection gdk.Atom) *Clipboard {
 	id := Candy().Guify("gtk_clipboard_get").String()
 	return NewClipboardFromCandy(Candy(), id)
 }
@@ -38,12 +38,12 @@ func (obj *Clipboard) WaitForText() string {
 }
 
 // FUNCTION_NAME = gtk_clipboard_set_image, NONE, NONE, 2, WIDGET, WIDGET
-func (obj *Clipboard) SetImage(pixbuf *gdks.Pixbuf) {
+func (obj *Clipboard) SetImage(pixbuf *gdk.Pixbuf) {
 	obj.Candy().Guify("gtk_clipboard_set_image", obj, pixbuf)
 }
 
 // FUNCTION_NAME = gtk_clipboard_wait_for_image, NONE, WIDGET, 1, WIDGET
-func (obj *Clipboard) WaitForImage() *gdks.Pixbuf {
+func (obj *Clipboard) WaitForImage() *gdk.Pixbuf {
 	id := obj.Candy().Guify("gtk_clipboard_wait_for_image", obj).String()
-	return gdks.NewPixbufFromCandy(obj.Candy(), id)
+	return gdk.NewPixbufFromCandy(obj.Candy(), id)
 }

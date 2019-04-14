@@ -5,13 +5,13 @@ import (
 
 	sugar "github.com/jopbrown/gtk-sugar"
 
-	"github.com/jopbrown/gtk-sugar/lib/gdks"
-	"github.com/jopbrown/gtk-sugar/lib/gtks"
+	"github.com/jopbrown/gtk-sugar/lib/gdk"
+	"github.com/jopbrown/gtk-sugar/lib/gtk"
 )
 
 var (
-	gtk *gtks.Gtk
-	gdk *gdks.Gdk
+	gtk *gtk.Gtk
+	gdk *gdk.Gdk
 )
 
 func init() {
@@ -22,8 +22,8 @@ func init() {
 		panic(err)
 	}
 
-	gtk = gtks.NewGtk(sugar.NewCandy(clt.Conn()))
-	gdk = gdks.NewGdk(sugar.NewCandy(clt.Conn()))
+	gtk = gtk.NewGtk(sugar.NewCandy(clt.Conn()))
+	gdk = gdk.NewGdk(sugar.NewCandy(clt.Conn()))
 }
 
 func main() {
@@ -31,10 +31,10 @@ func main() {
 
 	gtk.Init()
 
-	win := gtk.NewWindow(gtks.WINDOW_TOPLEVEL)
+	win := gtk.NewWindow(gtk.WINDOW_TOPLEVEL)
 	win.SetTitle("Show Image")
 	win.SetDefaultSize(300, 300)
-	win.SetPosition(gtks.WIN_POS_CENTER)
+	win.SetPosition(gtk.WIN_POS_CENTER)
 	win.ConnectDefault(gtk.MainQuit)
 
 	pixbuf, err := gdk.NewPixbufFromFile("image.jpg")
@@ -46,7 +46,7 @@ func main() {
 	layout := gtk.NewLayout(nil, nil)
 	layout.Connect("size-allocate", func() {
 		a := win.GetAllocation()
-		newbuf := pixbuf.ScaleSimple(a.Width, a.Height, gdks.INTERP_BILINEAR)
+		newbuf := pixbuf.ScaleSimple(a.Width, a.Height, gdk.INTERP_BILINEAR)
 		image.SetFromPixbuf(newbuf)
 		newbuf.Unref()
 	})

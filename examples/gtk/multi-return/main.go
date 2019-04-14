@@ -3,7 +3,7 @@ package main
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
 
-	"github.com/jopbrown/gtk-sugar/lib/gtks"
+	"github.com/jopbrown/gtk-sugar/lib/gtk"
 )
 
 func main() {
@@ -15,13 +15,13 @@ func main() {
 	}
 	defer clt.Stop()
 
-	gtk := gtks.NewGtk(sugar.NewCandy(clt.Conn()))
+	gtk := gtk.NewGtk(sugar.NewCandy(clt.Conn()))
 	gtk.Init()
 
-	win := gtk.NewWindow(gtks.WINDOW_TOPLEVEL)
+	win := gtk.NewWindow(gtk.WINDOW_TOPLEVEL)
 	win.SetTitle("multi-return demo")
 	win.SetDefaultSize(300, 100)
-	win.SetPosition(gtks.WIN_POS_CENTER)
+	win.SetPosition(gtk.WIN_POS_CENTER)
 	win.ConnectDefault(gtk.MainQuit)
 
 	hbox := gtk.NewHBox(false, 10)

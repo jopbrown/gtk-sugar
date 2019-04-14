@@ -1,14 +1,14 @@
 package gtk
 
-import "github.com/jopbrown/gtk-sugar/lib/gdks"
+import "github.com/jopbrown/gtk-sugar/lib/gdk"
 
 // FUNCTION_NAME = gtk_widget_override_background_color, NONE, NONE, 3, WIDGET, INT, WIDGET
-func (w *Widget) OverrideBackgroundColor(state StateType, color *gdks.RGBA) {
+func (w *Widget) OverrideBackgroundColor(state StateType, color *gdk.RGBA) {
 	w.Candy().Guify("gtk_widget_override_background_color", w, state, color)
 }
 
 // FUNCTION_NAME = gtk_widget_override_color, NONE, NONE, 3, WIDGET, INT, WIDGET
-func (w *Widget) OverrideColor(state StateType, color *gdks.RGBA) {
+func (w *Widget) OverrideColor(state StateType, color *gdk.RGBA) {
 	w.Candy().Guify("gtk_widget_override_color", w, state, color)
 }
 

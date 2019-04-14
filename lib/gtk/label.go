@@ -2,7 +2,7 @@ package gtk
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
-	"github.com/jopbrown/gtk-sugar/lib/pangos"
+	"github.com/jopbrown/gtk-sugar/lib/pango"
 )
 
 type Label struct {
@@ -72,7 +72,7 @@ func (l *Label) SetMarkupWithMnemonic(str string) {
 }
 
 // FUNCTION_NAME = gtk_label_set_ellipsize, NONE, NONE, 2, WIDGET, INT
-func (l *Label) SetEllipsize(mode pangos.EllipsizeMode) {
+func (l *Label) SetEllipsize(mode pango.EllipsizeMode) {
 	l.Candy().Guify("gtk_label_set_ellipsize", l, mode)
 }
 

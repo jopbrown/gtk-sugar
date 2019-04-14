@@ -2,13 +2,13 @@ package gdk
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
-	"github.com/jopbrown/gtk-sugar/lib/glibs"
+	"github.com/jopbrown/gtk-sugar/lib/glib"
 	"github.com/jopbrown/gtk-sugar/util/fs"
 	"github.com/pkg/errors"
 )
 
 type Pixbuf struct {
-	glibs.Object
+	glib.Object
 }
 
 func NewPixbufFromCandy(candy sugar.Candy, id string) *Pixbuf {

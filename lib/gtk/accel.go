@@ -2,11 +2,11 @@ package gtk
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
-	"github.com/jopbrown/gtk-sugar/lib/glibs"
+	"github.com/jopbrown/gtk-sugar/lib/glib"
 )
 
 type AccelGroup struct {
-	glibs.Object
+	glib.Object
 }
 
 func NewAccelGroupFromCandy(candy sugar.Candy, id string) *AccelGroup {

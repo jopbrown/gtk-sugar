@@ -1,5 +1,7 @@
 package libc
 
+import sugar "github.com/jopbrown/gtk-sugar"
+
 var candy sugar.Candy
 
 func GiveCandy(c sugar.Candy) {
@@ -9,6 +11,7 @@ func GiveCandy(c sugar.Candy) {
 func Candy() sugar.Candy {
 	return candy
 }
+
 // FUNCTION_NAME = malloc, NONE, POINTER, 1, INT
 // FUNCTION_NAME = calloc, NONE, POINTER, 2, INT, INT
 // FUNCTION_NAME = free, NONE, NONE, 1, POINTER

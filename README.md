@@ -113,7 +113,7 @@ import (
 
 	sugar "github.com/jopbrown/gtk-sugar"
 
-	"github.com/jopbrown/gtk-sugar/lib/gtks"
+	"github.com/jopbrown/gtk-sugar/lib/gtk"
 )
 
 func main() {
@@ -125,13 +125,13 @@ func main() {
 	}
 	defer clt.Stop()
 
-	gtk := gtks.NewGtk(sugar.NewCandy(clt.Conn()))
+	gtk := gtk.NewGtk(sugar.NewCandy(clt.Conn()))
 	gtk.Init()
 
-	win := gtk.NewWindow(gtks.WINDOW_TOPLEVEL)
+	win := gtk.NewWindow(gtk.WINDOW_TOPLEVEL)
 	win.SetTitle("Embedded GTK API demo")
 	win.SetDefaultSize(400, 200)
-	win.SetPosition(gtks.WIN_POS_CENTER)
+	win.SetPosition(gtk.WIN_POS_CENTER)
 	win.ConnectDefault(gtk.MainQuit)
 
 	table := gtk.NewTable(10, 10, true)
@@ -140,7 +140,7 @@ func main() {
 	helloLabel := gtk.NewLabel("Hello world")
 	table.AttachDefaults(helloLabel, 2, 8, 2, 6)
 
-	dialog := gtk.NewMessageDialog(win, gtks.DIALOG_MODAL, gtks.MESSAGE_INFO, gtks.BUTTONS_OK, "Hello %s", "world")
+	dialog := gtk.NewMessageDialog(win, gtk.DIALOG_MODAL, gtk.MESSAGE_INFO, gtk.BUTTONS_OK, "Hello %s", "world")
 	dialog.ConnectDefault(dialog.Hide)
 
 	showBtn := gtk.NewButtonWithLabel("Show dialog")

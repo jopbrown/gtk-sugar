@@ -2,7 +2,7 @@ package gtk
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
-	"github.com/jopbrown/gtk-sugar/lib/gdks"
+	"github.com/jopbrown/gtk-sugar/lib/gdk"
 )
 
 type Window struct {
@@ -103,7 +103,7 @@ func (win *Window) AddAccelGroup(accelGroup *AccelGroup) {
 }
 
 // FUNCTION_NAME = gtk_window_set_type_hint, NONE, NONE, 2, WIDGET, INT
-func (win *Window) SetTypeHint(hint gdks.WindowTypeHint) {
+func (win *Window) SetTypeHint(hint gdk.WindowTypeHint) {
 	win.Candy().Guify("gtk_window_set_type_hint", win, hint)
 }
 

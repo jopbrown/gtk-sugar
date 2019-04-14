@@ -2,7 +2,7 @@ package gdk
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
-	"github.com/jopbrown/gtk-sugar/lib/glibs"
+	"github.com/jopbrown/gtk-sugar/lib/glib"
 )
 
 type RGBA struct {
@@ -29,5 +29,5 @@ func (obj *RGBA) Parse(spec string) bool {
 }
 
 func (obj *RGBA) Free() {
-	glibs.Free(obj)
+	glib.Free(obj)
 }

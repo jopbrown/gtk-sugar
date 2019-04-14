@@ -2,9 +2,9 @@ package gtk
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
-	"github.com/jopbrown/gtk-sugar/lib/gdks"
-	"github.com/jopbrown/gtk-sugar/lib/glibs"
-	"github.com/jopbrown/gtk-sugar/lib/pangos"
+	"github.com/jopbrown/gtk-sugar/lib/gdk"
+	"github.com/jopbrown/gtk-sugar/lib/glib"
+	"github.com/jopbrown/gtk-sugar/lib/pango"
 )
 
 type IWidget interface {
@@ -15,7 +15,7 @@ type IWidget interface {
 }
 
 type Widget struct {
-	glibs.Object
+	glib.Object
 }
 
 func NewWidgetFromCandy(candy sugar.Candy, id string) *Widget {
@@ -86,7 +86,7 @@ func (w *Widget) SetSensitive(sensitive bool) {
 }
 
 // FUNCTION_NAME = gtk_widget_add_accelerator, NONE, NONE, 6, WIDGET, STRING, WIDGET, INT, INT, INT
-func (w *Widget) AddAccelerator(accelSignal string, accelGroup *AccelGroup, accelKey uint, accelMods gdks.ModifierType, accelFlags AccelFlags) {
+func (w *Widget) AddAccelerator(accelSignal string, accelGroup *AccelGroup, accelKey uint, accelMods gdk.ModifierType, accelFlags AccelFlags) {
 	w.Candy().Guify("gtk_widget_add_accelerator", w, accelSignal, accelGroup, accelKey, accelMods, accelFlags)
 }
 
@@ -132,9 +132,9 @@ func (w *Widget) GetParentWindow() *Window {
 }
 
 // FUNCTION_NAME = gtk_widget_create_pango_layout, NONE, WIDGET, 2, WIDGET, STRING
-func (w *Widget) CreatePangoLayout() *pangos.Layout {
+func (w *Widget) CreatePangoLayout() *pango.Layout {
 	id := w.Candy().Guify("gtk_widget_create_pango_layout", w).String()
-	return pangos.NewLayoutFromCandy(w.Candy(), id)
+	return pango.NewLayoutFromCandy(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_widget_get_window, NONE, WIDGET, 1, WIDGET

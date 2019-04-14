@@ -2,7 +2,7 @@ package gtk
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
-	"github.com/jopbrown/gtk-sugar/lib/glibs"
+	"github.com/jopbrown/gtk-sugar/lib/glib"
 )
 
 type FileChooser struct {
@@ -86,7 +86,7 @@ func (obj *FileChooser) SetCreateFolders(createFolders bool) {
 }
 
 type FileFilter struct {
-	glibs.Object
+	glib.Object
 }
 
 func NewFileFilterFromCandy(candy sugar.Candy, id string) *FileFilter {
