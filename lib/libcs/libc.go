@@ -1,5 +1,14 @@
 package libcs
 
+var candy sugar.Candy
+
+func GiveCandy(c sugar.Candy) {
+	candy = c
+}
+
+func Candy() sugar.Candy {
+	return candy
+}
 // FUNCTION_NAME = malloc, NONE, POINTER, 1, INT
 // FUNCTION_NAME = calloc, NONE, POINTER, 2, INT, INT
 // FUNCTION_NAME = free, NONE, NONE, 1, POINTER

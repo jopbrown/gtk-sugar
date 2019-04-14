@@ -6,16 +6,16 @@ type Statusbar struct {
 	Box
 }
 
-func NewStatusbar(candy sugar.Candy, id string) *Statusbar {
+func NewStatusbarFromCandy(candy sugar.Candy, id string) *Statusbar {
 	obj := Statusbar{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
 }
 
 // FUNCTION_NAME = gtk_statusbar_new, NONE, WIDGET, 0
-func (gtk *Gtk) NewStatusbar() *Statusbar {
-	id := gtk.Guify("gtk_statusbar_new").String()
-	return NewStatusbar(gtk, id)
+func NewStatusbar() *Statusbar {
+	id := Candy().Guify("gtk_statusbar_new").String()
+	return NewStatusbarFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_statusbar_get_context_id, NONE, INT, 2, WIDGET, STRING

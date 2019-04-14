@@ -10,16 +10,16 @@ type Calendar struct {
 	Widget
 }
 
-func NewCalendar(candy sugar.Candy, id string) *Calendar {
+func NewCalendarFromCandy(candy sugar.Candy, id string) *Calendar {
 	obj := Calendar{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
 }
 
 // FUNCTION_NAME = gtk_calendar_new, NONE, WIDGET, 0
-func (gtk *Gtk) NewCalendar() *Calendar {
-	id := gtk.Guify("gtk_calendar_new").String()
-	return NewCalendar(gtk, id)
+func NewCalendar() *Calendar {
+	id := Candy().Guify("gtk_calendar_new").String()
+	return NewCalendarFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_calendar_select_month, NONE, NONE, 3, WIDGET, INT, INT

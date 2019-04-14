@@ -6,16 +6,16 @@ type ScrolledWindow struct {
 	Bin
 }
 
-func NewScrolledWindow(candy sugar.Candy, id string) *ScrolledWindow {
+func NewScrolledWindowFromCandy(candy sugar.Candy, id string) *ScrolledWindow {
 	v := ScrolledWindow{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
 }
 
 // FUNCTION_NAME = gtk_scrolled_window_new, NONE, WIDGET, 2, WIDGET, WIDGET
-func (gtk *Gtk) NewScrolledWindow(h, v *Adjustment) *ScrolledWindow {
-	id := gtk.Guify("gtk_scrolled_window_new", h, v).String()
-	return NewScrolledWindow(gtk, id)
+func NewScrolledWindow(h, v *Adjustment) *ScrolledWindow {
+	id := Candy().Guify("gtk_scrolled_window_new", h, v).String()
+	return NewScrolledWindowFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_scrolled_window_set_policy, NONE, NONE, 3, WIDGET, INT, INT

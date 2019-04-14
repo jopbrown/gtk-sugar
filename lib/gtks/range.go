@@ -6,7 +6,7 @@ type Range struct {
 	Widget
 }
 
-func NewRange(candy sugar.Candy, id string) *Range {
+func NewRangeFromCandy(candy sugar.Candy, id string) *Range {
 	obj := Range{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -15,7 +15,7 @@ func NewRange(candy sugar.Candy, id string) *Range {
 // FUNCTION_NAME = gtk_range_get_adjustment, NONE, WIDGET, 1, WIDGET
 func (obj *Range) GetAdjustment() *Adjustment {
 	id := obj.Candy().Guify("gtk_range_get_adjustment", obj).String()
-	return NewAdjustment(obj.Candy(), id)
+	return NewAdjustmentFromCandy(obj.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_range_get_value, NONE, DOUBLE, 1, WIDGET

@@ -9,16 +9,16 @@ type Tooltips struct {
 	glibs.Object
 }
 
-func NewTooltips(candy sugar.Candy, id string) *Tooltips {
+func NewTooltipsFromCandy(candy sugar.Candy, id string) *Tooltips {
 	obj := Tooltips{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
 }
 
 // FUNCTION_NAME = gtk_tooltips_new, NONE, WIDGET, 0
-func (gtk *Gtk) NewTooltips() *Tooltips {
-	id := gtk.Guify("gtk_tooltips_new").String()
-	return NewTooltips(gtk, id)
+func NewTooltips() *Tooltips {
+	id := Candy().Guify("gtk_tooltips_new").String()
+	return NewTooltipsFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_tooltips_enable, NONE, NONE, 1, WIDGET

@@ -10,7 +10,7 @@ type Drawable struct {
 	sugar.CandyWrapper
 }
 
-func NewDrawable(candy sugar.Candy, id string) *Drawable {
+func NewDrawableFromCandy(candy sugar.Candy, id string) *Drawable {
 	obj := Drawable{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -20,7 +20,7 @@ type Cursor struct {
 	sugar.CandyWrapper
 }
 
-func NewCursor(candy sugar.Candy, id string) *Cursor {
+func NewCursorFromCandy(candy sugar.Candy, id string) *Cursor {
 	obj := Cursor{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -30,7 +30,7 @@ type Colormap struct {
 	sugar.CandyWrapper
 }
 
-func NewColormap(candy sugar.Candy, id string) *Colormap {
+func NewColormapFromCandy(candy sugar.Candy, id string) *Colormap {
 	w := Colormap{}
 	w.CandyWrapper = candy.NewWrapper(id)
 	return &w
@@ -43,7 +43,7 @@ type Color struct {
 	sugar.CandyWrapper
 }
 
-func NewColor(candy sugar.Candy, id string) *Color {
+func NewColorFromCandy(candy sugar.Candy, id string) *Color {
 	obj := Color{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -56,17 +56,17 @@ type GC struct {
 	sugar.CandyWrapper
 }
 
-func NewGC(candy sugar.Candy, id string) *GC {
+func NewGCFromCandy(candy sugar.Candy, id string) *GC {
 	obj := GC{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
 }
 
 // FUNCTION_NAME = gdk_gc_new, NONE, WIDGET, 1, WIDGET
-func (gdk *Gdk) NewGC(drawable IDrawable) *GC {
-	id := gdk.Guify("gdk_gc_new", drawable).String()
+func NewGC(drawable IDrawable) *GC {
+	id := Candy().Guify("gdk_gc_new", drawable).String()
 	w := GC{}
-	w.CandyWrapper = gdk.NewWrapper(id)
+	w.CandyWrapper = Candy().NewWrapper(id)
 	return &w
 }
 
@@ -99,17 +99,17 @@ type Font struct {
 	sugar.CandyWrapper
 }
 
-func NewFont(candy sugar.Candy, id string) *Font {
+func NewFontFromCandy(candy sugar.Candy, id string) *Font {
 	obj := Font{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
 }
 
 // FUNCTION_NAME = gdk_font_load, NONE, WIDGET, 1, STRING
-func (gdk *Gdk) FontLoad(fontName string) *Font {
-	id := gdk.Guify("gdk_font_load", fontName).String()
+func FontLoad(fontName string) *Font {
+	id := Candy().Guify("gdk_font_load", fontName).String()
 	w := Font{}
-	w.CandyWrapper = gdk.NewWrapper(id)
+	w.CandyWrapper = Candy().NewWrapper(id)
 
 	return &w
 }
@@ -118,17 +118,17 @@ type Pixmap struct {
 	Drawable
 }
 
-func NewPixmap(candy sugar.Candy, id string) *Pixmap {
+func NewPixmapFromCandy(candy sugar.Candy, id string) *Pixmap {
 	obj := Pixmap{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
 }
 
 // FUNCTION_NAME = gdk_pixmap_new, NONE, WIDGET, 4, WIDGET, INT, INT, INT
-func (gdk *Gdk) NewPixmap(drawable IDrawable, width, height, depth int) *Pixmap {
-	id := gdk.Guify("gdk_pixmap_new", drawable, width, height, depth).String()
+func NewPixmap(drawable IDrawable, width, height, depth int) *Pixmap {
+	id := Candy().Guify("gdk_pixmap_new", drawable, width, height, depth).String()
 	w := Pixmap{}
-	w.CandyWrapper = gdk.NewWrapper(id)
+	w.CandyWrapper = Candy().NewWrapper(id)
 	return &w
 }
 
@@ -138,23 +138,23 @@ func (p *Pixmap) Unref() {
 }
 
 // FUNCTION_NAME = gdk_draw_rectangle, NONE, NONE, 7, WIDGET, WIDGET, BOOL, INT, INT, INT, INT
-func (gdk *Gdk) DrawRectangle(drawable IDrawable, gc *GC, filled bool, x, y, width, height int) {
-	gdk.Guify("gdk_draw_rectangle", drawable, gc, filled, x, y, width, height)
+func DrawRectangle(drawable IDrawable, gc *GC, filled bool, x, y, width, height int) {
+	Candy().Guify("gdk_draw_rectangle", drawable, gc, filled, x, y, width, height)
 }
 
 // FUNCTION_NAME = gdk_draw_arc, NONE, NONE, 9, WIDGET, WIDGET, BOOL, INT, INT, INT, INT, INT, INT
-func (gdk *Gdk) DrawArc(drawable IDrawable, gc *GC, filled bool, x, y, width, height, angle1, angle2 int) {
-	gdk.Guify("gdk_draw_arc", drawable, gc, filled, x, y, width, height, angle1, angle2)
+func DrawArc(drawable IDrawable, gc *GC, filled bool, x, y, width, height, angle1, angle2 int) {
+	Candy().Guify("gdk_draw_arc", drawable, gc, filled, x, y, width, height, angle1, angle2)
 }
 
 // FUNCTION_NAME = gdk_draw_line, NONE, NONE, 6, WIDGET, WIDGET, INT, INT, INT, INT
-func (gdk *Gdk) DrawLine(drawable IDrawable, gc *GC, x1, y1, x2, y2 int) {
-	gdk.Guify("gdk_draw_line", drawable, gc, x1, y1, x2, y2)
+func DrawLine(drawable IDrawable, gc *GC, x1, y1, x2, y2 int) {
+	Candy().Guify("gdk_draw_line", drawable, gc, x1, y1, x2, y2)
 }
 
 // FUNCTION_NAME = gdk_draw_point, NONE, NONE, 4, WIDGET, WIDGET, INT, INT
-func (gdk *Gdk) DrawPoint(drawable IDrawable, gc *GC, x, y int) {
-	gdk.Guify("gdk_draw_point", drawable, gc, x, y)
+func DrawPoint(drawable IDrawable, gc *GC, x, y int) {
+	Candy().Guify("gdk_draw_point", drawable, gc, x, y)
 }
 
 // FUNCTION_NAME = gdk_draw_layout, NONE, NONE, 5, WIDGET, WIDGET, INT, INT, WIDGET

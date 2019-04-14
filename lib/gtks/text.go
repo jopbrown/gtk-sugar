@@ -9,7 +9,7 @@ type TextMark struct {
 	glibs.Object
 }
 
-func NewTextMark(candy sugar.Candy, id string) *TextMark {
+func NewTextMarkFromCandy(candy sugar.Candy, id string) *TextMark {
 	v := TextMark{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -19,16 +19,16 @@ type TextBuffer struct {
 	glibs.Object
 }
 
-func NewTextBuffer(candy sugar.Candy, id string) *TextBuffer {
+func NewTextBufferFromCandy(candy sugar.Candy, id string) *TextBuffer {
 	v := TextBuffer{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
 }
 
 // FUNCTION_NAME = gtk_text_buffer_new, NONE, WIDGET, 1, NULL
-func (gtk *Gtk) NewTextBuffer() *TextBuffer {
-	id := gtk.Guify("gtk_text_buffer_new").String()
-	return NewTextBuffer(gtk, id)
+func NewTextBuffer() *TextBuffer {
+	id := Candy().Guify("gtk_text_buffer_new").String()
+	return NewTextBufferFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_set_text, NONE, NONE, 3, WIDGET, STRING, INT
@@ -67,8 +67,8 @@ func (tb *TextBuffer) GetBounds() (start, end *TextIter) {
 	sid := tb.Candy().ServerOpaque()
 	eid := tb.Candy().ServerOpaque()
 	tb.Candy().Guify("gtk_text_buffer_get_bounds", tb, sid, eid)
-	start = NewTextIter(tb.Candy(), sid)
-	end = NewTextIter(tb.Candy(), eid)
+	start = NewTextIterFromCandy(tb.Candy(), sid)
+	end = NewTextIterFromCandy(tb.Candy(), eid)
 	return
 }
 
@@ -77,8 +77,8 @@ func (tb *TextBuffer) GetSelectionBounds() (start, end *TextIter) {
 	sid := tb.Candy().ServerOpaque()
 	eid := tb.Candy().ServerOpaque()
 	tb.Candy().Guify("gtk_text_buffer_get_selection_bounds", tb, sid, eid)
-	start = NewTextIter(tb.Candy(), sid)
-	end = NewTextIter(tb.Candy(), eid)
+	start = NewTextIterFromCandy(tb.Candy(), sid)
+	end = NewTextIterFromCandy(tb.Candy(), eid)
 	return
 }
 
@@ -231,22 +231,22 @@ type TextView struct {
 	Container
 }
 
-func NewTextView(candy sugar.Candy, id string) *TextView {
+func NewTextViewFromCandy(candy sugar.Candy, id string) *TextView {
 	v := TextView{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
 }
 
 // FUNCTION_NAME = gtk_text_view_new, NONE, WIDGET, 0
-func (gtk *Gtk) NewTextView() *TextView {
-	id := gtk.Guify("gtk_text_view_new").String()
-	return NewTextView(gtk, id)
+func NewTextView() *TextView {
+	id := Candy().Guify("gtk_text_view_new").String()
+	return NewTextViewFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_view_new_with_buffer, NONE, WIDGET, 1, WIDGET
-func (gtk *Gtk) NewTextViewWithBuffer(tb *TextBuffer) *TextView {
-	id := gtk.Guify("gtk_text_view_new_with_buffer").String()
-	return NewTextView(gtk, id)
+func NewTextViewWithBuffer(tb *TextBuffer) *TextView {
+	id := Candy().Guify("gtk_text_view_new_with_buffer").String()
+	return NewTextViewFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_view_set_wrap_mode, NONE, NONE, 2, WIDGET, INT
@@ -324,7 +324,7 @@ type TextIter struct {
 	sugar.CandyWrapper
 }
 
-func NewTextIter(candy sugar.Candy, id string) *TextIter {
+func NewTextIterFromCandy(candy sugar.Candy, id string) *TextIter {
 	v := TextIter{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -366,15 +366,15 @@ func (w *TextIter) GetLine() int {
 }
 
 // FUNCTION_NAME = gtk_text_iter_get_text, NONE, STRING, 2, WIDGET, WIDGET
-func (gtk *Gtk) TextIterGetText(start, end *TextIter) string {
-	return gtk.Guify("gtk_text_iter_get_text", start, end).String()
+func TextIterGetText(start, end *TextIter) string {
+	return Candy().Guify("gtk_text_iter_get_text", start, end).String()
 }
 
 type TextTag struct {
 	glibs.Object
 }
 
-func NewTextTag(candy sugar.Candy, id string) *TextTag {
+func NewTextTagFromCandy(candy sugar.Candy, id string) *TextTag {
 	v := TextTag{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -384,7 +384,7 @@ type TextTagTable struct {
 	glibs.Object
 }
 
-func NewTextTagTable(candy sugar.Candy, id string) *TextTagTable {
+func NewTextTagTableFromCandy(candy sugar.Candy, id string) *TextTagTable {
 	v := TextTagTable{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v

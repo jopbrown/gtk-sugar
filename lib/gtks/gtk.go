@@ -4,17 +4,19 @@ import (
 	sugar "github.com/jopbrown/gtk-sugar"
 )
 
-type Gtk struct {
-	sugar.Candy
+var candy sugar.Candy
+
+func GiveCandy(c sugar.Candy) {
+	candy = c
 }
 
-func NewGtk(candy sugar.Candy) *Gtk {
-	return &Gtk{Candy: candy}
+func Candy() sugar.Candy {
+	return candy
 }
 
 // FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
-func (gtk *Gtk) Init() {
-	gtk.Guify("gtk_init", nil, nil)
+func Init() {
+	Candy().Guify("gtk_init", nil, nil)
 }
 
 // FUNCTION_NAME = gtk_settings_get_default, NONE, WIDGET, 0

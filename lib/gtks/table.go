@@ -6,16 +6,16 @@ type Table struct {
 	Container
 }
 
-func NewTable(candy sugar.Candy, id string) *Table {
+func NewTableFromCandy(candy sugar.Candy, id string) *Table {
 	v := Table{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
 }
 
 // FUNCTION_NAME = gtk_table_new, NONE, WIDGET, 3, INT, INT, BOOL
-func (gtk *Gtk) NewTable(rows, cols int, homogeneous bool) *Table {
-	id := gtk.Guify("gtk_table_new", rows, cols, homogeneous).String()
-	return NewTable(gtk, id)
+func NewTable(rows, cols int, homogeneous bool) *Table {
+	id := Candy().Guify("gtk_table_new", rows, cols, homogeneous).String()
+	return NewTableFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_table_attach_defaults, NONE, NONE, 6, WIDGET, WIDGET, INT, INT, INT, INT

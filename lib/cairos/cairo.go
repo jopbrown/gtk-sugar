@@ -1,5 +1,17 @@
 package cairos
 
+import sugar "github.com/jopbrown/gtk-sugar"
+
+var candy sugar.Candy
+
+func GiveCandy(c sugar.Candy) {
+	candy = c
+}
+
+func Candy() sugar.Candy {
+	return candy
+}
+
 // FUNCTION_NAME = cairo_arc, NONE, NONE, 6, WIDGET, DOUBLE, DOUBLE, DOUBLE, DOUBLE, DOUBLE
 // FUNCTION_NAME = cairo_create, NONE, WIDGET, 1, WIDGET
 // FUNCTION_NAME = cairo_destroy, NONE, NONE, 1, WIDGET

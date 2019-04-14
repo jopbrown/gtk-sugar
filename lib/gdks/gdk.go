@@ -2,10 +2,12 @@ package gdks
 
 import sugar "github.com/jopbrown/gtk-sugar"
 
-type Gdk struct {
-	sugar.Candy
+var candy sugar.Candy
+
+func GiveCandy(c sugar.Candy) {
+	candy = c
 }
 
-func NewGdk(candy sugar.Candy) *Gdk {
-	return &Gdk{Candy: candy}
+func Candy() sugar.Candy {
+	return candy
 }

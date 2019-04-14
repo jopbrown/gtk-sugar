@@ -6,16 +6,16 @@ type Alignment struct {
 	Bin
 }
 
-func NewAlignment(candy sugar.Candy, id string) *Alignment {
+func NewAlignmentFromCandy(candy sugar.Candy, id string) *Alignment {
 	obj := Alignment{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
 }
 
 // FUNCTION_NAME = gtk_alignment_new, NONE, WIDGET, 4, FLOAT, FLOAT, FLOAT, FLOAT
-func (gtk *Gtk) NewAlignment(xalign, yalign, xscale, yscale float32) *Alignment {
-	id := gtk.Guify("gtk_alignment_new", xalign, yalign, xscale, yscale).String()
-	return NewAlignment(gtk, id)
+func NewAlignment(xalign, yalign, xscale, yscale float32) *Alignment {
+	id := Candy().Guify("gtk_alignment_new", xalign, yalign, xscale, yscale).String()
+	return NewAlignmentFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_alignment_set, NONE, NONE, 5, WIDGET, FLOAT, FLOAT, FLOAT, FLOAT

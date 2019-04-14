@@ -6,15 +6,15 @@ type Window struct {
 	Drawable
 }
 
-func NewWindow(candy sugar.Candy, id string) *Window {
+func NewWindowFromCandy(candy sugar.Candy, id string) *Window {
 	obj := Window{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
 }
 
 // FUNCTION_NAME = gdk_window_process_all_updates, NONE, NONE, 0
-func (gdk *Gdk) WindowProcessAllUpdates() {
-	gdk.Guify("gdk_window_process_all_updates")
+func WindowProcessAllUpdates() {
+	Candy().Guify("gdk_window_process_all_updates")
 }
 
 // FUNCTION_NAME = gdk_window_freeze_updates, NONE, NONE, 1, WIDGET
