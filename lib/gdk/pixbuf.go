@@ -59,6 +59,11 @@ func NewPixbufFromFileAtScale(filename string, width, height int, preserveAspect
 	return NewPixbufFromCandy(Candy(), id), nil
 }
 
+// FUNCTION_NAME = gdk_pixbuf_get_type, NONE, INT, 0
+func GetTypePixbuf() glib.Type {
+	return glib.Type(Candy().Guify("gdk_pixbuf_get_type").MustInt())
+}
+
 // FUNCTION_NAME = gdk_pixbuf_scale_simple, NONE, WIDGET, 4, WIDGET, INT, INT, INT
 func (obj *Pixbuf) ScaleSimple(destWidth, destHeight int, interpType InterpType) *Pixbuf {
 	id := obj.Candy().Guify("gdk_pixbuf_scale_simple", obj, destWidth, destHeight, interpType).String()
