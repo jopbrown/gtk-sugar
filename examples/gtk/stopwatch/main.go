@@ -20,7 +20,7 @@ func main() {
 	}
 	defer clt.Stop()
 
-	gtk.GiveCandy(sugar.NewCandy(clt.Conn()))
+	sugar.GiveCandyToEveryone(sugar.NewCandy(clt.Conn()))
 	gtk.Init()
 
 	win := gtk.NewWindow(gtk.WINDOW_TOPLEVEL)

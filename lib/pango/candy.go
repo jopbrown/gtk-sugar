@@ -15,9 +15,15 @@ func Candy() sugar.Candy {
 func Invoke(callback func()) {
 	Candy().Invoke(callback)
 }
+
 func Main() {
 	Candy().Main()
 }
+
 func MainQuit() {
 	Candy().MainQuit()
+}
+
+func init() {
+	sugar.RegisterGlobalCandyGiver("pango", GiveCandy)
 }

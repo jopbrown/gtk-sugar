@@ -17,8 +17,7 @@ func init() {
 		panic(err)
 	}
 
-	gtk.GiveCandy(sugar.NewCandy(clt.Conn()))
-	gdk.GiveCandy(sugar.NewCandy(clt.Conn()))
+	sugar.GiveCandyToEveryone(sugar.NewCandy(clt.Conn()))
 }
 
 func main() {

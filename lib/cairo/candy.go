@@ -1,4 +1,4 @@
-package pango
+package cairo
 
 import sugar "github.com/jopbrown/gtk-sugar"
 
@@ -15,9 +15,15 @@ func Candy() sugar.Candy {
 func Invoke(callback func()) {
 	Candy().Invoke(callback)
 }
+
 func Main() {
 	Candy().Main()
 }
+
 func MainQuit() {
 	Candy().MainQuit()
+}
+
+func init() {
+	sugar.RegisterGlobalCandyGiver("cairo", GiveCandy)
 }
