@@ -24,3 +24,8 @@ func (obj *Object) RefSink() {
 func (obj *Object) Unref() {
 	obj.Candy().Guify("g_object_unref", obj)
 }
+
+// FUNCTION_NAME = g_signal_stop_emission_by_name, NONE, NONE, 2, WIDGET, STRING
+func (obj *Object) StopEmission(name string) {
+	obj.Candy().Guify("g_signal_stop_emission_by_name", obj, name)
+}

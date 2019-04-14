@@ -16,4 +16,4 @@ func Free(obj sugar.CandyWrapper) {
 // FUNCTION_NAME = g_snprintf, NONE, NONE, 4, POINTER, INT, STRING, DOUBLE
 // FUNCTION_NAME = g_random_int_range, NONE, INT, 2, INT, INT
 // FUNCTION_NAME = g_random_double, NONE, DOUBLE, 0
-// FUNCTION_NAME = g_signal_stop_emission_by_name, NONE, NONE, 2, WIDGET, STRING
+

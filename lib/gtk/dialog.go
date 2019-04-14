@@ -25,9 +25,21 @@ func NewDialogFromCandy(candy sugar.Candy, id string) *Dialog {
 	return &v
 }
 
+// FUNCTION_NAME = gtk_dialog_new, WIDGET, INT, 0
+func NewDialog() *Dialog {
+	id := Candy().Guify("gtk_dialog_new").String()
+	return NewDialogFromCandy(Candy(), id)
+}
+
 // FUNCTION_NAME = gtk_dialog_run, NONE, INT, 1, WIDGET
 func (w *Dialog) Run() int {
 	return w.Candy().Guify("gtk_dialog_run", w).MustInt()
+}
+
+// FUNCTION_NAME = gtk_dialog_add_button, NONE, WIDGET, 3, WIDGET, STRING, INT
+func (obj *Dialog) AddButton(buttonText string, ResponseId int) *Button {
+	id := obj.Candy().Guify("gtk_dialog_add_button", obj, buttonText, ResponseId).String()
+	return NewButtonFromCandy(obj.Candy(), id)
 }
 
 type MessageDialog struct {
