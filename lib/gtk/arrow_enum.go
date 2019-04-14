@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // ENUM_NAME = GTK_ARROW_UP, 0
 // ENUM_NAME = GTK_ARROW_DOWN, 1

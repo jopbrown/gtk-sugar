@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // FUNCTION_NAME = gtk_box_pack_start_defaults, NONE, NONE, 2, WIDGET, WIDGET
 func (box *Box) PackStartDefaults(child IWidget) {

@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // ENUM_NAME = GTK_ICON_SIZE_INVALID, 0
 // ENUM_NAME = GTK_ICON_SIZE_MENU, 1

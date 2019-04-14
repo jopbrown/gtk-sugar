@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // FUNCTION_NAME = gtk_menu_bar_new, NONE, WIDGET, 0
 // FUNCTION_NAME = gtk_menu_shell_append, NONE, NONE, 2, WIDGET, WIDGET

@@ -1,4 +1,4 @@
-package gdks
+package gdk
 
 type Rectangle struct {
 	X, Y          int

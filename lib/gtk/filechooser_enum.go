@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // ENUM_NAME = GTK_FILE_CHOOSER_ACTION_OPEN, 0
 // ENUM_NAME = GTK_FILE_CHOOSER_ACTION_SAVE, 1

@@ -1,4 +1,4 @@
-package glibs
+package glib
 
 import sugar "github.com/jopbrown/gtk-sugar"
 

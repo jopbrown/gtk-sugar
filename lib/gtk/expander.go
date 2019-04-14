@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // FUNCTION_NAME = gtk_expander_new, activate, WIDGET, 1, STRING
 // FUNCTION_NAME = gtk_expander_new_with_mnemonic, NONE, WIDGET, 1, STRING

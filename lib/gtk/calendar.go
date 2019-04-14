@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 import (
 	"time"

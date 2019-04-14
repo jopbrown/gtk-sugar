@@ -1,4 +1,4 @@
-package pangos
+package pango
 
 // ENUM_NAME = ELLIPSIZE_NONE, 1
 // ENUM_NAME = ELLIPSIZE_START, 2

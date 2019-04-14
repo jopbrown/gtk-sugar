@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // FUNCTION_NAME = gtk_rc_parse, NONE, NONE, 1, STRING
 // FUNCTION_NAME = gtk_rc_parse_string, NONE, NONE, 1, STRING

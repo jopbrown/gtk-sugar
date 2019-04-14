@@ -1,4 +1,4 @@
-package pangos
+package pango
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"

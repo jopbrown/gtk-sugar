@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // ENUM_NAME = GTK_DIALOG_MODAL, 1
 // ENUM_NAME = GTK_DIALOG_DESTROY_WITH_PARENT, 2

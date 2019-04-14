@@ -1,4 +1,4 @@
-package gdks
+package gdk
 
 import (
 	sugar "github.com/jopbrown/gtk-sugar"

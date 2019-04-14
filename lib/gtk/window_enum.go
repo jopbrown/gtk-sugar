@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // ENUM_NAME = GTK_WIN_POS_NONE, 0
 // ENUM_NAME = GTK_WIN_POS_CENTER, 1

@@ -1,4 +1,4 @@
-package gdks
+package gdk
 
 // ENUM_NAME = GDK_COLORSPACE_RGB, 0
 type Colorspace int

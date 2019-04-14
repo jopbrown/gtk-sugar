@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // FUNCTION_NAME = gtk_button_new_from_icon_name, clicked, WIDGET, 2, STRING, INT
 func NewButtonFromIconName(name string, size IconSize) *Button {

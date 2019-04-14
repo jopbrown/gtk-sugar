@@ -1,4 +1,4 @@
-package gdks
+package gdk
 
 type Atom int
 

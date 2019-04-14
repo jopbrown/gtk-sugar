@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // ENUM_NAME = GTK_ACCEL_VISIBLE, 1
 // ENUM_NAME = GTK_ACCEL_LOCKED, 2

@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // Lists (GTK2.x) defined for 1 column with strings
 // Redefine with 'gtk_server_redefine' if necessary

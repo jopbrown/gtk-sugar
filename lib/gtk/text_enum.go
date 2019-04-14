@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // ENUM_NAME = GTK_WRAP_NONE, 0
 // ENUM_NAME = GTK_WRAP_CHAR, 1

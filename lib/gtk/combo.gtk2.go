@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // FUNCTION_NAME = gtk_combo_box_new_text, changed, WIDGET, 0
 func NewComboBoxWithText() *ComboBox {

@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // FUNCTION_NAME = gtk_frame_new, NONE, WIDGET, 1, NULL
 // FUNCTION_NAME = gtk_frame_set_label_align, NONE, NONE, 3, WIDGET, FLOAT, FLOAT

@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 type CalendarDisplayOptions int
 

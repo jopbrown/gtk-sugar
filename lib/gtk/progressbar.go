@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // FUNCTION_NAME = gtk_progress_bar_new, NONE, WIDGET, 0
 // FUNCTION_NAME = gtk_progress_bar_set_text, NONE, NONE, 2, WIDGET, STRING

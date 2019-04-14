@@ -1,4 +1,4 @@
-package cairos
+package cairo
 
 import sugar "github.com/jopbrown/gtk-sugar"
 

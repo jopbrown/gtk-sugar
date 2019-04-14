@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // ENUM_NAME = GTK_WINDOW_TOPLEVEL, 0
 // ENUM_NAME = GTK_WINDOW_POPUP, 1

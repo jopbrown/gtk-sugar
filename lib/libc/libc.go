@@ -1,4 +1,4 @@
-package libcs
+package libc
 
 var candy sugar.Candy
 

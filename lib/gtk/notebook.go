@@ -1,4 +1,4 @@
-package gtks
+package gtk
 
 // FUNCTION_NAME = gtk_notebook_new, NONE, WIDGET, 0
 // FUNCTION_NAME = gtk_notebook_set_tab_pos, NONE, NONE, 2, WIDGET, INT
