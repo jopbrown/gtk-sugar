@@ -1,19 +1,5 @@
 package gtk
 
-import (
-	sugar "github.com/jopbrown/gtk-sugar"
-)
-
-var candy sugar.Candy
-
-func GiveCandy(c sugar.Candy) {
-	candy = c
-}
-
-func Candy() sugar.Candy {
-	return candy
-}
-
 // FUNCTION_NAME = gtk_init, NONE, NONE, 2, NULL, NULL
 func Init() {
 	Candy().Guify("gtk_init", nil, nil)

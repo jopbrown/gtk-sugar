@@ -2,16 +2,6 @@ package glib
 
 import sugar "github.com/jopbrown/gtk-sugar"
 
-var candy sugar.Candy
-
-func GiveCandy(c sugar.Candy) {
-	candy = c
-}
-
-func Candy() sugar.Candy {
-	return candy
-}
-
 // FUNCTION_NAME = g_free, NONE, NONE, 1, WIDGET
 func Free(obj sugar.CandyWrapper) {
 	obj.Candy().Guify("g_free", obj)

@@ -9,11 +9,6 @@ import (
 	"github.com/jopbrown/gtk-sugar/lib/gtk"
 )
 
-var (
-	gtk *gtk.Gtk
-	gdk *gdk.Gdk
-)
-
 func init() {
 	clt := sugar.NewClient(sugar.ConnStdin(),
 		sugar.WithCfgPath(`../../../cfgs/gtk-server.cfg`))
@@ -22,12 +17,12 @@ func init() {
 		panic(err)
 	}
 
-	gtk = gtk.NewGtk(sugar.NewCandy(clt.Conn()))
-	gdk = gdk.NewGdk(sugar.NewCandy(clt.Conn()))
+	gtk.GiveCandy(sugar.NewCandy(clt.Conn()))
+	gdk.GiveCandy(sugar.NewCandy(clt.Conn()))
 }
 
 func main() {
-	defer gtk.ServerExit()
+	defer gtk.Candy().ServerExit()
 
 	gtk.Init()
 
