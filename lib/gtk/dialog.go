@@ -32,8 +32,8 @@ func NewDialog() *Dialog {
 }
 
 // FUNCTION_NAME = gtk_dialog_run, NONE, INT, 1, WIDGET
-func (w *Dialog) Run() int {
-	return w.Candy().Guify("gtk_dialog_run", w).MustInt()
+func (obj *Dialog) Run() int {
+	return obj.Candy().Guify("gtk_dialog_run", obj).MustInt()
 }
 
 // FUNCTION_NAME = gtk_dialog_add_button, NONE, WIDGET, 3, WIDGET, STRING, INT
