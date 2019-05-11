@@ -90,11 +90,11 @@ func (sugar *sugar) ServerEcho(msg string) string {
 }
 
 func (sugar *sugar) ServerDefine(define string) {
-	sugar.Guify("gtk_server_define", define)
+	sugar.Guifyf("%s %s", "gtk_server_define", define)
 }
 
 func (sugar *sugar) ServerRedefine(define string) {
-	sugar.Guify("gtk_server_redefine", define)
+	sugar.Guifyf("%s %s", "gtk_server_redefine", define)
 }
 
 func (sugar *sugar) ServerRequire(libName string) bool {
