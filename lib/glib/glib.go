@@ -4,7 +4,11 @@ import sugar "github.com/jopbrown/gtk-sugar"
 
 // FUNCTION_NAME = g_free, NONE, NONE, 1, WIDGET
 func Free(obj sugar.CandyWrapper) {
-	obj.Candy().Guify("g_free", obj)
+	Candy().Guify("g_free", obj)
+}
+
+func FreePointer(id string) {
+	Candy().Guify("g_free", id)
 }
 
 // FUNCTION_NAME = g_io_channel_read_line_string, NONE, INT, 4, WIDGET, STRING, NULL, NULL
@@ -16,4 +20,3 @@ func Free(obj sugar.CandyWrapper) {
 // FUNCTION_NAME = g_snprintf, NONE, NONE, 4, POINTER, INT, STRING, DOUBLE
 // FUNCTION_NAME = g_random_int_range, NONE, INT, 2, INT, INT
 // FUNCTION_NAME = g_random_double, NONE, DOUBLE, 0
-

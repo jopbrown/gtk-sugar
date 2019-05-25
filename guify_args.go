@@ -135,6 +135,8 @@ func (packer *Base64Packer) Format() string {
 			sb.WriteString("%f")
 		case reflect.Float64:
 			sb.WriteString("%d")
+		case reflect.String: // char pointer
+			sb.WriteString("%l")
 		}
 	}
 
@@ -166,12 +168,18 @@ func (packer *Base64Packer) Unmarshal(fields RespFields) error {
 		}
 		resp := fields[i]
 		switch f.Kind() {
-		case reflect.Int64, reflect.Uint64, reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32:
+		case reflect.Int64, reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32:
 			v, err := resp.Int64()
 			if nil != err {
 				return errors.WithStack(err)
 			}
 			f.SetInt(v)
+		case reflect.Uint64, reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32:
+			v, err := resp.Uint64()
+			if nil != err {
+				return errors.WithStack(err)
+			}
+			f.SetUint(v)
 		case reflect.Float32, reflect.Float64:
 			v, err := resp.Float64()
 			if nil != err {

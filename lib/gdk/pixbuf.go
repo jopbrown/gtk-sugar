@@ -3,8 +3,6 @@ package gdk
 import (
 	sugar "github.com/jopbrown/gtk-sugar"
 	"github.com/jopbrown/gtk-sugar/lib/glib"
-	"github.com/jopbrown/gtk-sugar/util/fs"
-	"github.com/pkg/errors"
 )
 
 type Pixbuf struct {
@@ -23,40 +21,43 @@ func NewPixbuf(colorspace Colorspace, hasAlpha bool, bitsPerSample, width, heigh
 	return NewPixbufFromCandy(Candy(), id)
 }
 
-// FUNCTION_NAME = gdk_pixbuf_new_from_file, NONE, WIDGET, 2, STRING, NULL
+// FUNCTION_NAME = gdk_pixbuf_new_from_file, NONE, WIDGET, 2, STRING, PTR_LONG
 func NewPixbufFromFile(filename string) (*Pixbuf, error) {
-	if err := fs.CheckExistsFile(filename); err != nil {
-		return nil, errors.WithStack(err)
+	fields := Candy().Guify("gdk_pixbuf_new_from_file", filename, 0).Fields()
+	if fields[0] == "0" {
+		p := fields[1].String()
+		err := glib.NewGErrorFromPointer(p)
+		glib.FreePointer(p)
+		return nil, err
 	}
-	id := Candy().Guify("gdk_pixbuf_new_from_file", filename, 0).String()
-	if id == "0" {
-		return nil, errors.Errorf("unable to load pixbuf from %s", filename)
-	}
-	return NewPixbufFromCandy(Candy(), id), nil
+
+	return NewPixbufFromCandy(Candy(), fields[0].String()), nil
 }
 
-// FUNCTION_NAME = gdk_pixbuf_new_from_file_at_size, NONE, WIDGET, 4, STRING, INT, INT, NULL
+// FUNCTION_NAME = gdk_pixbuf_new_from_file_at_size, NONE, WIDGET, 4, STRING, INT, INT, PTR_LONG
 func NewPixbufFromFileAtSize(filename string, width, height int) (*Pixbuf, error) {
-	if err := fs.CheckExistsFile(filename); err != nil {
-		return nil, errors.WithStack(err)
+	fields := Candy().Guify("gdk_pixbuf_new_from_file_at_size", filename, width, height, 0).Fields()
+	if fields[0] == "0" {
+		p := fields[1].String()
+		err := glib.NewGErrorFromPointer(p)
+		glib.FreePointer(p)
+		return nil, err
 	}
-	id := Candy().Guify("gdk_pixbuf_new_from_file_at_size", filename, width, height, 0).String()
-	if id == "0" {
-		return nil, errors.Errorf("unable to load pixbuf from %s", filename)
-	}
-	return NewPixbufFromCandy(Candy(), id), nil
+
+	return NewPixbufFromCandy(Candy(), fields[0].String()), nil
 }
 
-// FUNCTION_NAME = gdk_pixbuf_new_from_file_at_scale, NONE, WIDGET, 5, STRING, INT, INT, BOOL, NULL
+// FUNCTION_NAME = gdk_pixbuf_new_from_file_at_scale, NONE, WIDGET, 5, STRING, INT, INT, BOOL, PTR_LONG
 func NewPixbufFromFileAtScale(filename string, width, height int, preserveAspectRatio bool) (*Pixbuf, error) {
-	if err := fs.CheckExistsFile(filename); err != nil {
-		return nil, errors.WithStack(err)
+	fields := Candy().Guify("gdk_pixbuf_new_from_file_at_scale", filename, width, height, preserveAspectRatio, 0).Fields()
+	if fields[0] == "0" {
+		p := fields[1].String()
+		err := glib.NewGErrorFromPointer(p)
+		glib.FreePointer(p)
+		return nil, err
 	}
-	id := Candy().Guify("gdk_pixbuf_new_from_file_at_scale", filename, width, height, preserveAspectRatio, 0).String()
-	if id == "0" {
-		return nil, errors.Errorf("unable to load pixbuf from %s", filename)
-	}
-	return NewPixbufFromCandy(Candy(), id), nil
+
+	return NewPixbufFromCandy(Candy(), fields[0].String()), nil
 }
 
 // FUNCTION_NAME = gdk_pixbuf_get_type, NONE, INT, 0

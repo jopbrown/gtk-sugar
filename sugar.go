@@ -18,6 +18,8 @@ type Sugar interface {
 	ServerPack(format string, values ...interface{}) string
 	ServerPackStruct(s interface{}) string
 	ServerUnpack(format, b64 string) RespFields
+	ServerUnpackFromPointer(format, id string) RespFields
+	ServerStringFromPointer(id string) string
 	ServerDataFormat(format string)
 	ServerCallback(t ServerCallbackType) string
 	ServerCallbackValue(argIdx int, argType CallValueType) Response
@@ -112,6 +114,14 @@ func (sugar *sugar) ServerPackStruct(s interface{}) string {
 
 func (sugar *sugar) ServerUnpack(format, b64 string) RespFields {
 	return sugar.Guify("gtk_server_unpack", format, b64).Fields()
+}
+
+func (sugar *sugar) ServerUnpackFromPointer(format, id string) RespFields {
+	return sugar.Guify("gtk_server_unpack_from_pointer", format, id).Fields()
+}
+
+func (sugar *sugar) ServerStringFromPointer(id string) string {
+	return sugar.Guify("gtk_server_string_from_pointer", id).String()
 }
 
 func (sugar *sugar) ServerDataFormat(format string) {
