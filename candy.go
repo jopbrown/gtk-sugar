@@ -16,6 +16,7 @@ type Candy interface {
 	ConnectDefault(widget string, callback func())
 	DisConnect(widget, signal string)
 	Invoke(callback func())
+	BeginInvoke(callback func())
 	Main()
 	MainQuit()
 	NewWrapper(id string) CandyWrapper
@@ -71,6 +72,10 @@ func (candy *candy) Invoke(callback func()) {
 	invoke := &invoke{callback: callback, done: make(chan bool)}
 	candy.invokeChan <- invoke
 	<-invoke.done
+}
+
+func (candy *candy) BeginInvoke(callback func()) {
+	go candy.Invoke(callback)
 }
 
 func (candy *candy) Main() {

@@ -12,10 +12,6 @@ func Candy() sugar.Candy {
 	return candy
 }
 
-func Invoke(callback func()) {
-	Candy().Invoke(callback)
-}
-
 func Main() {
 	Candy().Main()
 }

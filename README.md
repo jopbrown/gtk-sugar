@@ -117,8 +117,7 @@ import (
 )
 
 func main() {
-	clt := sugar.NewClient(sugar.ConnStdin(),
-		sugar.WithCfgPath(`../../../cfgs/gtk-server.cfg`))
+	clt := sugar.NewClient(sugar.ConnStdin(), sugar.WithCfgPath(`/cfgs/gtk-server.cfg`))
 	err := clt.Start()
 	if err != nil {
 		panic(err)
@@ -150,7 +149,7 @@ func main() {
 			// the goroutine is not run in the main loop.
 			// so it's not safe to do any UI operation.
 			// need to invoke to main loop.
-			gtk.Invoke(func() { dialog.Run() })
+			gtk.Candy().Invoke(func() { dialog.Run() })
 		}()
 	})
 	table.AttachDefaults(showBtn, 1, 4, 6, 9)
@@ -182,6 +181,7 @@ func main() {
 	* [ ] GTK - WIP
 	* [ ] Xforms
 	* [ ] Motif
+	* [ ] HUG
 
 * Other
 	* [x] tool to generate `gtk-server.cfg` from code

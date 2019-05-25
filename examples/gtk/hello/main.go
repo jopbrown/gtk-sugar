@@ -43,7 +43,7 @@ func main() {
 			// the goroutine is not run in the main loop.
 			// so it's not safe to do any UI operation.
 			// need to invoke to main loop.
-			gtk.Invoke(func() { dialog.Run() })
+			gtk.Candy().Invoke(func() { dialog.Run() })
 		}()
 	})
 	table.AttachDefaults(showBtn, 1, 4, 6, 9)

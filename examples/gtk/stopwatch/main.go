@@ -3,13 +3,15 @@ package main
 import (
 	"fmt"
 	"log"
-	"sync/atomic"
+	"sync"
 	"time"
 
 	sugar "github.com/jopbrown/gtk-sugar"
 
 	"github.com/jopbrown/gtk-sugar/lib/gtk"
 )
+
+var sw = NewStopWatch()
 
 func main() {
 	clt := sugar.NewClient(sugar.ConnStdin(),
@@ -32,35 +34,25 @@ func main() {
 	table := gtk.NewTable(10, 10, true)
 	win.Add(table)
 
-	startTime := time.Now()
-	stop := make(chan bool)
-	runFlag := int32(0)
-
 	timeLabel := gtk.NewLabel("")
-	timeLabel.SetMarkup(makeupOfElapsed(startTime))
+	timeLabel.SetMarkup(makeupOfElapsed(0))
 	table.AttachDefaults(timeLabel, 1, 9, 1, 5)
 
 	startBtn := gtk.NewButtonWithLabel("Start")
 	startBtn.ConnectDefault(func() {
 		log.Println("click start")
-		if isSetFlag(&runFlag) {
+		if sw.IsRunning() {
 			return
 		}
 
 		go func() {
 			log.Println("start")
-			setFlag(&runFlag, true)
-			for {
-				select {
-				case <-stop:
-					log.Println("got stop")
-					setFlag(&runFlag, false)
-					return
-				case <-time.After(100 * time.Millisecond):
-					gtk.Invoke(func() {
-						timeLabel.SetMarkup(makeupOfElapsed(startTime))
-					})
-				}
+			sw.Start()
+			for sw.IsRunning() {
+				gtk.Candy().Invoke(func() {
+					timeLabel.SetMarkup(makeupOfElapsed(sw.Elapsed()))
+				})
+				time.Sleep(100 * time.Millisecond)
 			}
 		}()
 	})
@@ -69,9 +61,9 @@ func main() {
 	stopBtn := gtk.NewButtonWithLabel("Stop")
 	stopBtn.ConnectDefault(func() {
 		log.Println("click stop")
-		if isSetFlag(&runFlag) {
+		if sw.IsRunning() {
 			log.Println("stop")
-			stop <- true
+			sw.Stop()
 		}
 	})
 	table.AttachDefaults(stopBtn, 4, 6, 6, 9)
@@ -79,42 +71,80 @@ func main() {
 	resetBtn := gtk.NewButtonWithLabel("Reset")
 	resetBtn.ConnectDefault(func() {
 		log.Println("click reset")
-		if isSetFlag(&runFlag) {
+		if sw.IsRunning() {
 			log.Println("reset")
-			stop <- true
+			sw.Reset()
 		}
-		startTime = time.Now()
-		timeLabel.SetMarkup(makeupOfElapsed(startTime))
+		timeLabel.SetMarkup(makeupOfElapsed(0))
 	})
 	table.AttachDefaults(resetBtn, 7, 9, 6, 9)
 
 	win.ShowAll()
 
 	gtk.Main()
-
-	if isSetFlag(&runFlag) {
-		log.Println("stop before exit")
-		stop <- true
-	}
 }
 
-func makeupOfElapsed(startTime time.Time) string {
-	return fmt.Sprintf("<span font_desc='40'>%s</span>", time.Since(startTime).Round(100*time.Millisecond).String())
+func makeupOfElapsed(elapsed time.Duration) string {
+	return fmt.Sprintf("<span font_desc='40'>%s</span>", elapsed.Round(100*time.Millisecond).String())
 }
 
-func setFlag(runFlag *int32, isSet bool) {
-	val := int32(0)
-	if isSet {
-		val = int32(1)
-	}
-	atomic.StoreInt32(runFlag, val)
+type StopWatch struct {
+	startTime time.Time
+	stopTime  time.Time
+	isRunning bool
+	m         sync.RWMutex
 }
 
-func isSetFlag(runFlag *int32) bool {
-	val := atomic.LoadInt32(runFlag)
-	if val == 0 {
-		return false
+func NewStopWatch() *StopWatch {
+	return &StopWatch{}
+}
+
+func (sw *StopWatch) IsRunning() bool {
+	sw.m.RLock()
+	defer sw.m.RUnlock()
+	return sw.isRunning
+}
+
+func (sw *StopWatch) Start() {
+	sw.m.Lock()
+	defer sw.m.Unlock()
+	sw.isRunning = true
+	if sw.startTime.IsZero() {
+		sw.startTime = time.Now()
+		sw.stopTime = time.Time{}
+		return
 	}
 
-	return true
+	sw.startTime = sw.startTime.Add(time.Since(sw.stopTime))
+}
+
+func (sw *StopWatch) Stop() {
+	sw.m.Lock()
+	defer sw.m.Unlock()
+	sw.isRunning = false
+	sw.stopTime = time.Now()
+}
+
+func (sw *StopWatch) Reset() {
+	sw.m.Lock()
+	defer sw.m.Unlock()
+	sw.isRunning = false
+	t := time.Time{}
+	sw.startTime = t
+	sw.stopTime = t
+}
+
+func (sw *StopWatch) Elapsed() time.Duration {
+	sw.m.RLock()
+	defer sw.m.RUnlock()
+
+	if sw.isRunning {
+		return time.Since(sw.startTime)
+	}
+
+	if sw.startTime.IsZero() {
+		return 0
+	}
+
+	return sw.stopTime.Sub(sw.startTime)
 }
