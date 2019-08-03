@@ -17,7 +17,7 @@ func NewCalendarFromCandy(candy sugar.Candy, id string) *Calendar {
 }
 
 // FUNCTION_NAME = gtk_calendar_new, NONE, WIDGET, 0
-func NewCalendar() *Calendar {
+func CalendarNew() *Calendar {
 	id := Candy().Guify("gtk_calendar_new").String()
 	return NewCalendarFromCandy(Candy(), id)
 }

@@ -26,7 +26,7 @@ func NewDialogFromCandy(candy sugar.Candy, id string) *Dialog {
 }
 
 // FUNCTION_NAME = gtk_dialog_new, WIDGET, INT, 0
-func NewDialog() *Dialog {
+func DialogNew() *Dialog {
 	id := Candy().Guify("gtk_dialog_new").String()
 	return NewDialogFromCandy(Candy(), id)
 }
@@ -53,14 +53,14 @@ func NewMessageDialogFromCandy(candy sugar.Candy, id string) *MessageDialog {
 }
 
 // FUNCTION_NAME = gtk_message_dialog_new, response, WIDGET, 6, WIDGET, INT, INT, INT, STRING, STRING
-func NewMessageDialog(parent *Window, flags DialogFlags, msgType MessageType, buttons ButtonsType, format string, v ...interface{}) *MessageDialog {
+func MessageDialogNew(parent *Window, flags DialogFlags, msgType MessageType, buttons ButtonsType, format string, v ...interface{}) *MessageDialog {
 	msg := fmt.Sprintf(format, v...)
 	id := Candy().Guify("gtk_message_dialog_new", parent, flags, msgType, buttons, msg, "''").String()
 	return NewMessageDialogFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_message_dialog_new_with_markup, response, WIDGET, 6, WIDGET, INT, INT, INT, STRING, STRING
-func NewMessageDialogWithMarkup(parent *Window, flags DialogFlags, msgType MessageType, buttons ButtonsType, format string, v ...interface{}) *MessageDialog {
+func MessageDialogNewWithMarkup(parent *Window, flags DialogFlags, msgType MessageType, buttons ButtonsType, format string, v ...interface{}) *MessageDialog {
 	msg := fmt.Sprintf(format, v...)
 	id := Candy().Guify("gtk_message_dialog_new_with_markup", parent, flags, msgType, buttons, msg, "''").String()
 	return NewMessageDialogFromCandy(Candy(), id)
@@ -77,7 +77,7 @@ func NewFontSelectionDialogFromCandy(candy sugar.Candy, id string) *FontSelectio
 }
 
 // FUNCTION_NAME = gtk_font_selection_dialog_new, button-press-event, WIDGET, 1, STRING
-func NewFontSelectionDialog(title string) *FontSelectionDialog {
+func FontSelectionDialogNew(title string) *FontSelectionDialog {
 	id := Candy().Guify("gtk_font_selection_dialog_new", title).String()
 	return NewFontSelectionDialogFromCandy(Candy(), id)
 }

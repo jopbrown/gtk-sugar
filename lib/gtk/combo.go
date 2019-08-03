@@ -33,7 +33,7 @@ func NewComboBoxTextFromCandy(candy sugar.Candy, id string) *ComboBoxText {
 }
 
 // FUNCTION_NAME = gtk_combo_box_text_new, changed, WIDGET, 0
-func NewComboBoxText() *ComboBoxText {
+func ComboBoxTextNew() *ComboBoxText {
 	id := Candy().Guify("gtk_combo_box_text_new").String()
 	return NewComboBoxTextFromCandy(Candy(), id)
 }

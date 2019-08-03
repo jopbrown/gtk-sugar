@@ -13,7 +13,7 @@ func NewScrolledWindowFromCandy(candy sugar.Candy, id string) *ScrolledWindow {
 }
 
 // FUNCTION_NAME = gtk_scrolled_window_new, NONE, WIDGET, 2, WIDGET, WIDGET
-func NewScrolledWindow(h, v *Adjustment) *ScrolledWindow {
+func ScrolledWindowNew(h, v *Adjustment) *ScrolledWindow {
 	id := Candy().Guify("gtk_scrolled_window_new", h, v).String()
 	return NewScrolledWindowFromCandy(Candy(), id)
 }

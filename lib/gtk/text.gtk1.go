@@ -13,8 +13,8 @@ func NewTextFromCandy(candy sugar.Candy, id string) *Text {
 }
 
 // FUNCTION_NAME = gtk_text_new, NONE, WIDGET, 2, NULL, NULL
-func NewText() *Text {
-	id := Candy().Guify("gtk_button_new", nil, nil).String()
+func TextNew() *Text {
+	id := Candy().Guify("gtk_text_new", nil, nil).String()
 	return NewTextFromCandy(Candy(), id)
 }
 

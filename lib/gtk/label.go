@@ -16,7 +16,7 @@ func NewLabelFromCandy(candy sugar.Candy, id string) *Label {
 }
 
 // FUNCTION_NAME = gtk_label_new, NONE, WIDGET, 1, STRING
-func NewLabel(str string) *Label {
+func LabelNew(str string) *Label {
 	id := Candy().Guify("gtk_label_new", str).String()
 	return NewLabelFromCandy(Candy(), id)
 }

@@ -13,7 +13,7 @@ func NewFrameFromCandy(candy sugar.Candy, id string) *Frame {
 }
 
 // FUNCTION_NAME = gtk_frame_new, NONE, WIDGET, 1, STRING
-func NewFrame(label string) *Frame {
+func FrameNew(label string) *Frame {
 	id := Candy().Guify("gtk_frame_new", label).String()
 	return NewFrameFromCandy(Candy(), id)
 }
@@ -60,7 +60,7 @@ func NewAspectFrameFromCandy(candy sugar.Candy, id string) *AspectFrame {
 }
 
 // FUNCTION_NAME = gtk_aspect_frame_new, NONE, WIDGET, 5, STRING, FLOAT, FLOAT, FLOAT, BOOL
-func NewAspectFrame(label string, xalign, yalign, ratio float32, obeyChild bool) *AspectFrame {
+func AspectFrameNew(label string, xalign, yalign, ratio float32, obeyChild bool) *AspectFrame {
 	id := Candy().Guify("gtk_aspect_frame_new", label, xalign, yalign, ratio, obeyChild).String()
 	return NewAspectFrameFromCandy(Candy(), id)
 }

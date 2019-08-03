@@ -16,13 +16,13 @@ func NewPixbufFromCandy(candy sugar.Candy, id string) *Pixbuf {
 }
 
 // FUNCTION_NAME = gdk_pixbuf_new, NONE, WIDGET, 5, INT, BOOL, INT, INT, INT
-func NewPixbuf(colorspace Colorspace, hasAlpha bool, bitsPerSample, width, height int) *Pixbuf {
+func PixbufNew(colorspace Colorspace, hasAlpha bool, bitsPerSample, width, height int) *Pixbuf {
 	id := Candy().Guify("gdk_pixbuf_new", colorspace, hasAlpha, bitsPerSample, width, height).String()
 	return NewPixbufFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gdk_pixbuf_new_from_file, NONE, WIDGET, 2, STRING, PTR_LONG
-func NewPixbufFromFile(filename string) (*Pixbuf, error) {
+func PixbufNewFromFile(filename string) (*Pixbuf, error) {
 	fields := Candy().Guify("gdk_pixbuf_new_from_file", filename, 0).Fields()
 	if fields[0] == "0" {
 		p := fields[1].String()
@@ -35,7 +35,7 @@ func NewPixbufFromFile(filename string) (*Pixbuf, error) {
 }
 
 // FUNCTION_NAME = gdk_pixbuf_new_from_file_at_size, NONE, WIDGET, 4, STRING, INT, INT, PTR_LONG
-func NewPixbufFromFileAtSize(filename string, width, height int) (*Pixbuf, error) {
+func PixbufNewFromFileAtSize(filename string, width, height int) (*Pixbuf, error) {
 	fields := Candy().Guify("gdk_pixbuf_new_from_file_at_size", filename, width, height, 0).Fields()
 	if fields[0] == "0" {
 		p := fields[1].String()
@@ -48,7 +48,7 @@ func NewPixbufFromFileAtSize(filename string, width, height int) (*Pixbuf, error
 }
 
 // FUNCTION_NAME = gdk_pixbuf_new_from_file_at_scale, NONE, WIDGET, 5, STRING, INT, INT, BOOL, PTR_LONG
-func NewPixbufFromFileAtScale(filename string, width, height int, preserveAspectRatio bool) (*Pixbuf, error) {
+func PixbufNewFromFileAtScale(filename string, width, height int, preserveAspectRatio bool) (*Pixbuf, error) {
 	fields := Candy().Guify("gdk_pixbuf_new_from_file_at_scale", filename, width, height, preserveAspectRatio, 0).Fields()
 	if fields[0] == "0" {
 		p := fields[1].String()

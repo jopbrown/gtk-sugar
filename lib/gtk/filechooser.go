@@ -96,7 +96,7 @@ func NewFileFilterFromCandy(candy sugar.Candy, id string) *FileFilter {
 }
 
 // FUNCTION_NAME = gtk_file_filter_new, NONE, WIDGET, 0
-func NewFileFilter() *FileFilter {
+func FileFilterNew() *FileFilter {
 	id := Candy().Guify("gtk_file_filter_new").String()
 	return NewFileFilterFromCandy(Candy(), id)
 }
@@ -124,7 +124,7 @@ func NewFileChooserDialogFromCandy(candy sugar.Candy, id string) *FileChooserDia
 }
 
 // FUNCTION_NAME = gtk_file_chooser_dialog_new, NONE, WIDGET, 5, STRING, WIDGET, INT, STRING, VARARGS
-func NewFileChooserDialog(title string, parent *Window, action FileChooserAction, firstBtn DialogButton, otherBtns ...DialogButton) *FileChooserDialog {
+func FileChooserDialogNew(title string, parent *Window, action FileChooserAction, firstBtn DialogButton, otherBtns ...DialogButton) *FileChooserDialog {
 	args := make(sugar.Varargs, 0, len(otherBtns)*2+1)
 	args = append(args, firstBtn.ID)
 	for _, p := range otherBtns {
@@ -146,7 +146,7 @@ func NewFileChooserWidgetFromCandy(candy sugar.Candy, id string) *FileChooserWid
 }
 
 // FUNCTION_NAME = gtk_file_chooser_widget_new, NONE, WIDGET, 1, INT
-func NewFileChooserWidget(action FileChooserAction) *FileChooserWidget {
+func FileChooserWidgetNew(action FileChooserAction) *FileChooserWidget {
 	id := Candy().Guify("gtk_file_chooser_widget_new", action).String()
 	return NewFileChooserWidgetFromCandy(Candy(), id)
 }

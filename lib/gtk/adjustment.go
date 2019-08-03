@@ -16,7 +16,7 @@ func NewAdjustmentFromCandy(candy sugar.Candy, id string) *Adjustment {
 }
 
 // FUNCTION_NAME = gtk_adjustment_new, NONE, WIDGET, 6, DOUBLE, DOUBLE, DOUBLE, DOUBLE, DOUBLE, DOUBLE
-func NewAdjustment(value, lower, upper, stepIncrement, pageIncrement, pageSize float64) *Adjustment {
+func AdjustmentNew(value, lower, upper, stepIncrement, pageIncrement, pageSize float64) *Adjustment {
 	id := Candy().Guify("gtk_adjustment_new", value, lower, upper, stepIncrement, pageIncrement, pageSize).String()
 	return NewAdjustmentFromCandy(Candy(), id)
 }

@@ -13,7 +13,7 @@ func NewStatusbarFromCandy(candy sugar.Candy, id string) *Statusbar {
 }
 
 // FUNCTION_NAME = gtk_statusbar_new, NONE, WIDGET, 0
-func NewStatusbar() *Statusbar {
+func StatusbarNew() *Statusbar {
 	id := Candy().Guify("gtk_statusbar_new").String()
 	return NewStatusbarFromCandy(Candy(), id)
 }

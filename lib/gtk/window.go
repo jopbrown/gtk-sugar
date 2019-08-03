@@ -16,7 +16,7 @@ func NewWindowFromCandy(candy sugar.Candy, id string) *Window {
 }
 
 // FUNCTION_NAME = gtk_window_new, delete-event, WIDGET, 1, INT
-func NewWindow(t WindowType) *Window {
+func WindowNew(t WindowType) *Window {
 	id := Candy().Guify("gtk_window_new", t).String()
 	return NewWindowFromCandy(Candy(), id)
 }

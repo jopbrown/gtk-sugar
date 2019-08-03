@@ -18,20 +18,20 @@ func NewImageFromCandy(candy sugar.Candy, id string) *Image {
 }
 
 // FUNCTION_NAME = gtk_image_new, NONE, WIDGET, 0
-func NewImage() *Image {
+func ImageNew() *Image {
 	id := Candy().Guify("gtk_image_new").String()
 	return NewImageFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_image_new_from_pixbuf, NONE, WIDGET, 1, WIDGET
-func NewImageFromPixbuf(pixbuf *gdk.Pixbuf) *Image {
+func ImageNewFromPixbuf(pixbuf *gdk.Pixbuf) *Image {
 	id := Candy().Guify("gtk_image_new_from_pixbuf", pixbuf).String()
 	return NewImageFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_image_new_from_file, NONE, WIDGET, 1, STRING
 // FUNCTION_NAME = gtk_image_new_from_file_utf8, NONE, WIDGET, 1, STRING
-func NewImageFromFile(filename string) *Image {
+func ImageNewFromFile(filename string) *Image {
 	gtkfunc := "gtk_image_new_from_file"
 	if runtime.GOOS == "windows" {
 		gtkfunc = "gtk_image_new_from_file_utf8"
@@ -41,7 +41,7 @@ func NewImageFromFile(filename string) *Image {
 }
 
 // FUNCTION_NAME = gtk_image_new_from_stock, NONE, WIDGET, 2, STRING, INT
-func NewImageFromStock(stockID string, size IconSize) *Image {
+func ImageNewFromStock(stockID string, size IconSize) *Image {
 	id := Candy().Guify("gtk_image_new_from_stock", stockID, size).String()
 	return NewImageFromCandy(Candy(), id)
 }

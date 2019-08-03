@@ -13,7 +13,7 @@ func NewAlignmentFromCandy(candy sugar.Candy, id string) *Alignment {
 }
 
 // FUNCTION_NAME = gtk_alignment_new, NONE, WIDGET, 4, FLOAT, FLOAT, FLOAT, FLOAT
-func NewAlignment(xalign, yalign, xscale, yscale float32) *Alignment {
+func AlignmentNew(xalign, yalign, xscale, yscale float32) *Alignment {
 	id := Candy().Guify("gtk_alignment_new", xalign, yalign, xscale, yscale).String()
 	return NewAlignmentFromCandy(Candy(), id)
 }

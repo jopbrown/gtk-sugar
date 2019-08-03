@@ -13,7 +13,7 @@ func NewProgressBarFromCandy(candy sugar.Candy, id string) *ProgressBar {
 }
 
 // FUNCTION_NAME = gtk_progress_bar_new, NONE, WIDGET, 0
-func NewProgressBar() *ProgressBar {
+func ProgressBarNew() *ProgressBar {
 	id := Candy().Guify("gtk_progress_bar_new").String()
 	return NewProgressBarFromCandy(Candy(), id)
 }

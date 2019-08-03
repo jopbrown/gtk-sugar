@@ -13,7 +13,7 @@ func NewArrowFromCandy(candy sugar.Candy, id string) *Arrow {
 }
 
 // FUNCTION_NAME = gtk_arrow_new, NONE, WIDGET, 2, INT, INT
-func NewArrow(arrowType ArrowType, shadowType ShadowType) *Arrow {
+func ArrowNew(arrowType ArrowType, shadowType ShadowType) *Arrow {
 	id := Candy().Guify("gtk_arrow_new", arrowType, shadowType).String()
 	return NewArrowFromCandy(Candy(), id)
 }

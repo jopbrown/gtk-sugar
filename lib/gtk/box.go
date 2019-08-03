@@ -43,7 +43,7 @@ func NewHBoxFromCandy(candy sugar.Candy, id string) *HBox {
 }
 
 // FUNCTION_NAME = gtk_hbox_new, NONE, WIDGET, 2, BOOL, INT
-func NewHBox(homogeneous bool, spacing int) *HBox {
+func HBoxNew(homogeneous bool, spacing int) *HBox {
 	id := Candy().Guify("gtk_hbox_new", homogeneous, spacing).String()
 	return NewHBoxFromCandy(Candy(), id)
 }
@@ -59,7 +59,7 @@ func NewVBoxFromCandy(candy sugar.Candy, id string) *VBox {
 }
 
 // FUNCTION_NAME = gtk_vbox_new, NONE, WIDGET, 2, BOOL, INT
-func NewVBox(homogeneous bool, spacing int) *VBox {
+func VBoxNew(homogeneous bool, spacing int) *VBox {
 	id := Candy().Guify("gtk_vbox_new", homogeneous, spacing).String()
 	return NewVBoxFromCandy(Candy(), id)
 }

@@ -29,7 +29,7 @@ func NewEventBoxFromCandy(candy sugar.Candy, id string) *EventBox {
 }
 
 // FUNCTION_NAME = gtk_event_box_new, NONE, WIDGET, 0
-func NewEventBox() *EventBox {
+func EventBoxNew() *EventBox {
 	id := Candy().Guify("gtk_event_box_new").String()
 	return NewEventBoxFromCandy(Candy(), id)
 }

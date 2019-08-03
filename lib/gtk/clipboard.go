@@ -17,7 +17,7 @@ func NewClipboardFromCandy(candy sugar.Candy, id string) *Clipboard {
 }
 
 // FUNCTION_NAME = gtk_clipboard_get, NONE, WIDGET, 1, INT
-func NewClipboard(selection gdk.Atom) *Clipboard {
+func ClipboardGet(selection gdk.Atom) *Clipboard {
 	id := Candy().Guify("gtk_clipboard_get").String()
 	return NewClipboardFromCandy(Candy(), id)
 }

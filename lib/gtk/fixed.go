@@ -13,7 +13,7 @@ func NewFixedFromCandy(candy sugar.Candy, id string) *Fixed {
 }
 
 // FUNCTION_NAME = gtk_fixed_new, NONE, WIDGET, 0
-func NewFixed() *Fixed {
+func FixedNew() *Fixed {
 	id := Candy().Guify("gtk_fixed_new").String()
 	return NewFixedFromCandy(Candy(), id)
 }

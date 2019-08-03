@@ -1,7 +1,7 @@
 package gtk
 
 // FUNCTION_NAME = gtk_combo_box_new_text, changed, WIDGET, 0
-func NewComboBoxWithText() *ComboBox {
+func ComboBoxNewWithText() *ComboBox {
 	id := Candy().Guify("gtk_combo_box_new_text").String()
 	return NewComboBoxFromCandy(Candy(), id)
 }

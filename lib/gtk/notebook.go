@@ -13,7 +13,7 @@ func NewNotebookFromCandy(candy sugar.Candy, id string) *Notebook {
 }
 
 // FUNCTION_NAME = gtk_notebook_new, NONE, WIDGET, 0
-func NewNotebook() *Notebook {
+func NotebookNew() *Notebook {
 	id := Candy().Guify("gtk_notebook_new").String()
 	return NewNotebookFromCandy(Candy(), id)
 }

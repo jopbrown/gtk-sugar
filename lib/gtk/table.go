@@ -13,7 +13,7 @@ func NewTableFromCandy(candy sugar.Candy, id string) *Table {
 }
 
 // FUNCTION_NAME = gtk_table_new, NONE, WIDGET, 3, INT, INT, BOOL
-func NewTable(rows, cols int, homogeneous bool) *Table {
+func TableNew(rows, cols int, homogeneous bool) *Table {
 	id := Candy().Guify("gtk_table_new", rows, cols, homogeneous).String()
 	return NewTableFromCandy(Candy(), id)
 }

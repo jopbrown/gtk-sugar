@@ -17,7 +17,7 @@ func NewVSeparatorFromCandy(candy sugar.Candy, id string) *VSeparator {
 }
 
 // FUNCTION_NAME = gtk_vseparator_new, NONE, WIDGET, 0
-func NewVSeparator() *VSeparator {
+func VSeparatorNew() *VSeparator {
 	id := Candy().Guify("gtk_vseparator_new").String()
 	return NewVSeparatorFromCandy(Candy(), id)
 }
@@ -33,7 +33,7 @@ func NewHSeparatorFromCandy(candy sugar.Candy, id string) *HSeparator {
 }
 
 // FUNCTION_NAME = gtk_hseparator_new, NONE, WIDGET, 0
-func NewHSeparator() *HSeparator {
+func HSeparatorNew() *HSeparator {
 	id := Candy().Guify("gtk_hseparator_new").String()
 	return NewHSeparatorFromCandy(Candy(), id)
 }

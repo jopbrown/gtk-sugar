@@ -16,7 +16,7 @@ func NewTooltipsFromCandy(candy sugar.Candy, id string) *Tooltips {
 }
 
 // FUNCTION_NAME = gtk_tooltips_new, NONE, WIDGET, 0
-func NewTooltips() *Tooltips {
+func TooltipsNew() *Tooltips {
 	id := Candy().Guify("gtk_tooltips_new").String()
 	return NewTooltipsFromCandy(Candy(), id)
 }

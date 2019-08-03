@@ -16,7 +16,7 @@ func NewAccelGroupFromCandy(candy sugar.Candy, id string) *AccelGroup {
 }
 
 // FUNCTION_NAME = gtk_accel_group_new, NONE, WIDGET, 0
-func NewAccelGroup() *AccelGroup {
+func AccelGroupNew() *AccelGroup {
 	id := Candy().Guify("gtk_accel_group_new").String()
 	return NewAccelGroupFromCandy(Candy(), id)
 }

@@ -26,7 +26,7 @@ func NewTextBufferFromCandy(candy sugar.Candy, id string) *TextBuffer {
 }
 
 // FUNCTION_NAME = gtk_text_buffer_new, NONE, WIDGET, 1, NULL
-func NewTextBuffer() *TextBuffer {
+func TextBufferNew() *TextBuffer {
 	id := Candy().Guify("gtk_text_buffer_new").String()
 	return NewTextBufferFromCandy(Candy(), id)
 }
@@ -238,13 +238,13 @@ func NewTextViewFromCandy(candy sugar.Candy, id string) *TextView {
 }
 
 // FUNCTION_NAME = gtk_text_view_new, NONE, WIDGET, 0
-func NewTextView() *TextView {
+func TextViewNew() *TextView {
 	id := Candy().Guify("gtk_text_view_new").String()
 	return NewTextViewFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_view_new_with_buffer, NONE, WIDGET, 1, WIDGET
-func NewTextViewWithBuffer(tb *TextBuffer) *TextView {
+func TextViewNewWithBuffer(tb *TextBuffer) *TextView {
 	id := Candy().Guify("gtk_text_view_new_with_buffer").String()
 	return NewTextViewFromCandy(Candy(), id)
 }

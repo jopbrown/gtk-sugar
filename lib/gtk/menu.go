@@ -28,7 +28,7 @@ func NewMenuFromCandy(candy sugar.Candy, id string) *Menu {
 }
 
 // FUNCTION_NAME = gtk_menu_new, NONE, WIDGET, 0
-func NewMenu() *Menu {
+func MenuNew() *Menu {
 	id := Candy().Guify("gtk_menu_new").String()
 	return NewMenuFromCandy(Candy(), id)
 }
@@ -54,7 +54,7 @@ func NewMenuBarFromCandy(candy sugar.Candy, id string) *MenuBar {
 }
 
 // FUNCTION_NAME = gtk_menu_bar_new, NONE, WIDGET, 0
-func NewMenuBar() *MenuBar {
+func MenuBarNew() *MenuBar {
 	id := Candy().Guify("gtk_menu_bar_new").String()
 	return NewMenuBarFromCandy(Candy(), id)
 }
@@ -70,19 +70,19 @@ func NewMenuItemFromCandy(candy sugar.Candy, id string) *MenuItem {
 }
 
 // FUNCTION_NAME = gtk_menu_item_new, activate, WIDGET, 0
-func NewMenuItem() *MenuItem {
+func MenuItemNew() *MenuItem {
 	id := Candy().Guify("gtk_menu_item_new").String()
 	return NewMenuItemFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_menu_item_new_with_label, activate, WIDGET, 1, STRING
-func NewMenuItemWithLabel(label string) *MenuItem {
+func MenuItemNewWithLabel(label string) *MenuItem {
 	id := Candy().Guify("gtk_menu_item_new_with_label", label).String()
 	return NewMenuItemFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_menu_item_new_with_mnemonic, activate, WIDGET, 1, STRING
-func NewMenuItemWithMnemonic(label string) *MenuItem {
+func MenuItemNewWithMnemonic(label string) *MenuItem {
 	id := Candy().Guify("gtk_menu_item_new_with_mnemonic", label).String()
 	return NewMenuItemFromCandy(Candy(), id)
 }
@@ -108,7 +108,7 @@ func NewTearoffMenuItemFromCandy(candy sugar.Candy, id string) *TearoffMenuItem 
 }
 
 // FUNCTION_NAME = gtk_tearoff_menu_item_new, activate, WIDGET, 0
-func NewTearoffMenuItem() *TearoffMenuItem {
+func TearoffMenuItemNew() *TearoffMenuItem {
 	id := Candy().Guify("gtk_tearoff_menu_item_new").String()
 	return NewTearoffMenuItemFromCandy(Candy(), id)
 }
@@ -124,7 +124,7 @@ func NewSeparatorMenuItemFromCandy(candy sugar.Candy, id string) *SeparatorMenuI
 }
 
 // FUNCTION_NAME = gtk_separator_menu_item_new, NONE, WIDGET, 0
-func NewSeparatorMenuItem() *SeparatorMenuItem {
+func SeparatorMenuItemNew() *SeparatorMenuItem {
 	id := Candy().Guify("gtk_separator_menu_item_new").String()
 	return NewSeparatorMenuItemFromCandy(Candy(), id)
 }
@@ -140,13 +140,13 @@ func NewCheckMenuItemFromCandy(candy sugar.Candy, id string) *CheckMenuItem {
 }
 
 // FUNCTION_NAME = gtk_check_menu_item_new_with_label, activate, WIDGET, 1, STRING
-func NewCheckMenuItemWithLabel(label string) *CheckMenuItem {
+func CheckMenuItemNewWithLabel(label string) *CheckMenuItem {
 	id := Candy().Guify("gtk_check_menu_item_new_with_label", label).String()
 	return NewCheckMenuItemFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_check_menu_item_new_with_mnemonic, activate, WIDGET, 1, STRING
-func NewCheckMenuItemWithMnemonic(label string) *CheckMenuItem {
+func CheckMenuItemNewWithMnemonic(label string) *CheckMenuItem {
 	id := Candy().Guify("gtk_check_menu_item_new_with_mnemonic", label).String()
 	return NewCheckMenuItemFromCandy(Candy(), id)
 }
@@ -172,7 +172,7 @@ func NewImageMenuItemFromCandy(candy sugar.Candy, id string) *ImageMenuItem {
 }
 
 // FUNCTION_NAME = gtk_image_menu_item_new_from_stock, NONE, WIDGET, 2, STRING, WIDGET
-func NewImageMenuItemFromStock(stockID string, accelGroup *AccelGroup) *ImageMenuItem {
+func ImageMenuItemNewFromStock(stockID string, accelGroup *AccelGroup) *ImageMenuItem {
 	id := Candy().Guify("gtk_image_menu_item_new_from_stock", stockID, accelGroup).String()
 	return NewImageMenuItemFromCandy(Candy(), id)
 }

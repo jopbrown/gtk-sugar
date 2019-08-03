@@ -13,25 +13,25 @@ func NewButtonFromCandy(candy sugar.Candy, id string) *Button {
 }
 
 // FUNCTION_NAME = gtk_button_new, clicked, WIDGET, 0
-func NewButton() *Button {
+func ButtonNew() *Button {
 	id := Candy().Guify("gtk_button_new").String()
 	return NewButtonFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_button_new_with_label, clicked, WIDGET, 1, STRING
-func NewButtonWithLabel(label string) *Button {
+func ButtonNewWithLabel(label string) *Button {
 	id := Candy().Guify("gtk_button_new_with_label", label).String()
 	return NewButtonFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_button_new_with_mnemonic, clicked, WIDGET, 1, STRING
-func NewButtonWithMnemonic(label string) *Button {
+func ButtonNewWithMnemonic(label string) *Button {
 	id := Candy().Guify("gtk_button_new_with_mnemonic", label).String()
 	return NewButtonFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_button_new_from_stock, clicked, WIDGET, 1, STRING
-func NewButtonWithStock(stockID string) *Button {
+func ButtonNewWithStock(stockID string) *Button {
 	id := Candy().Guify("gtk_button_new_from_stock", stockID).String()
 	return NewButtonFromCandy(Candy(), id)
 }
@@ -67,19 +67,19 @@ func NewToggleButtonFromCandy(candy sugar.Candy, id string) *ToggleButton {
 }
 
 // FUNCTION_NAME = gtk_toggle_button_new, clicked, WIDGET, 0
-func NewToggleButton() *ToggleButton {
+func ToggleButtonNew() *ToggleButton {
 	id := Candy().Guify("gtk_toggle_button_new").String()
 	return NewToggleButtonFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_toggle_button_new_with_label, clicked, WIDGET, 1, STRING
-func NewToggleButtonWithLabel(label string) *ToggleButton {
+func ToggleButtonNewWithLabel(label string) *ToggleButton {
 	id := Candy().Guify("gtk_toggle_button_new_with_label", label).String()
 	return NewToggleButtonFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_toggle_button_new_with_mnemonic, clicked, WIDGET, 1, STRING
-func NewToggleButtonWithMnemonic(label string) *ToggleButton {
+func ToggleButtonNewWithMnemonic(label string) *ToggleButton {
 	id := Candy().Guify("gtk_toggle_button_new_with_mnemonic", label).String()
 	return NewToggleButtonFromCandy(Candy(), id)
 }
@@ -130,7 +130,7 @@ func NewCheckButtonFromCandy(candy sugar.Candy, id string) *CheckButton {
 }
 
 // FUNCTION_NAME = gtk_check_button_new_with_label, clicked, WIDGET, 1, STRING
-func NewCheckButtonWithLabel(label string) *CheckButton {
+func CheckButtonNewWithLabel(label string) *CheckButton {
 	id := Candy().Guify("gtk_check_button_new_with_label", label).String()
 	return NewCheckButtonFromCandy(Candy(), id)
 }
@@ -146,25 +146,25 @@ func NewRadioButtonFromCandy(candy sugar.Candy, id string) *RadioButton {
 }
 
 // FUNCTION_NAME = gtk_radio_button_new, clicked, WIDGET, 1, WIDGET
-func NewRadioButton() *RadioButton {
+func RadioButtonNew() *RadioButton {
 	id := Candy().Guify("gtk_radio_button_new", nil).String()
 	return NewRadioButtonFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_radio_button_new_with_label, clicked, WIDGET, 2, WIDGET, STRING
-func NewRadioButtonWithLabel(label string) *RadioButton {
+func RadioButtonNewWithLabel(label string) *RadioButton {
 	id := Candy().Guify("gtk_radio_button_new_with_label", nil, label).String()
 	return NewRadioButtonFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_radio_button_new_from_widget, clicked, WIDGET, 1, WIDGET
-func NewRadioButtonFromWidget(radioGroupMember *RadioButton) *RadioButton {
+func RadioButtonNewFromWidget(radioGroupMember *RadioButton) *RadioButton {
 	id := Candy().Guify("gtk_radio_button_new_from_widget", radioGroupMember).String()
 	return NewRadioButtonFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_radio_button_new_with_label_from_widget, clicked, WIDGET, 2, WIDGET, STRING
-func NewRadioButtonWithLabelFromWidget(radioGroupMember *RadioButton, label string) *RadioButton {
+func RadioButtonNewWithLabelFromWidget(radioGroupMember *RadioButton, label string) *RadioButton {
 	id := Candy().Guify("gtk_radio_button_new_with_label_from_widget", radioGroupMember, label).String()
 	return NewRadioButtonFromCandy(Candy(), id)
 }
@@ -180,13 +180,13 @@ func NewSpinButtonFromCandy(candy sugar.Candy, id string) *SpinButton {
 }
 
 // FUNCTION_NAME = gtk_spin_button_new, NONE, WIDGET, 3, WIDGET, DOUBLE, INT
-func NewSpinButton(adjustment Adjustment, climbRate float64, digits uint) *SpinButton {
+func SpinButtonNew(adjustment Adjustment, climbRate float64, digits uint) *SpinButton {
 	id := Candy().Guify("gtk_spin_button_new", adjustment, climbRate, digits).String()
 	return NewSpinButtonFromCandy(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_spin_button_new_with_range, NONE, WIDGET, 3, DOUBLE, DOUBLE, DOUBLE
-func NewSpinButtonWithRange(min, max, step float64) *SpinButton {
+func SpinButtonNewWithRange(min, max, step float64) *SpinButton {
 	id := Candy().Guify("gtk_spin_button_new_with_range", min, max, step).String()
 	return NewSpinButtonFromCandy(Candy(), id)
 }
@@ -237,7 +237,7 @@ func NewHButtonBoxFromCandy(candy sugar.Candy, id string) *HButtonBox {
 }
 
 // FUNCTION_NAME = gtk_hbutton_box_new, NONE, WIDGET, 0
-func NewHButtonBox() *HButtonBox {
+func HButtonBoxNew() *HButtonBox {
 	id := Candy().Guify("gtk_hbutton_box_new").String()
 	return NewHButtonBoxFromCandy(Candy(), id)
 }
@@ -253,7 +253,7 @@ func NewVButtonBoxFromCandy(candy sugar.Candy, id string) *VButtonBox {
 }
 
 // FUNCTION_NAME = gtk_vbutton_box_new, NONE, WIDGET, 0
-func NewVButtonBox() *VButtonBox {
+func VButtonBoxNew() *VButtonBox {
 	id := Candy().Guify("gtk_vbutton_box_new").String()
 	return NewVButtonBoxFromCandy(Candy(), id)
 }

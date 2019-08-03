@@ -13,7 +13,7 @@ func NewEntryFromCandy(candy sugar.Candy, id string) *Entry {
 }
 
 // FUNCTION_NAME = gtk_entry_new, activate, WIDGET, 0
-func NewEntry() *Entry {
+func EntryNew() *Entry {
 	id := Candy().Guify("gtk_entry_new").String()
 	return NewEntryFromCandy(Candy(), id)
 }

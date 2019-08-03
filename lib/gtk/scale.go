@@ -33,7 +33,7 @@ func NewHScaleFromCandy(candy sugar.Candy, id string) *HScale {
 }
 
 // FUNCTION_NAME = gtk_hscale_new_with_range, value-changed, WIDGET, 3, DOUBLE, DOUBLE, DOUBLE
-func NewHScaleWithRange(min, max, step float64) *HScale {
+func HScaleNewWithRange(min, max, step float64) *HScale {
 	id := Candy().Guify("gtk_hscale_new_with_range", min, max, step).String()
 	return NewHScaleFromCandy(Candy(), id)
 }
@@ -49,7 +49,7 @@ func NewVScaleFromCandy(candy sugar.Candy, id string) *VScale {
 }
 
 // FUNCTION_NAME = gtk_vscale_new_with_range, value-changed, WIDGET, 3, DOUBLE, DOUBLE, DOUBLE
-func NewVScaleWithRange(min, max, step float64) *VScale {
+func VScaleNewWithRange(min, max, step float64) *VScale {
 	id := Candy().Guify("gtk_hscale_new_with_range", min, max, step).String()
 	return NewVScaleFromCandy(Candy(), id)
 }

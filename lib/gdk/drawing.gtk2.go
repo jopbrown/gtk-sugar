@@ -63,7 +63,7 @@ func NewGCFromCandy(candy sugar.Candy, id string) *GC {
 }
 
 // FUNCTION_NAME = gdk_gc_new, NONE, WIDGET, 1, WIDGET
-func NewGC(drawable IDrawable) *GC {
+func GCNew(drawable IDrawable) *GC {
 	id := Candy().Guify("gdk_gc_new", drawable).String()
 	w := GC{}
 	w.CandyWrapper = Candy().NewWrapper(id)
@@ -125,7 +125,7 @@ func NewPixmapFromCandy(candy sugar.Candy, id string) *Pixmap {
 }
 
 // FUNCTION_NAME = gdk_pixmap_new, NONE, WIDGET, 4, WIDGET, INT, INT, INT
-func NewPixmap(drawable IDrawable, width, height, depth int) *Pixmap {
+func PixmapNew(drawable IDrawable, width, height, depth int) *Pixmap {
 	id := Candy().Guify("gdk_pixmap_new", drawable, width, height, depth).String()
 	w := Pixmap{}
 	w.CandyWrapper = Candy().NewWrapper(id)

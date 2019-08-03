@@ -26,7 +26,7 @@ func NewListStoreFromCandy(candy sugar.Candy, id string) *ListStore {
 }
 
 // FUNCTION_NAME = gtk_list_store_new, NONE, WIDGET, 2, INT, VARARGS
-func NewListStore(types ...glib.Type) *ListStore {
+func ListStoreNew(types ...glib.Type) *ListStore {
 	vargs := make(sugar.Varargs, 0, len(types))
 	for _, t := range types {
 		vargs = append(vargs, uint(t))
