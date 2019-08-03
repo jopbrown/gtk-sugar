@@ -17,7 +17,7 @@ func init() {
 		panic(err)
 	}
 
-	sugar.GiveCandyToEveryone(sugar.NewCandy(clt.Conn()))
+	sugar.GiveCandy(sugar.NewCandy(clt.Conn()))
 }
 
 func main() {

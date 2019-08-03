@@ -43,12 +43,6 @@ type CallValueType int
 const (
 	CALLBACK_VALUE_TYPE_INT CallValueType = iota
 	CALLBACK_VALUE_TYPE_STRING
-	// CALLBACK_VALUE_TYPE_NULL
-	// CALLBACK_VALUE_TYPE_WIDGET
-	// CALLBACK_VALUE_TYPE_BOOL
-	// CALLBACK_VALUE_TYPE_LONG
-	// CALLBACK_VALUE_TYPE_DOUBLE
-	// CALLBACK_VALUE_TYPE_FLOAT
 )
 
 func (t CallValueType) String() string {
@@ -57,18 +51,6 @@ func (t CallValueType) String() string {
 		return "INT"
 	case CALLBACK_VALUE_TYPE_STRING:
 		return "STRING"
-		// case CALLBACK_VALUE_TYPE_NULL:
-		// 	return "NULL"
-		// case CALLBACK_VALUE_TYPE_WIDGET:
-		// 	return "WIDGET"
-		// case CALLBACK_VALUE_TYPE_BOOL:
-		// 	return "BOOL"
-		// case CALLBACK_VALUE_TYPE_LONG:
-		// 	return "LONG"
-		// case CALLBACK_VALUE_TYPE_DOUBLE:
-		// 	return "DOUBLE"
-		// case CALLBACK_VALUE_TYPE_FLOAT:
-		// 	return "FLOAT"
 	}
 
 	return ""

@@ -21,5 +21,5 @@ func MainQuit() {
 }
 
 func init() {
-	sugar.RegisterGlobalCandyGiver("gtk", GiveCandy)
+	sugar.RegisterCandyGiver("gtk", GiveCandy)
 }

@@ -108,7 +108,7 @@ func (w *Widget) SetName(name string) {
 }
 
 // FUNCTION_NAME = gtk_widget_get_size_request, NONE, NONE, 3, WIDGET, PTR_INT, PTR_INT
-func (w *Widget) GetSizeRequest(name string) (width, height int) {
+func (w *Widget) GetSizeRequest() (width, height int) {
 	fields := w.Candy().Guify("gtk_widget_get_size_request", w, 0, 0).Fields()
 	width = fields[0].MustInt()
 	height = fields[1].MustInt()

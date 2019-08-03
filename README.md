@@ -124,7 +124,7 @@ func main() {
 	}
 	defer clt.Stop()
 
-	sugar.GiveCandyToEveryone(sugar.NewCandy(clt.Conn()))
+	sugar.GiveCandy(sugar.NewCandy(clt.Conn()))
 	gtk.Init()
 
 	win := gtk.NewWindow(gtk.WINDOW_TOPLEVEL)

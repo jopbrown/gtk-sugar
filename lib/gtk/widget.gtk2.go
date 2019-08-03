@@ -37,7 +37,7 @@ func (w *Widget) ModifyFont(fontDesc *pango.FontDescription) {
 	w.Candy().Guify("gtk_widget_modify_font", w, fontDesc)
 }
 
-type Allocation gdk.Rectangle
+type Allocation = gdk.Rectangle
 
 // FUNCTION_NAME = gtk_widget_get_allocation, NONE, NONE, 2, WIDGET, PTR_BASE64
 func (w *Widget) GetAllocation() *Allocation {

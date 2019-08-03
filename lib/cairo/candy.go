@@ -13,5 +13,5 @@ func Candy() sugar.Candy {
 }
 
 func init() {
-	sugar.RegisterGlobalCandyGiver("cairo", GiveCandy)
+	sugar.RegisterCandyGiver("cairo", GiveCandy)
 }

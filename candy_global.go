@@ -2,14 +2,14 @@ package sugar
 
 type CandyGiver func(c Candy)
 
-var globalCandyGiverReg = make(map[string]CandyGiver, 10)
+var candyGiverReg = make(map[string]CandyGiver, 10)
 
-func RegisterGlobalCandyGiver(name string, giver CandyGiver) {
-	globalCandyGiverReg[name] = giver
+func RegisterCandyGiver(name string, giver CandyGiver) {
+	candyGiverReg[name] = giver
 }
 
-func GiveCandyToEveryone(c Candy) {
-	for _, giver := range globalCandyGiverReg {
+func GiveCandy(c Candy) {
+	for _, giver := range candyGiverReg {
 		giver(c)
 	}
 }
