@@ -25,19 +25,19 @@ func main() {
 
 	gtk.Init()
 
-	win := gtk.NewWindow(gtk.WINDOW_TOPLEVEL)
+	win := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
 	win.SetTitle("Show Image")
 	win.SetDefaultSize(300, 300)
 	win.SetPosition(gtk.WIN_POS_CENTER)
 	win.ConnectDefault(gtk.MainQuit)
 
-	pixbuf, err := gdk.NewPixbufFromFile("image.jpg")
+	pixbuf, err := gdk.PixbufNewFromFile("image.jpg")
 	if err != nil {
 		log.Fatal(err)
 	}
-	image := gtk.NewImageFromPixbuf(pixbuf)
+	image := gtk.ImageNewFromPixbuf(pixbuf)
 
-	layout := gtk.NewLayout(nil, nil)
+	layout := gtk.LayoutNew(nil, nil)
 	layout.Connect("size-allocate", func() {
 		a := win.GetAllocation()
 		newbuf := pixbuf.ScaleSimple(a.Width, a.Height, gdk.INTERP_BILINEAR)

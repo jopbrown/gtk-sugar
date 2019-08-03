@@ -25,20 +25,20 @@ func main() {
 	sugar.GiveCandy(sugar.NewCandy(clt.Conn()))
 	gtk.Init()
 
-	win := gtk.NewWindow(gtk.WINDOW_TOPLEVEL)
+	win := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
 	win.SetTitle("Stopwatch")
 	win.SetDefaultSize(400, 200)
 	win.SetPosition(gtk.WIN_POS_CENTER)
 	win.ConnectDefault(gtk.MainQuit)
 
-	table := gtk.NewTable(10, 10, true)
+	table := gtk.TableNew(10, 10, true)
 	win.Add(table)
 
-	timeLabel := gtk.NewLabel("")
+	timeLabel := gtk.LabelNew("")
 	timeLabel.SetMarkup(makeupOfElapsed(0))
 	table.AttachDefaults(timeLabel, 1, 9, 1, 5)
 
-	startBtn := gtk.NewButtonWithLabel("Start")
+	startBtn := gtk.ButtonNewWithLabel("Start")
 	startBtn.ConnectDefault(func() {
 		log.Println("click start")
 		if sw.IsRunning() {
@@ -58,7 +58,7 @@ func main() {
 	})
 	table.AttachDefaults(startBtn, 1, 3, 6, 9)
 
-	stopBtn := gtk.NewButtonWithLabel("Stop")
+	stopBtn := gtk.ButtonNewWithLabel("Stop")
 	stopBtn.ConnectDefault(func() {
 		log.Println("click stop")
 		if sw.IsRunning() {
@@ -68,7 +68,7 @@ func main() {
 	})
 	table.AttachDefaults(stopBtn, 4, 6, 6, 9)
 
-	resetBtn := gtk.NewButtonWithLabel("Reset")
+	resetBtn := gtk.ButtonNewWithLabel("Reset")
 	resetBtn.ConnectDefault(func() {
 		log.Println("click reset")
 		if sw.IsRunning() {

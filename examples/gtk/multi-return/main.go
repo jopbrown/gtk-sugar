@@ -18,23 +18,23 @@ func main() {
 	sugar.GiveCandy(sugar.NewCandy(clt.Conn()))
 	gtk.Init()
 
-	win := gtk.NewWindow(gtk.WINDOW_TOPLEVEL)
+	win := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
 	win.SetTitle("multi-return demo")
 	win.SetDefaultSize(300, 100)
 	win.SetPosition(gtk.WIN_POS_CENTER)
 	win.ConnectDefault(gtk.MainQuit)
 
-	hbox := gtk.NewHBox(false, 10)
+	hbox := gtk.HBoxNew(false, 10)
 	win.Add(hbox)
 
-	vbox := gtk.NewVBox(false, 10)
+	vbox := gtk.VBoxNew(false, 10)
 	hbox.PackStart(vbox, true, true, 50)
 
-	entry := gtk.NewEntry()
+	entry := gtk.EntryNew()
 	entry.SetText("This is a entry")
 	vbox.PackStart(entry, false, false, 10)
 
-	insertBtn := gtk.NewButtonWithLabel("insert at selected bound")
+	insertBtn := gtk.ButtonNewWithLabel("insert at selected bound")
 	insertBtn.ConnectDefault(func() {
 		_, start, _ := entry.GetSelectionBounds()
 		entry.InsertText("sugar", start)

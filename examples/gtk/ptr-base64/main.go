@@ -18,17 +18,17 @@ func main() {
 	sugar.GiveCandy(sugar.NewCandy(clt.Conn()))
 	gtk.Init()
 
-	win := gtk.NewWindow(gtk.WINDOW_TOPLEVEL)
+	win := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
 	win.SetTitle("ptr_base64 demo")
 	win.SetDefaultSize(100, 100)
 	win.SetPosition(gtk.WIN_POS_CENTER)
 	win.ConnectDefault(gtk.MainQuit)
 
-	btn := gtk.NewButtonWithLabel("Size Request")
+	btn := gtk.ButtonNewWithLabel("Size Request")
 	btn.ConnectDefault(func() {
 		r := win.SizeRequest()
 		a := win.GetAllocation()
-		dialog := gtk.NewMessageDialog(win, gtk.DIALOG_MODAL, gtk.MESSAGE_OTHER, gtk.BUTTONS_CLOSE, "SizeRequest\t= W: %v H: %v\nGetAllocation\t= X: %v Y: %v W: %v H: %v", r.Width, r.Height, a.X, a.Y, a.Width, a.Height)
+		dialog := gtk.MessageDialogNew(win, gtk.DIALOG_MODAL, gtk.MESSAGE_OTHER, gtk.BUTTONS_CLOSE, "SizeRequest\t= W: %v H: %v\nGetAllocation\t= X: %v Y: %v W: %v H: %v", r.Width, r.Height, a.X, a.Y, a.Width, a.Height)
 		dialog.ConnectDefault(dialog.Hide)
 		dialog.Run()
 	})
