@@ -158,7 +158,7 @@ func (obj *CheckMenuItem) GetActive() bool {
 
 // FUNCTION_NAME = gtk_check_menu_item_set_active, NONE, NONE, 2, WIDGET, BOOL
 func (obj *CheckMenuItem) SetActive(isActive bool) {
-	obj.Candy().Guify("GTK_FUNC", obj, isActive)
+	obj.Candy().Guify("gtk_check_menu_item_set_active", obj, isActive)
 }
 
 type ImageMenuItem struct {
