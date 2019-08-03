@@ -49,7 +49,7 @@ func main() {
 			log.Println("start")
 			sw.Start()
 			for sw.IsRunning() {
-				gtk.Candy().Invoke(func() {
+				gtk.Invoke(func() {
 					timeLabel.SetMarkup(makeupOfElapsed(sw.Elapsed()))
 				})
 				time.Sleep(100 * time.Millisecond)

@@ -41,9 +41,9 @@ func main() {
 		go func() {
 			time.Sleep(time.Second)
 			// the goroutine is not run in the main loop.
-			// so it's not safe to do any UI operation.
+			// so it's not safe to do any GUI operation.
 			// need to invoke to main loop.
-			gtk.Candy().Invoke(func() { dialog.Run() })
+			gtk.Invoke(func() { dialog.Run() })
 		}()
 	})
 	table.AttachDefaults(showBtn, 1, 4, 6, 9)

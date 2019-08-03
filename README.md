@@ -149,7 +149,7 @@ func main() {
 			// the goroutine is not run in the main loop.
 			// so it's not safe to do any UI operation.
 			// need to invoke to main loop.
-			gtk.Candy().Invoke(func() { dialog.Run() })
+			gtk.Invoke(func() { dialog.Run() })
 		}()
 	})
 	table.AttachDefaults(showBtn, 1, 4, 6, 9)
@@ -167,7 +167,7 @@ func main() {
 
 ## TODO
 * Core
-	* [ ] Client - launch and communication to GTK-server
+	* [ ] 🏃 Client - launch and communication to GTK-server
 		* [x] stdin(2-way pipes)
 		* [x] fifo(named pipe)
 		* [ ] ipc(message queue)
@@ -178,7 +178,13 @@ func main() {
 	* [X] Candy - Sugar with signal handling and main loop control
 
 * Libarys
-	* [ ] GTK - WIP
+	* [ ] 🏃 GTK family
+		* [ ] 🏃 gtk
+		* [ ] 🏃 glib
+		* [ ] 🏃 gdk
+		* [ ] 🏃 cairo
+		* [ ] 🏃 pango
+	* [ ] libc
 	* [ ] Xforms
 	* [ ] Motif
 	* [ ] HUG

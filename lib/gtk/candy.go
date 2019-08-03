@@ -12,12 +12,16 @@ func Candy() sugar.Candy {
 	return candy
 }
 
+func Invoke(action func()) {
+	Candy().Invoke(action)
+}
+
 func Main() {
-	Candy().Main()
+	Candy().RunLoop()
 }
 
 func MainQuit() {
-	Candy().MainQuit()
+	Candy().StopLoop()
 }
 
 func init() {

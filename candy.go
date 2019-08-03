@@ -2,6 +2,7 @@ package sugar
 
 import (
 	"io"
+	"sync/atomic"
 	"time"
 )
 
@@ -15,30 +16,38 @@ type Candy interface {
 	Connect(widget, signal string, callback func())
 	ConnectDefault(widget string, callback func())
 	DisConnect(widget, signal string)
-	Invoke(callback func())
-	BeginInvoke(callback func())
-	Main()
-	MainQuit()
+	Invoke(action func())
+	RunLoop()
+	StopLoop()
 	NewWrapper(id string) CandyWrapper
 }
 
-type invoke struct {
-	callback func()
-	done     chan bool
+type actionRequest struct {
+	action func()
+	done   chan struct{}
 }
 
 type candy struct {
 	Sugar
 	signalCallback map[string]func()
-	invokeChan     chan *invoke
-	quitMain       bool
+	requests       chan *actionRequest
+	cbRequest      *actionRequest
+	isRunning      uint32
+	stop           chan struct{}
 }
 
 func NewCandy(conn io.ReadWriter) Candy {
 	candy := &candy{}
 	candy.Sugar = NewSugar(conn)
 	candy.signalCallback = make(map[string]func())
-	candy.invokeChan = make(chan *invoke)
+	candy.requests = make(chan *actionRequest)
+
+	candy.cbRequest = &actionRequest{done: make(chan struct{}), action: func() {
+		signalName := candy.ServerCallback(SERVER_CALLBACK_UPDATE)
+		if callback, ok := candy.signalCallback[signalName]; ok {
+			callback()
+		}
+	}}
 
 	return candy
 }
@@ -68,44 +77,57 @@ func (candy *candy) DisConnect(widget, signal string) {
 	}
 }
 
-func (candy *candy) Invoke(callback func()) {
-	invoke := &invoke{callback: callback, done: make(chan bool)}
-	candy.invokeChan <- invoke
-	<-invoke.done
+func (candy *candy) Invoke(action func()) {
+	if atomic.LoadUint32(&candy.isRunning) == 0 {
+		panic("The candy loop is not running")
+	}
+
+	request := &actionRequest{action: action, done: make(chan struct{})}
+	candy.requests <- request
+	<-request.done
 }
 
-func (candy *candy) BeginInvoke(callback func()) {
-	go candy.Invoke(callback)
-}
+func (candy *candy) RunLoop() {
+	if !atomic.CompareAndSwapUint32(&candy.isRunning, 0, 1) {
+		panic("The candy loop is already running")
+	}
+	defer func() {
+		atomic.StoreUint32(&candy.isRunning, 0)
+	}()
 
-func (candy *candy) Main() {
-	candy.quitMain = false
-	for {
-		signalName := candy.ServerCallback(SERVER_CALLBACK_UPDATE)
-		if callback, ok := candy.signalCallback[signalName]; ok {
-			callback()
-		}
+	candy.stop = make(chan struct{})
 
-		select {
-		case invoke := <-candy.invokeChan:
-			if nil != invoke.callback {
-				invoke.callback()
+	// keep sending gtk-server callback request
+	go func() {
+		for {
+			select {
+			case candy.requests <- candy.cbRequest:
+				<-candy.cbRequest.done
+				time.Sleep(MAINLOOP_TIMEGAP)
+			case <-candy.stop:
+				return
 			}
-			invoke.done <- true
-		default:
-			//do nothing
 		}
+	}()
 
-		if candy.quitMain {
-			return
+mainLoop:
+	for {
+		select {
+		case request := <-candy.requests:
+			if nil != request.action {
+				request.action()
+			}
+			request.done <- struct{}{}
+		case <-candy.stop:
+			break mainLoop
 		}
-
-		time.Sleep(MAINLOOP_TIMEGAP)
 	}
 }
 
-func (candy *candy) MainQuit() {
-	candy.quitMain = true
+func (candy *candy) StopLoop() {
+	if atomic.CompareAndSwapUint32(&candy.isRunning, 1, 0) {
+		close(candy.stop)
+	}
 }
 
 func (candy *candy) NewWrapper(id string) CandyWrapper {
