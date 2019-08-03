@@ -8,7 +8,7 @@ type FontDescription struct {
 	sugar.CandyWrapper
 }
 
-func NewFontDescriptionFromCandy(candy sugar.Candy, id string) *FontDescription {
+func NewFontDescription(candy sugar.Candy, id string) *FontDescription {
 	obj := FontDescription{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj

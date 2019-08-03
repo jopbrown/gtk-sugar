@@ -9,7 +9,7 @@ import (
 // FUNCTION_NAME = gtk_widget_get_colormap, NONE, WIDGET, 1, WIDGET
 func (w *Widget) GetColormap() *gdk.Colormap {
 	id := w.Candy().Guify("gtk_widget_get_colormap", w).String()
-	return gdk.NewColormapFromCandy(w.Candy(), id)
+	return gdk.NewColormap(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_widget_modify_base, NONE, NONE, 3, WIDGET, INT, WIDGET

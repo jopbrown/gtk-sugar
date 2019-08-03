@@ -6,7 +6,7 @@ type Entry struct {
 	Editable
 }
 
-func NewEntryFromCandy(candy sugar.Candy, id string) *Entry {
+func NewEntry(candy sugar.Candy, id string) *Entry {
 	v := Entry{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -15,7 +15,7 @@ func NewEntryFromCandy(candy sugar.Candy, id string) *Entry {
 // FUNCTION_NAME = gtk_entry_new, activate, WIDGET, 0
 func EntryNew() *Entry {
 	id := Candy().Guify("gtk_entry_new").String()
-	return NewEntryFromCandy(Candy(), id)
+	return NewEntry(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_entry_get_text, NONE, STRING, 1, WIDGET

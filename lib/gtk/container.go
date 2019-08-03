@@ -6,7 +6,7 @@ type Container struct {
 	Widget
 }
 
-func NewContainerFromCandy(candy sugar.Candy, id string) *Container {
+func NewContainer(candy sugar.Candy, id string) *Container {
 	v := Container{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v

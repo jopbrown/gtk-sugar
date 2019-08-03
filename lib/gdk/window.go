@@ -6,7 +6,7 @@ type Window struct {
 	Drawable
 }
 
-func NewWindowFromCandy(candy sugar.Candy, id string) *Window {
+func NewWindow(candy sugar.Candy, id string) *Window {
 	obj := Window{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj

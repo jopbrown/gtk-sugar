@@ -6,7 +6,7 @@ type Bin struct {
 	Container
 }
 
-func NewBinFromCandy(candy sugar.Candy, id string) *Bin {
+func NewBin(candy sugar.Candy, id string) *Bin {
 	v := Bin{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -15,14 +15,14 @@ func NewBinFromCandy(candy sugar.Candy, id string) *Bin {
 // FUNCTION_NAME = gtk_bin_get_child, NONE, WIDGET, 1, WIDGET
 func (bin *Bin) GetChild() *Widget {
 	id := bin.Candy().Guify("gtk_bin_get_child").String()
-	return NewWidgetFromCandy(bin.Candy(), id)
+	return NewWidget(bin.Candy(), id)
 }
 
 type EventBox struct {
 	Bin
 }
 
-func NewEventBoxFromCandy(candy sugar.Candy, id string) *EventBox {
+func NewEventBox(candy sugar.Candy, id string) *EventBox {
 	obj := EventBox{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -31,5 +31,5 @@ func NewEventBoxFromCandy(candy sugar.Candy, id string) *EventBox {
 // FUNCTION_NAME = gtk_event_box_new, NONE, WIDGET, 0
 func EventBoxNew() *EventBox {
 	id := Candy().Guify("gtk_event_box_new").String()
-	return NewEventBoxFromCandy(Candy(), id)
+	return NewEventBox(Candy(), id)
 }

@@ -6,7 +6,7 @@ type Notebook struct {
 	sugar.CandyWrapper
 }
 
-func NewNotebookFromCandy(candy sugar.Candy, id string) *Notebook {
+func NewNotebook(candy sugar.Candy, id string) *Notebook {
 	obj := Notebook{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -15,7 +15,7 @@ func NewNotebookFromCandy(candy sugar.Candy, id string) *Notebook {
 // FUNCTION_NAME = gtk_notebook_new, NONE, WIDGET, 0
 func NotebookNew() *Notebook {
 	id := Candy().Guify("gtk_notebook_new").String()
-	return NewNotebookFromCandy(Candy(), id)
+	return NewNotebook(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_notebook_set_tab_pos, NONE, NONE, 2, WIDGET, INT
@@ -41,7 +41,7 @@ func (obj *Notebook) GetNPages() int {
 // FUNCTION_NAME = gtk_notebook_get_nth_page, NONE, WIDGET, 2, WIDGET, INT
 func (obj *Notebook) GetNthPage(pageNum int) *Widget {
 	id := obj.Candy().Guify("gtk_notebook_get_nth_page", obj, pageNum).String()
-	return NewWidgetFromCandy(obj.Candy(), id)
+	return NewWidget(obj.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_notebook_append_page, NONE, INT, 3, WIDGET, WIDGET, WIDGET
@@ -67,7 +67,7 @@ func (obj *Notebook) GetCurrentPage() int {
 // FUNCTION_NAME = gtk_notebook_get_menu_label, NONE, WIDGET, 2, WIDGET, WIDGET
 func (obj *Notebook) GetMenuLabel() *Widget {
 	id := obj.Candy().Guify("gtk_notebook_get_menu_label", obj).String()
-	return NewWidgetFromCandy(obj.Candy(), id)
+	return NewWidget(obj.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_notebook_set_current_page, NONE, NONE, 2, WIDGET, INT

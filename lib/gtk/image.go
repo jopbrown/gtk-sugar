@@ -11,7 +11,7 @@ type Image struct {
 	Misc
 }
 
-func NewImageFromCandy(candy sugar.Candy, id string) *Image {
+func NewImage(candy sugar.Candy, id string) *Image {
 	obj := Image{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -20,13 +20,13 @@ func NewImageFromCandy(candy sugar.Candy, id string) *Image {
 // FUNCTION_NAME = gtk_image_new, NONE, WIDGET, 0
 func ImageNew() *Image {
 	id := Candy().Guify("gtk_image_new").String()
-	return NewImageFromCandy(Candy(), id)
+	return NewImage(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_image_new_from_pixbuf, NONE, WIDGET, 1, WIDGET
 func ImageNewFromPixbuf(pixbuf *gdk.Pixbuf) *Image {
 	id := Candy().Guify("gtk_image_new_from_pixbuf", pixbuf).String()
-	return NewImageFromCandy(Candy(), id)
+	return NewImage(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_image_new_from_file, NONE, WIDGET, 1, STRING
@@ -37,13 +37,13 @@ func ImageNewFromFile(filename string) *Image {
 		gtkfunc = "gtk_image_new_from_file_utf8"
 	}
 	id := Candy().Guify(gtkfunc, filename).String()
-	return NewImageFromCandy(Candy(), id)
+	return NewImage(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_image_new_from_stock, NONE, WIDGET, 2, STRING, INT
 func ImageNewFromStock(stockID string, size IconSize) *Image {
 	id := Candy().Guify("gtk_image_new_from_stock", stockID, size).String()
-	return NewImageFromCandy(Candy(), id)
+	return NewImage(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_image_set_from_pixbuf, NONE, WIDGET, 2, WIDGET, WIDGET
@@ -59,5 +59,5 @@ func (obj *Image) SetFromFile(filename string) {
 // FUNCTION_NAME = gtk_image_get_pixbuf, NONE, WIDGET, 1, WIDGET
 func (obj *Image) GetPixbuf() *gdk.Pixbuf {
 	id := obj.Candy().Guify("gtk_image_get_pixbuf", obj).String()
-	return gdk.NewPixbufFromCandy(obj.Candy(), id)
+	return gdk.NewPixbuf(obj.Candy(), id)
 }

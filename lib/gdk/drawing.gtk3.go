@@ -9,7 +9,7 @@ type RGBA struct {
 	sugar.CandyWrapper
 }
 
-func NewRGBAFromCandy(candy sugar.Candy, id string) *RGBA {
+func NewRGBA(candy sugar.Candy, id string) *RGBA {
 	obj := RGBA{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -18,7 +18,7 @@ func NewRGBAFromCandy(candy sugar.Candy, id string) *RGBA {
 // NewRGBAFromSpec, need to Free() after used
 func NewRGBAFromSpec(spec string) *RGBA {
 	id := Candy().ServerOpaque()
-	obj := NewRGBAFromCandy(Candy(), id)
+	obj := NewRGBA(Candy(), id)
 	obj.Parse(spec)
 	return obj
 }

@@ -6,7 +6,7 @@ type Editable struct {
 	Widget
 }
 
-func NewEditableFromCandy(candy sugar.Candy, id string) *Editable {
+func NewEditable(candy sugar.Candy, id string) *Editable {
 	v := Editable{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v

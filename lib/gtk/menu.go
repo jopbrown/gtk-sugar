@@ -6,7 +6,7 @@ type MenuShell struct {
 	Container
 }
 
-func NewMenuShellFromCandy(candy sugar.Candy, id string) *MenuShell {
+func NewMenuShell(candy sugar.Candy, id string) *MenuShell {
 	obj := MenuShell{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -21,7 +21,7 @@ type Menu struct {
 	MenuShell
 }
 
-func NewMenuFromCandy(candy sugar.Candy, id string) *Menu {
+func NewMenu(candy sugar.Candy, id string) *Menu {
 	obj := Menu{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -30,7 +30,7 @@ func NewMenuFromCandy(candy sugar.Candy, id string) *Menu {
 // FUNCTION_NAME = gtk_menu_new, NONE, WIDGET, 0
 func MenuNew() *Menu {
 	id := Candy().Guify("gtk_menu_new").String()
-	return NewMenuFromCandy(Candy(), id)
+	return NewMenu(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_menu_set_title, NONE, NONE, 2, WIDGET, STRING
@@ -47,7 +47,7 @@ type MenuBar struct {
 	MenuShell
 }
 
-func NewMenuBarFromCandy(candy sugar.Candy, id string) *MenuBar {
+func NewMenuBar(candy sugar.Candy, id string) *MenuBar {
 	obj := MenuBar{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -56,14 +56,14 @@ func NewMenuBarFromCandy(candy sugar.Candy, id string) *MenuBar {
 // FUNCTION_NAME = gtk_menu_bar_new, NONE, WIDGET, 0
 func MenuBarNew() *MenuBar {
 	id := Candy().Guify("gtk_menu_bar_new").String()
-	return NewMenuBarFromCandy(Candy(), id)
+	return NewMenuBar(Candy(), id)
 }
 
 type MenuItem struct {
 	Bin
 }
 
-func NewMenuItemFromCandy(candy sugar.Candy, id string) *MenuItem {
+func NewMenuItem(candy sugar.Candy, id string) *MenuItem {
 	obj := MenuItem{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -72,19 +72,19 @@ func NewMenuItemFromCandy(candy sugar.Candy, id string) *MenuItem {
 // FUNCTION_NAME = gtk_menu_item_new, activate, WIDGET, 0
 func MenuItemNew() *MenuItem {
 	id := Candy().Guify("gtk_menu_item_new").String()
-	return NewMenuItemFromCandy(Candy(), id)
+	return NewMenuItem(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_menu_item_new_with_label, activate, WIDGET, 1, STRING
 func MenuItemNewWithLabel(label string) *MenuItem {
 	id := Candy().Guify("gtk_menu_item_new_with_label", label).String()
-	return NewMenuItemFromCandy(Candy(), id)
+	return NewMenuItem(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_menu_item_new_with_mnemonic, activate, WIDGET, 1, STRING
 func MenuItemNewWithMnemonic(label string) *MenuItem {
 	id := Candy().Guify("gtk_menu_item_new_with_mnemonic", label).String()
-	return NewMenuItemFromCandy(Candy(), id)
+	return NewMenuItem(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_menu_item_set_right_justified, NONE, NONE, 2, WIDGET, BOOL
@@ -101,7 +101,7 @@ type TearoffMenuItem struct {
 	MenuItem
 }
 
-func NewTearoffMenuItemFromCandy(candy sugar.Candy, id string) *TearoffMenuItem {
+func NewTearoffMenuItem(candy sugar.Candy, id string) *TearoffMenuItem {
 	obj := TearoffMenuItem{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -110,14 +110,14 @@ func NewTearoffMenuItemFromCandy(candy sugar.Candy, id string) *TearoffMenuItem 
 // FUNCTION_NAME = gtk_tearoff_menu_item_new, activate, WIDGET, 0
 func TearoffMenuItemNew() *TearoffMenuItem {
 	id := Candy().Guify("gtk_tearoff_menu_item_new").String()
-	return NewTearoffMenuItemFromCandy(Candy(), id)
+	return NewTearoffMenuItem(Candy(), id)
 }
 
 type SeparatorMenuItem struct {
 	MenuItem
 }
 
-func NewSeparatorMenuItemFromCandy(candy sugar.Candy, id string) *SeparatorMenuItem {
+func NewSeparatorMenuItem(candy sugar.Candy, id string) *SeparatorMenuItem {
 	obj := SeparatorMenuItem{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -126,14 +126,14 @@ func NewSeparatorMenuItemFromCandy(candy sugar.Candy, id string) *SeparatorMenuI
 // FUNCTION_NAME = gtk_separator_menu_item_new, NONE, WIDGET, 0
 func SeparatorMenuItemNew() *SeparatorMenuItem {
 	id := Candy().Guify("gtk_separator_menu_item_new").String()
-	return NewSeparatorMenuItemFromCandy(Candy(), id)
+	return NewSeparatorMenuItem(Candy(), id)
 }
 
 type CheckMenuItem struct {
 	MenuItem
 }
 
-func NewCheckMenuItemFromCandy(candy sugar.Candy, id string) *CheckMenuItem {
+func NewCheckMenuItem(candy sugar.Candy, id string) *CheckMenuItem {
 	obj := CheckMenuItem{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -142,13 +142,13 @@ func NewCheckMenuItemFromCandy(candy sugar.Candy, id string) *CheckMenuItem {
 // FUNCTION_NAME = gtk_check_menu_item_new_with_label, activate, WIDGET, 1, STRING
 func CheckMenuItemNewWithLabel(label string) *CheckMenuItem {
 	id := Candy().Guify("gtk_check_menu_item_new_with_label", label).String()
-	return NewCheckMenuItemFromCandy(Candy(), id)
+	return NewCheckMenuItem(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_check_menu_item_new_with_mnemonic, activate, WIDGET, 1, STRING
 func CheckMenuItemNewWithMnemonic(label string) *CheckMenuItem {
 	id := Candy().Guify("gtk_check_menu_item_new_with_mnemonic", label).String()
-	return NewCheckMenuItemFromCandy(Candy(), id)
+	return NewCheckMenuItem(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_check_menu_item_get_active, NONE, BOOL, 1, WIDGET
@@ -165,7 +165,7 @@ type ImageMenuItem struct {
 	sugar.CandyWrapper
 }
 
-func NewImageMenuItemFromCandy(candy sugar.Candy, id string) *ImageMenuItem {
+func NewImageMenuItem(candy sugar.Candy, id string) *ImageMenuItem {
 	obj := ImageMenuItem{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -174,5 +174,5 @@ func NewImageMenuItemFromCandy(candy sugar.Candy, id string) *ImageMenuItem {
 // FUNCTION_NAME = gtk_image_menu_item_new_from_stock, NONE, WIDGET, 2, STRING, WIDGET
 func ImageMenuItemNewFromStock(stockID string, accelGroup *AccelGroup) *ImageMenuItem {
 	id := Candy().Guify("gtk_image_menu_item_new_from_stock", stockID, accelGroup).String()
-	return NewImageMenuItemFromCandy(Candy(), id)
+	return NewImageMenuItem(Candy(), id)
 }

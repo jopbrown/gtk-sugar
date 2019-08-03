@@ -6,7 +6,7 @@ type Fixed struct {
 	Container
 }
 
-func NewFixedFromCandy(candy sugar.Candy, id string) *Fixed {
+func NewFixed(candy sugar.Candy, id string) *Fixed {
 	obj := Fixed{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -15,7 +15,7 @@ func NewFixedFromCandy(candy sugar.Candy, id string) *Fixed {
 // FUNCTION_NAME = gtk_fixed_new, NONE, WIDGET, 0
 func FixedNew() *Fixed {
 	id := Candy().Guify("gtk_fixed_new").String()
-	return NewFixedFromCandy(Candy(), id)
+	return NewFixed(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_fixed_put, NONE, NONE, 4, WIDGET, WIDGET, INT, INT

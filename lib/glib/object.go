@@ -6,7 +6,7 @@ type Object struct {
 	sugar.CandyWrapper
 }
 
-func NewObjectFromCandy(candy sugar.Candy, id string) *Object {
+func NewObject(candy sugar.Candy, id string) *Object {
 	obj := Object{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj

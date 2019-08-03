@@ -6,7 +6,7 @@ type Frame struct {
 	Bin
 }
 
-func NewFrameFromCandy(candy sugar.Candy, id string) *Frame {
+func NewFrame(candy sugar.Candy, id string) *Frame {
 	obj := Frame{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -15,7 +15,7 @@ func NewFrameFromCandy(candy sugar.Candy, id string) *Frame {
 // FUNCTION_NAME = gtk_frame_new, NONE, WIDGET, 1, STRING
 func FrameNew(label string) *Frame {
 	id := Candy().Guify("gtk_frame_new", label).String()
-	return NewFrameFromCandy(Candy(), id)
+	return NewFrame(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_frame_set_label, NONE, NONE, 2, WIDGET, STRING
@@ -46,14 +46,14 @@ func (obj *Frame) GetLabel() string {
 // FUNCTION_NAME = gtk_frame_get_label_widget, NONE, WIDGET, 1, WIDGET
 func (obj *Frame) GetLabelWidget() *Widget {
 	id := obj.Candy().Guify("gtk_frame_get_label_widget", obj).String()
-	return NewWidgetFromCandy(obj.Candy(), id)
+	return NewWidget(obj.Candy(), id)
 }
 
 type AspectFrame struct {
 	Frame
 }
 
-func NewAspectFrameFromCandy(candy sugar.Candy, id string) *AspectFrame {
+func NewAspectFrame(candy sugar.Candy, id string) *AspectFrame {
 	obj := AspectFrame{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -62,7 +62,7 @@ func NewAspectFrameFromCandy(candy sugar.Candy, id string) *AspectFrame {
 // FUNCTION_NAME = gtk_aspect_frame_new, NONE, WIDGET, 5, STRING, FLOAT, FLOAT, FLOAT, BOOL
 func AspectFrameNew(label string, xalign, yalign, ratio float32, obeyChild bool) *AspectFrame {
 	id := Candy().Guify("gtk_aspect_frame_new", label, xalign, yalign, ratio, obeyChild).String()
-	return NewAspectFrameFromCandy(Candy(), id)
+	return NewAspectFrame(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_aspect_frame_set, NONE, NONE, 5, WIDGET, FLOAT, FLOAT, FLOAT, BOOL

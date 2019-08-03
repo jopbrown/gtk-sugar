@@ -6,7 +6,7 @@ type Layout struct {
 	Container
 }
 
-func NewLayoutFromCandy(candy sugar.Candy, id string) *Layout {
+func NewLayout(candy sugar.Candy, id string) *Layout {
 	obj := Layout{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -15,5 +15,5 @@ func NewLayoutFromCandy(candy sugar.Candy, id string) *Layout {
 // FUNCTION_NAME = gtk_layout_new, NONE, WIDGET, 2, WIDGET, WIDGET
 func LayoutNew(hadjustment, vadjustment *Adjustment) *Layout {
 	id := Candy().Guify("gtk_layout_new", hadjustment, vadjustment).String()
-	return NewLayoutFromCandy(Candy(), id)
+	return NewLayout(Candy(), id)
 }

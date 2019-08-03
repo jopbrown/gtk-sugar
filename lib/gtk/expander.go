@@ -6,7 +6,7 @@ type Expander struct {
 	Bin
 }
 
-func NewExpanderFromCandy(candy sugar.Candy, id string) *Expander {
+func NewExpander(candy sugar.Candy, id string) *Expander {
 	obj := Expander{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -15,13 +15,13 @@ func NewExpanderFromCandy(candy sugar.Candy, id string) *Expander {
 // FUNCTION_NAME = gtk_expander_new, activate, WIDGET, 1, STRING
 func ExpanderNew(label string) *Expander {
 	id := Candy().Guify("gtk_expander_new", label).String()
-	return NewExpanderFromCandy(Candy(), id)
+	return NewExpander(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_expander_new_with_mnemonic, NONE, WIDGET, 1, STRING
 func ExpanderNewWithMnemonic(label string) *Expander {
 	id := Candy().Guify("gtk_expander_new_with_mnemonic", label).String()
-	return NewExpanderFromCandy(Candy(), id)
+	return NewExpander(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_expander_set_expanded, NONE, NONE, 2, WIDGET, BOOL

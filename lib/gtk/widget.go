@@ -18,7 +18,7 @@ type Widget struct {
 	glib.Object
 }
 
-func NewWidgetFromCandy(candy sugar.Candy, id string) *Widget {
+func NewWidget(candy sugar.Candy, id string) *Widget {
 	w := Widget{}
 	w.CandyWrapper = candy.NewWrapper(id)
 	return &w
@@ -93,13 +93,13 @@ func (w *Widget) AddAccelerator(accelSignal string, accelGroup *AccelGroup, acce
 // FUNCTION_NAME = gtk_widget_get_parent, NONE, WIDGET, 1, WIDGET
 func (w *Widget) GetParent() *Widget {
 	id := w.Candy().Guify("gtk_widget_get_parent", w).String()
-	return NewWidgetFromCandy(w.Candy(), id)
+	return NewWidget(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_widget_get_toplevel, NONE, WIDGET, 1, WIDGET
 func (w *Widget) GetToplevel() *Widget {
 	id := w.Candy().Guify("gtk_widget_get_toplevel", w).String()
-	return NewWidgetFromCandy(w.Candy(), id)
+	return NewWidget(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_widget_set_name, NONE, NONE, 2, WIDGET, STRING
@@ -128,19 +128,19 @@ func (w *Widget) QueueDraw() {
 // FUNCTION_NAME = gtk_widget_get_parent_window, NONE, WIDGET, 1, WIDGET
 func (w *Widget) GetParentWindow() *Window {
 	id := w.Candy().Guify("gtk_widget_get_parent_window", w).String()
-	return NewWindowFromCandy(w.Candy(), id)
+	return NewWindow(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_widget_create_pango_layout, NONE, WIDGET, 2, WIDGET, STRING
 func (w *Widget) CreatePangoLayout() *pango.Layout {
 	id := w.Candy().Guify("gtk_widget_create_pango_layout", w).String()
-	return pango.NewLayoutFromCandy(w.Candy(), id)
+	return pango.NewLayout(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_widget_get_window, NONE, WIDGET, 1, WIDGET
 func (w *Widget) GetWindow() *Window {
 	id := w.Candy().Guify("gtk_widget_get_window", w).String()
-	return NewWindowFromCandy(w.Candy(), id)
+	return NewWindow(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_widget_set_tooltip_text, NONE, NONE, 2, WIDGET, STRING

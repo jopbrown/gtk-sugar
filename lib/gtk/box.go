@@ -6,7 +6,7 @@ type Box struct {
 	Container
 }
 
-func NewBoxFromCandy(candy sugar.Candy, id string) *Box {
+func NewBox(candy sugar.Candy, id string) *Box {
 	v := Box{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -36,7 +36,7 @@ type HBox struct {
 	Box
 }
 
-func NewHBoxFromCandy(candy sugar.Candy, id string) *HBox {
+func NewHBox(candy sugar.Candy, id string) *HBox {
 	v := HBox{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -45,14 +45,14 @@ func NewHBoxFromCandy(candy sugar.Candy, id string) *HBox {
 // FUNCTION_NAME = gtk_hbox_new, NONE, WIDGET, 2, BOOL, INT
 func HBoxNew(homogeneous bool, spacing int) *HBox {
 	id := Candy().Guify("gtk_hbox_new", homogeneous, spacing).String()
-	return NewHBoxFromCandy(Candy(), id)
+	return NewHBox(Candy(), id)
 }
 
 type VBox struct {
 	Box
 }
 
-func NewVBoxFromCandy(candy sugar.Candy, id string) *VBox {
+func NewVBox(candy sugar.Candy, id string) *VBox {
 	v := VBox{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -61,5 +61,5 @@ func NewVBoxFromCandy(candy sugar.Candy, id string) *VBox {
 // FUNCTION_NAME = gtk_vbox_new, NONE, WIDGET, 2, BOOL, INT
 func VBoxNew(homogeneous bool, spacing int) *VBox {
 	id := Candy().Guify("gtk_vbox_new", homogeneous, spacing).String()
-	return NewVBoxFromCandy(Candy(), id)
+	return NewVBox(Candy(), id)
 }

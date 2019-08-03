@@ -6,7 +6,7 @@ type ComboBox struct {
 	Bin
 }
 
-func NewComboBoxFromCandy(candy sugar.Candy, id string) *ComboBox {
+func NewComboBox(candy sugar.Candy, id string) *ComboBox {
 	obj := ComboBox{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -26,7 +26,7 @@ type ComboBoxText struct {
 	ComboBox
 }
 
-func NewComboBoxTextFromCandy(candy sugar.Candy, id string) *ComboBoxText {
+func NewComboBoxText(candy sugar.Candy, id string) *ComboBoxText {
 	obj := ComboBoxText{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -35,7 +35,7 @@ func NewComboBoxTextFromCandy(candy sugar.Candy, id string) *ComboBoxText {
 // FUNCTION_NAME = gtk_combo_box_text_new, changed, WIDGET, 0
 func ComboBoxTextNew() *ComboBoxText {
 	id := Candy().Guify("gtk_combo_box_text_new").String()
-	return NewComboBoxTextFromCandy(Candy(), id)
+	return NewComboBoxText(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_combo_box_text_append_text, NONE, NONE, 2, WIDGET, STRING

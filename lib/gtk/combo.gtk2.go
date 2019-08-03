@@ -3,7 +3,7 @@ package gtk
 // FUNCTION_NAME = gtk_combo_box_new_text, changed, WIDGET, 0
 func ComboBoxNewWithText() *ComboBox {
 	id := Candy().Guify("gtk_combo_box_new_text").String()
-	return NewComboBoxFromCandy(Candy(), id)
+	return NewComboBox(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_combo_box_append_text, NONE, NONE, 2, WIDGET, STRING

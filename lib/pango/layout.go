@@ -9,7 +9,7 @@ type Layout struct {
 	glib.Object
 }
 
-func NewLayoutFromCandy(candy sugar.Candy, id string) *Layout {
+func NewLayout(candy sugar.Candy, id string) *Layout {
 	obj := Layout{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj

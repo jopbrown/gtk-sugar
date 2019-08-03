@@ -10,7 +10,7 @@ type Clipboard struct {
 	glib.Object
 }
 
-func NewClipboardFromCandy(candy sugar.Candy, id string) *Clipboard {
+func NewClipboard(candy sugar.Candy, id string) *Clipboard {
 	v := Clipboard{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -19,7 +19,7 @@ func NewClipboardFromCandy(candy sugar.Candy, id string) *Clipboard {
 // FUNCTION_NAME = gtk_clipboard_get, NONE, WIDGET, 1, INT
 func ClipboardGet(selection gdk.Atom) *Clipboard {
 	id := Candy().Guify("gtk_clipboard_get").String()
-	return NewClipboardFromCandy(Candy(), id)
+	return NewClipboard(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_clipboard_clear, NONE, NONE, 1, WIDGET
@@ -45,5 +45,5 @@ func (obj *Clipboard) SetImage(pixbuf *gdk.Pixbuf) {
 // FUNCTION_NAME = gtk_clipboard_wait_for_image, NONE, WIDGET, 1, WIDGET
 func (obj *Clipboard) WaitForImage() *gdk.Pixbuf {
 	id := obj.Candy().Guify("gtk_clipboard_wait_for_image", obj).String()
-	return gdk.NewPixbufFromCandy(obj.Candy(), id)
+	return gdk.NewPixbuf(obj.Candy(), id)
 }

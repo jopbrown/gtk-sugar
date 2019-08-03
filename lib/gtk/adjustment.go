@@ -9,7 +9,7 @@ type Adjustment struct {
 	glib.Object
 }
 
-func NewAdjustmentFromCandy(candy sugar.Candy, id string) *Adjustment {
+func NewAdjustment(candy sugar.Candy, id string) *Adjustment {
 	v := Adjustment{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -18,7 +18,7 @@ func NewAdjustmentFromCandy(candy sugar.Candy, id string) *Adjustment {
 // FUNCTION_NAME = gtk_adjustment_new, NONE, WIDGET, 6, DOUBLE, DOUBLE, DOUBLE, DOUBLE, DOUBLE, DOUBLE
 func AdjustmentNew(value, lower, upper, stepIncrement, pageIncrement, pageSize float64) *Adjustment {
 	id := Candy().Guify("gtk_adjustment_new", value, lower, upper, stepIncrement, pageIncrement, pageSize).String()
-	return NewAdjustmentFromCandy(Candy(), id)
+	return NewAdjustment(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_adjustment_get_value, NONE, DOUBLE, 1, WIDGET

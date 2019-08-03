@@ -10,7 +10,7 @@ type Drawable struct {
 	sugar.CandyWrapper
 }
 
-func NewDrawableFromCandy(candy sugar.Candy, id string) *Drawable {
+func NewDrawable(candy sugar.Candy, id string) *Drawable {
 	obj := Drawable{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -20,7 +20,7 @@ type Cursor struct {
 	sugar.CandyWrapper
 }
 
-func NewCursorFromCandy(candy sugar.Candy, id string) *Cursor {
+func NewCursor(candy sugar.Candy, id string) *Cursor {
 	obj := Cursor{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -30,7 +30,7 @@ type Colormap struct {
 	sugar.CandyWrapper
 }
 
-func NewColormapFromCandy(candy sugar.Candy, id string) *Colormap {
+func NewColormap(candy sugar.Candy, id string) *Colormap {
 	w := Colormap{}
 	w.CandyWrapper = candy.NewWrapper(id)
 	return &w
@@ -43,7 +43,7 @@ type Color struct {
 	sugar.CandyWrapper
 }
 
-func NewColorFromCandy(candy sugar.Candy, id string) *Color {
+func NewColor(candy sugar.Candy, id string) *Color {
 	obj := Color{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -56,7 +56,7 @@ type GC struct {
 	sugar.CandyWrapper
 }
 
-func NewGCFromCandy(candy sugar.Candy, id string) *GC {
+func NewGC(candy sugar.Candy, id string) *GC {
 	obj := GC{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -99,7 +99,7 @@ type Font struct {
 	sugar.CandyWrapper
 }
 
-func NewFontFromCandy(candy sugar.Candy, id string) *Font {
+func NewFont(candy sugar.Candy, id string) *Font {
 	obj := Font{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -118,7 +118,7 @@ type Pixmap struct {
 	Drawable
 }
 
-func NewPixmapFromCandy(candy sugar.Candy, id string) *Pixmap {
+func NewPixmap(candy sugar.Candy, id string) *Pixmap {
 	obj := Pixmap{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj

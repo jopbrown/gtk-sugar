@@ -9,7 +9,7 @@ type Tooltips struct {
 	glib.Object
 }
 
-func NewTooltipsFromCandy(candy sugar.Candy, id string) *Tooltips {
+func NewTooltips(candy sugar.Candy, id string) *Tooltips {
 	obj := Tooltips{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -18,7 +18,7 @@ func NewTooltipsFromCandy(candy sugar.Candy, id string) *Tooltips {
 // FUNCTION_NAME = gtk_tooltips_new, NONE, WIDGET, 0
 func TooltipsNew() *Tooltips {
 	id := Candy().Guify("gtk_tooltips_new").String()
-	return NewTooltipsFromCandy(Candy(), id)
+	return NewTooltips(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_tooltips_enable, NONE, NONE, 1, WIDGET

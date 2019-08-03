@@ -9,7 +9,7 @@ type TreeIter struct {
 	sugar.CandyWrapper
 }
 
-func NewTreeIterFromCandy(candy sugar.Candy, id string) *TreeIter {
+func NewTreeIter(candy sugar.Candy, id string) *TreeIter {
 	obj := TreeIter{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -19,7 +19,7 @@ type ListStore struct {
 	glib.Object
 }
 
-func NewListStoreFromCandy(candy sugar.Candy, id string) *ListStore {
+func NewListStore(candy sugar.Candy, id string) *ListStore {
 	obj := ListStore{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -32,14 +32,14 @@ func ListStoreNew(types ...glib.Type) *ListStore {
 		vargs = append(vargs, uint(t))
 	}
 	id := Candy().Guify("gtk_list_store_new", len(types), vargs).String()
-	return NewListStoreFromCandy(Candy(), id)
+	return NewListStore(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_list_store_append, NONE, NONE, 2, WIDGET, WIDGET
 func (obj *ListStore) Append() *TreeIter {
 	id := obj.Candy().ServerOpaque()
 	obj.Candy().Guify("gtk_list_store_append", obj, id)
-	return NewTreeIterFromCandy(obj.Candy(), id)
+	return NewTreeIter(obj.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_list_store_set, NONE, NONE, 3, WIDGET, WIDGET, VARARGS

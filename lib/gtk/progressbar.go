@@ -6,7 +6,7 @@ type ProgressBar struct {
 	Widget
 }
 
-func NewProgressBarFromCandy(candy sugar.Candy, id string) *ProgressBar {
+func NewProgressBar(candy sugar.Candy, id string) *ProgressBar {
 	obj := ProgressBar{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -15,7 +15,7 @@ func NewProgressBarFromCandy(candy sugar.Candy, id string) *ProgressBar {
 // FUNCTION_NAME = gtk_progress_bar_new, NONE, WIDGET, 0
 func ProgressBarNew() *ProgressBar {
 	id := Candy().Guify("gtk_progress_bar_new").String()
-	return NewProgressBarFromCandy(Candy(), id)
+	return NewProgressBar(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_progress_bar_set_text, NONE, NONE, 2, WIDGET, STRING

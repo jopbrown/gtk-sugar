@@ -6,7 +6,7 @@ type Text struct {
 	Editable
 }
 
-func NewTextFromCandy(candy sugar.Candy, id string) *Text {
+func NewText(candy sugar.Candy, id string) *Text {
 	v := Text{}
 	v.CandyWrapper = candy.NewWrapper(id)
 	return &v
@@ -15,7 +15,7 @@ func NewTextFromCandy(candy sugar.Candy, id string) *Text {
 // FUNCTION_NAME = gtk_text_new, NONE, WIDGET, 2, NULL, NULL
 func TextNew() *Text {
 	id := Candy().Guify("gtk_text_new", nil, nil).String()
-	return NewTextFromCandy(Candy(), id)
+	return NewText(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_set_editable, NONE, NONE, 2, WIDGET, BOOL

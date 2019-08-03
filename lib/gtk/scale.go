@@ -6,7 +6,7 @@ type Scale struct {
 	Range
 }
 
-func NewScaleFromCandy(candy sugar.Candy, id string) *Scale {
+func NewScale(candy sugar.Candy, id string) *Scale {
 	obj := Scale{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -26,7 +26,7 @@ type HScale struct {
 	Scale
 }
 
-func NewHScaleFromCandy(candy sugar.Candy, id string) *HScale {
+func NewHScale(candy sugar.Candy, id string) *HScale {
 	obj := HScale{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -35,14 +35,14 @@ func NewHScaleFromCandy(candy sugar.Candy, id string) *HScale {
 // FUNCTION_NAME = gtk_hscale_new_with_range, value-changed, WIDGET, 3, DOUBLE, DOUBLE, DOUBLE
 func HScaleNewWithRange(min, max, step float64) *HScale {
 	id := Candy().Guify("gtk_hscale_new_with_range", min, max, step).String()
-	return NewHScaleFromCandy(Candy(), id)
+	return NewHScale(Candy(), id)
 }
 
 type VScale struct {
 	Scale
 }
 
-func NewVScaleFromCandy(candy sugar.Candy, id string) *VScale {
+func NewVScale(candy sugar.Candy, id string) *VScale {
 	obj := VScale{}
 	obj.CandyWrapper = candy.NewWrapper(id)
 	return &obj
@@ -51,5 +51,5 @@ func NewVScaleFromCandy(candy sugar.Candy, id string) *VScale {
 // FUNCTION_NAME = gtk_vscale_new_with_range, value-changed, WIDGET, 3, DOUBLE, DOUBLE, DOUBLE
 func VScaleNewWithRange(min, max, step float64) *VScale {
 	id := Candy().Guify("gtk_hscale_new_with_range", min, max, step).String()
-	return NewVScaleFromCandy(Candy(), id)
+	return NewVScale(Candy(), id)
 }

@@ -9,7 +9,7 @@ type Window struct {
 	Bin
 }
 
-func NewWindowFromCandy(candy sugar.Candy, id string) *Window {
+func NewWindow(candy sugar.Candy, id string) *Window {
 	win := Window{}
 	win.CandyWrapper = candy.NewWrapper(id)
 	return &win
@@ -18,7 +18,7 @@ func NewWindowFromCandy(candy sugar.Candy, id string) *Window {
 // FUNCTION_NAME = gtk_window_new, delete-event, WIDGET, 1, INT
 func WindowNew(t WindowType) *Window {
 	id := Candy().Guify("gtk_window_new", t).String()
-	return NewWindowFromCandy(Candy(), id)
+	return NewWindow(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_window_set_title, NONE, NONE, 2, WIDGET, STRING
