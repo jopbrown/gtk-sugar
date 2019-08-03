@@ -3,7 +3,7 @@ package gtk
 import sugar "github.com/jopbrown/gtk-sugar"
 
 type Notebook struct {
-	sugar.CandyWrapper
+	Container
 }
 
 func NewNotebook(candy sugar.Candy, id string) *Notebook {

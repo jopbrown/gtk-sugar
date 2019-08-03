@@ -162,7 +162,7 @@ func (obj *CheckMenuItem) SetActive(isActive bool) {
 }
 
 type ImageMenuItem struct {
-	sugar.CandyWrapper
+	MenuItem
 }
 
 func NewImageMenuItem(candy sugar.Candy, id string) *ImageMenuItem {
