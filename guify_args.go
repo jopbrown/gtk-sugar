@@ -10,8 +10,8 @@ import (
 )
 
 const (
-	STRING_NIL               = "NULL"
-	STRING_WHITE_SPACE_CHARS = " \t\n\r"
+	_STRING_NIL               = "NULL"
+	_STRING_WHITE_SPACE_CHARS = " \t\n\r"
 )
 
 func formatCommand(cmd string, args ...interface{}) string {
@@ -33,12 +33,12 @@ func writeArgs(sb *strings.Builder, args []interface{}) {
 
 		switch v := arg.(type) {
 		case nil:
-			sb.WriteString(STRING_NIL)
+			sb.WriteString(_STRING_NIL)
 		case string:
 			if len(v) == 0 {
-				sb.WriteString(STRING_NIL)
+				sb.WriteString(_STRING_NIL)
 			} else {
-				if strings.IndexAny(v, STRING_WHITE_SPACE_CHARS) > 0 {
+				if strings.IndexAny(v, _STRING_WHITE_SPACE_CHARS) > 0 {
 					v = strconv.Quote(v)
 				}
 				sb.WriteString(v)
@@ -46,9 +46,9 @@ func writeArgs(sb *strings.Builder, args []interface{}) {
 
 		case bool:
 			if v {
-				sb.WriteString(STRING_BOOL_TRUE)
+				sb.WriteString(_STRING_BOOL_TRUE)
 			} else {
-				sb.WriteString(STRING_BOOL_FALSE)
+				sb.WriteString(_STRING_BOOL_FALSE)
 			}
 		default:
 			sb.WriteString(fmt.Sprintf("%v", v))
@@ -71,7 +71,7 @@ func (args Varargs) String() string {
 
 		switch v := arg.(type) {
 		case nil:
-			sb.WriteString(STRING_NIL)
+			sb.WriteString(_STRING_NIL)
 		case string:
 			sb.WriteString("s:")
 			sb.WriteString(v)
@@ -90,9 +90,9 @@ func (args Varargs) String() string {
 		case bool:
 			sb.WriteString("b:")
 			if v {
-				sb.WriteString(STRING_BOOL_TRUE)
+				sb.WriteString(_STRING_BOOL_TRUE)
 			} else {
-				sb.WriteString(STRING_BOOL_FALSE)
+				sb.WriteString(_STRING_BOOL_FALSE)
 			}
 		case CandyWrapper:
 			sb.WriteString("w:")

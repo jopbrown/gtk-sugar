@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	INVALID_RESPONSE = "-1"
+	_INVALID_RESPONSE = "-1"
 )
 
 // Guier provide low level api to communicate with gtk-server.
@@ -45,7 +45,7 @@ func (guier *guier) Gui(command string) (string, error) {
 	b = bytes.TrimSpace(b)
 	res := string(b)
 
-	if res == INVALID_RESPONSE {
+	if res == _INVALID_RESPONSE {
 		return "", errors.Errorf("recived invalid response -1 from command:%v", command)
 	}
 

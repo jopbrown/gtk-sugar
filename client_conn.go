@@ -148,7 +148,7 @@ func ConnFifo(fileName string) ConnAgent {
 	return func(c *client) {
 		if runtime.GOOS == "windows" {
 			c.cmd.Args = append(c.cmd.Args, "-fifo")
-			c.conn = &fifoConn{inFileName: WINDOWS_PIPEIN, outFileName: WINDOWS_PIPEOUT}
+			c.conn = &fifoConn{inFileName: _WINDOWS_PIPEIN, outFileName: _WINDOWS_PIPEOUT}
 		} else {
 			c.cmd.Args = append(c.cmd.Args, "-fifo="+fileName)
 			c.conn = &fifoConn{inFileName: fileName, outFileName: fileName}

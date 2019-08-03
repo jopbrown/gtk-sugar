@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	MAINLOOP_TIMEGAP = 10 * time.Millisecond
+	_MAINLOOP_TIMEGAP = 10 * time.Millisecond
 )
 
 // Candy is a sugar with signal handling and main loop control
@@ -103,7 +103,7 @@ func (candy *candy) RunLoop() {
 			select {
 			case candy.requests <- candy.cbRequest:
 				<-candy.cbRequest.done
-				time.Sleep(MAINLOOP_TIMEGAP)
+				time.Sleep(_MAINLOOP_TIMEGAP)
 			case <-candy.stop:
 				return
 			}

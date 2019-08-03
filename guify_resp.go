@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	STRING_BOOL_TRUE  = "1"
-	STRING_BOOL_FALSE = "0"
+	_STRING_BOOL_TRUE  = "1"
+	_STRING_BOOL_FALSE = "0"
 )
 
 // Response of gtk-server
@@ -31,11 +31,11 @@ func (resp Response) MustUnquote() string {
 }
 
 func (resp Response) Bool() (bool, error) {
-	if resp == STRING_BOOL_TRUE {
+	if resp == _STRING_BOOL_TRUE {
 		return true, nil
 	}
 
-	if resp == STRING_BOOL_FALSE {
+	if resp == _STRING_BOOL_FALSE {
 		return false, nil
 	}
 

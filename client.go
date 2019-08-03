@@ -10,11 +10,11 @@ import (
 )
 
 const (
-	DEFAULT_BIN_PATH     = "gtk-server"
-	DEFAULT_CFG_FILENAME = "gtk-server.cfg"
-	WINDOWS_PIPEIN       = `\\.\pipe\in`
-	WINDOWS_PIPEOUT      = `\\.\pipe\out`
-	DEFAULT_START_DELAY  = 100 * time.Millisecond
+	_DEFAULT_BIN_PATH     = "gtk-server"
+	_DEFAULT_CFG_FILENAME = "gtk-server.cfg"
+	_WINDOWS_PIPEIN       = `\\.\pipe\in`
+	_WINDOWS_PIPEOUT      = `\\.\pipe\out`
+	_DEFAULT_START_DELAY  = 100 * time.Millisecond
 )
 
 type Client interface {
@@ -32,7 +32,7 @@ type client struct {
 }
 
 func NewClient(connAgent ConnAgent, opts ...Option) Client {
-	o := &Options{BinPath: DEFAULT_BIN_PATH}
+	o := &Options{BinPath: _DEFAULT_BIN_PATH}
 	for _, opt := range opts {
 		opt(o)
 	}
@@ -80,7 +80,7 @@ func NewClientWithOptions(connAgent ConnAgent, o *Options) Client {
 }
 
 func (c *client) Start() error {
-	return c.StartAfter(DEFAULT_START_DELAY)
+	return c.StartAfter(_DEFAULT_START_DELAY)
 }
 
 func (c *client) StartAfter(delay time.Duration) error {

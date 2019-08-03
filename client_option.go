@@ -75,13 +75,13 @@ func LookupCfg() Option {
 		defer func() { o.CfgPath = cfgPath }()
 
 		// look at pwd
-		cfgPath = DEFAULT_CFG_FILENAME
+		cfgPath = _DEFAULT_CFG_FILENAME
 		if fs.ExistsFile(cfgPath) {
 			return
 		}
 
 		// look at current executable dir
-		cfgPath = filepath.Join(filepath.Dir(must.String(os.Executable())), DEFAULT_CFG_FILENAME)
+		cfgPath = filepath.Join(filepath.Dir(must.String(os.Executable())), _DEFAULT_CFG_FILENAME)
 		if fs.ExistsFile(cfgPath) {
 			return
 		}
@@ -89,20 +89,20 @@ func LookupCfg() Option {
 		// look at gtk-server executable dir
 		binPath, err := exec.LookPath(o.BinPath)
 		if err == nil {
-			cfgPath = filepath.Join(filepath.Dir(binPath), DEFAULT_CFG_FILENAME)
+			cfgPath = filepath.Join(filepath.Dir(binPath), _DEFAULT_CFG_FILENAME)
 			if fs.ExistsFile(cfgPath) {
 				return
 			}
 		}
 
 		// look at /etc
-		cfgPath = filepath.Join("/etc", DEFAULT_CFG_FILENAME)
+		cfgPath = filepath.Join("/etc", _DEFAULT_CFG_FILENAME)
 		if fs.ExistsFile(cfgPath) {
 			return
 		}
 
 		// look at /usr/local/etc
-		cfgPath = filepath.Join("/usr/local/etc", DEFAULT_CFG_FILENAME)
+		cfgPath = filepath.Join("/usr/local/etc", _DEFAULT_CFG_FILENAME)
 		if fs.ExistsFile(cfgPath) {
 			return
 		}
