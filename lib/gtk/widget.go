@@ -12,6 +12,14 @@ type IWidget interface {
 	ShowAll()
 	Show()
 	Hide()
+	Realize()
+	Unrealize()
+	Destroy()
+	GrabFocus()
+	GetParent()
+	GetToplevel()
+	SetName(name string)
+	GetWindow()
 }
 
 type Widget struct {

@@ -2,14 +2,14 @@ package glib
 
 import sugar "github.com/jopbrown/gtk-sugar"
 
-type GError struct {
+type Error struct {
 	Domain  uint32
 	Code    int
 	Message string
 }
 
-func NewGErrorFromPointer(id string) *GError {
-	err := &GError{}
+func NewErrorFromPointer(id string) *Error {
+	err := &Error{}
 	packer := sugar.NewBase64Packer(err)
 	format := packer.Format()
 	fields := Candy().ServerUnpackFromPointer(format, id)
@@ -19,6 +19,6 @@ func NewGErrorFromPointer(id string) *GError {
 	return err
 }
 
-func (err *GError) Error() string {
+func (err *Error) Error() string {
 	return err.Message
 }

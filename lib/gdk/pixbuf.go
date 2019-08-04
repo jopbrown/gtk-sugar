@@ -26,7 +26,7 @@ func PixbufNewFromFile(filename string) (*Pixbuf, error) {
 	fields := Candy().Guify("gdk_pixbuf_new_from_file", filename, 0).Fields()
 	if fields[0] == "0" {
 		p := fields[1].String()
-		err := glib.NewGErrorFromPointer(p)
+		err := glib.NewErrorFromPointer(p)
 		glib.FreePointer(p)
 		return nil, err
 	}
@@ -39,7 +39,7 @@ func PixbufNewFromFileAtSize(filename string, width, height int) (*Pixbuf, error
 	fields := Candy().Guify("gdk_pixbuf_new_from_file_at_size", filename, width, height, 0).Fields()
 	if fields[0] == "0" {
 		p := fields[1].String()
-		err := glib.NewGErrorFromPointer(p)
+		err := glib.NewErrorFromPointer(p)
 		glib.FreePointer(p)
 		return nil, err
 	}
@@ -52,7 +52,7 @@ func PixbufNewFromFileAtScale(filename string, width, height int, preserveAspect
 	fields := Candy().Guify("gdk_pixbuf_new_from_file_at_scale", filename, width, height, preserveAspectRatio, 0).Fields()
 	if fields[0] == "0" {
 		p := fields[1].String()
-		err := glib.NewGErrorFromPointer(p)
+		err := glib.NewErrorFromPointer(p)
 		glib.FreePointer(p)
 		return nil, err
 	}

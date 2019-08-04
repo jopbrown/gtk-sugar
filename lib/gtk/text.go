@@ -39,27 +39,21 @@ func (tb *TextBuffer) SetText(text string) {
 // FUNCTION_NAME = gtk_text_buffer_get_insert, NONE, WIDGET, 1, WIDGET
 func (tb *TextBuffer) GetInsert() *TextMark {
 	id := tb.Candy().Guify("gtk_text_buffer_get_insert", tb).String()
-	tm := TextMark{}
-	tm.CandyWrapper = tb.Candy().NewWrapper(id)
-	return &tm
+	return NewTextMark(tb.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_get_start_iter, NONE, NONE, 2, WIDGET, WIDGET
 func (tb *TextBuffer) GetStartIter() *TextIter {
 	id := tb.Candy().ServerOpaque()
 	tb.Candy().Guify("gtk_text_buffer_get_start_iter", tb, id)
-	ti := TextIter{}
-	ti.CandyWrapper = tb.Candy().NewWrapper(id)
-	return &ti
+	return NewTextIter(tb.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_get_end_iter, NONE, NONE, 2, WIDGET, WIDGET
 func (tb *TextBuffer) GetEndIter() *TextIter {
 	id := tb.Candy().ServerOpaque()
 	tb.Candy().Guify("gtk_text_buffer_get_end_iter", tb, id)
-	ti := TextIter{}
-	ti.CandyWrapper = tb.Candy().NewWrapper(id)
-	return &ti
+	return NewTextIter(tb.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_get_bounds, NONE, NONE, 3, WIDGET, WIDGET, WIDGET
@@ -86,9 +80,7 @@ func (tb *TextBuffer) GetSelectionBounds() (start, end *TextIter) {
 func (tb *TextBuffer) GetIterAtOffset(offset int) *TextIter {
 	id := tb.Candy().ServerOpaque()
 	tb.Candy().Guify("gtk_text_buffer_get_iter_at_offset", tb, id, offset)
-	ti := TextIter{}
-	ti.CandyWrapper = tb.Candy().NewWrapper(id)
-	return &ti
+	return NewTextIter(tb.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_get_text, NONE, STRING, 4, WIDGET, WIDGET, WIDGET, BOOL
@@ -156,9 +148,7 @@ func (tb *TextBuffer) SelectRange(ins, bound *TextIter) {
 // FUNCTION_NAME = gtk_text_buffer_select_range, NONE, NONE, 3, WIDGET, WIDGET, WIDGET
 func (tb *TextBuffer) GetSelectionBound() *TextMark {
 	id := tb.Candy().Guify("gtk_text_buffer_get_selection_bound", tb).String()
-	tm := TextMark{}
-	tm.CandyWrapper = tb.Candy().NewWrapper(id)
-	return &tm
+	return NewTextMark(tb.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_get_line_count, NONE, INT, 1, WIDGET
@@ -169,27 +159,21 @@ func (tb *TextBuffer) GetLineCount() int {
 // FUNCTION_NAME = gtk_text_buffer_create_mark, NONE, WIDGET, 4, WIDGET, STRING, WIDGET, BOOL
 func (tb *TextBuffer) CreateMark(markName string, where *TextIter, leftGravity bool) *TextMark {
 	id := tb.Candy().Guify("gtk_text_buffer_create_mark", tb, markName, where, leftGravity).String()
-	tm := TextMark{}
-	tm.CandyWrapper = tb.Candy().NewWrapper(id)
-	return &tm
+	return NewTextMark(tb.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_get_iter_at_mark, NONE, NONE, 3, WIDGET, WIDGET, WIDGET
 func (tb *TextBuffer) GetIterAtMark(mark *TextMark) *TextIter {
 	id := tb.Candy().ServerOpaque()
 	tb.Candy().Guify("gtk_text_buffer_get_iter_at_mark", tb, id, mark)
-	ti := TextIter{}
-	ti.CandyWrapper = tb.Candy().NewWrapper(id)
-	return &ti
+	return NewTextIter(tb.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_get_iter_at_line, NONE, NONE, 3, WIDGET, WIDGET, INT
 func (tb *TextBuffer) GetIterAtLine(lineNum int) *TextIter {
 	id := tb.Candy().ServerOpaque()
 	tb.Candy().Guify("gtk_text_buffer_get_iter_at_line", tb, id, lineNum)
-	ti := TextIter{}
-	ti.CandyWrapper = tb.Candy().NewWrapper(id)
-	return &ti
+	return NewTextIter(tb.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_buffer_delete, NONE, NONE, 3, WIDGET, WIDGET, WIDGET
@@ -315,9 +299,7 @@ func (w *TextView) WindowToBufferCoords(winType TextWindowType, windowX, windowY
 // FUNCTION_NAME = gtk_text_view_get_buffer, NONE, WIDGET, 1, WIDGET
 func (w *TextView) GetBuffer() *TextBuffer {
 	id := w.Candy().Guify("gtk_text_view_get_buffer", w).String()
-	tb := TextBuffer{}
-	tb.CandyWrapper = w.Candy().NewWrapper(id)
-	return &tb
+	return NewTextBuffer(w.Candy(), id)
 }
 
 type TextIter struct {
@@ -398,9 +380,7 @@ func (w *TextTagTable) Add(tag *TextTag) bool {
 // FUNCTION_NAME = gtk_text_tag_table_lookup, NONE, WIDGET, 2, WIDGET, STRING
 func (w *TextTagTable) Lookup(name string) *TextTag {
 	id := w.Candy().Guify("gtk_text_tag_table_lookup", w, name).String()
-	tag := TextTag{}
-	tag.CandyWrapper = w.Candy().NewWrapper(id)
-	return &tag
+	return NewTextTag(w.Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_text_tag_table_remove, NONE, NONE, 2, WIDGET, WIDGET

@@ -1,19 +1,11 @@
 package gtk
 
 import (
+	"fmt"
+
 	sugar "github.com/jopbrown/gtk-sugar"
 	"github.com/jopbrown/gtk-sugar/lib/glib"
 )
-
-type TreeIter struct {
-	sugar.CandyWrapper
-}
-
-func NewTreeIter(candy sugar.Candy, id string) *TreeIter {
-	obj := TreeIter{}
-	obj.CandyWrapper = candy.NewWrapper(id)
-	return &obj
-}
 
 type ListStore struct {
 	glib.Object
@@ -39,14 +31,19 @@ func ListStoreNew(types ...glib.Type) *ListStore {
 func (obj *ListStore) Append() *TreeIter {
 	id := obj.Candy().ServerOpaque()
 	obj.Candy().Guify("gtk_list_store_append", obj, id)
-	return NewTreeIter(obj.Candy(), id)
+	iter := NewTreeIter(obj.Candy(), id)
+	return iter
 }
 
 // FUNCTION_NAME = gtk_list_store_set, NONE, NONE, 3, WIDGET, WIDGET, VARARGS
-func (obj *ListStore) Set(iter *TreeIter, colValues map[int]interface{}) {
-	vargs := make(sugar.Varargs, 0, len(colValues)+1)
-	for col, value := range colValues {
-		vargs = append(vargs, col, value)
+func (obj *ListStore) Set(iter *TreeIter, cols []int, values []interface{}) {
+	if len(cols) != len(values) {
+		panic(fmt.Sprintf("cols(%d) and values(%d) length not match", len(cols), len(values)))
+	}
+
+	vargs := make(sugar.Varargs, 0, len(cols)+1)
+	for i, col := range cols {
+		vargs = append(vargs, col, values[i])
 	}
 	vargs = append(vargs, -1)
 	obj.Candy().Guify("gtk_list_store_set", obj, iter, vargs)
@@ -83,10 +80,14 @@ func (obj *ListStore) Insert(iter *TreeIter, position int) {
 }
 
 // FUNCTION_NAME = gtk_list_store_insert_with_values, NONE, NONE, 4, WIDGET, WIDGET, INT, VARARGS
-func (obj *ListStore) InsertWithValues(iter *TreeIter, position int, colValues map[int]interface{}) {
-	vargs := make(sugar.Varargs, 0, len(colValues)+1)
-	for col, value := range colValues {
-		vargs = append(vargs, col, value)
+func (obj *ListStore) InsertWithValues(iter *TreeIter, position int, cols []int, values []interface{}) {
+	if len(cols) != len(values) {
+		panic(fmt.Sprintf("cols(%d) and values(%d) length not match", len(cols), len(values)))
+	}
+
+	vargs := make(sugar.Varargs, 0, len(cols)+1)
+	for i, col := range cols {
+		vargs = append(vargs, col, values[i])
 	}
 	vargs = append(vargs, -1)
 	obj.Candy().Guify("gtk_list_store_insert_with_values", obj, iter, position, vargs)
