@@ -16,14 +16,6 @@ func Invoke(action func()) {
 	Candy().Invoke(action)
 }
 
-func Main() {
-	Candy().RunLoop()
-}
-
-func MainQuit() {
-	Candy().StopLoop()
-}
-
 func init() {
 	sugar.RegisterCandyGiver("gtk", GiveCandy)
 }

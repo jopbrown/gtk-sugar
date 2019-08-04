@@ -179,11 +179,11 @@ func main() {
 
 * Libarys
 	* [ ] 🏃 GTK family
-		* [ ] 🏃 gtk
+		* [x] gtk
 		* [ ] 🏃 glib
 		* [ ] 🏃 gdk
-		* [ ] 🏃 cairo
-		* [ ] 🏃 pango
+		* [ ] cairo
+		* [ ] pango
 	* [ ] libc
 	* [ ] Xforms
 	* [ ] Motif
