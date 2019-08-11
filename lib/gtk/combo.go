@@ -19,7 +19,7 @@ func (obj *ComboBox) GetActive() int {
 
 // FUNCTION_NAME = gtk_combo_box_set_active, NONE, NONE, 2, WIDGET, INT
 func (obj *ComboBox) SetActive(index int) {
-	obj.Candy().Guify("gtk_combo_box_get_active", obj, index)
+	obj.Candy().Guify("gtk_combo_box_set_active", obj, index)
 }
 
 type ComboBoxText struct {

@@ -91,3 +91,19 @@ func (obj *FontSelectionDialog) GetFontName() string {
 func (obj *FontSelectionDialog) SetFontName(name string) {
 	obj.Candy().Guify("gtk_font_selection_dialog_set_font_name", obj, name)
 }
+
+type ColorSelectionDialog struct {
+	Dialog
+}
+
+func NewColorSelectionDialog(candy sugar.Candy, id string) *ColorSelectionDialog {
+	obj := ColorSelectionDialog{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
+}
+
+// FUNCTION_NAME = gtk_color_selection_dialog_new, button-press-event, WIDGET, 1, STRING
+func ColorSelectionDialogNew(title string) *FontSelectionDialog {
+	id := Candy().Guify("gtk_color_selection_dialog_new", title).String()
+	return NewFontSelectionDialog(Candy(), id)
+}

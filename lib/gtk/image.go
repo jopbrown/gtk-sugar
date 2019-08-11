@@ -56,6 +56,11 @@ func (obj *Image) SetFromFile(filename string) {
 	obj.Candy().Guify("gtk_image_set_from_file", obj, filename)
 }
 
+// FUNCTION_NAME = gtk_image_set_from_icon_name, NONE, NONE, 3, WIDGET, STRING, INT
+func (obj *Image) SetFromIconName(name string, size IconSize) {
+	obj.Candy().Guify("gtk_image_set_from_icon_name", obj, name, size)
+}
+
 // FUNCTION_NAME = gtk_image_get_pixbuf, NONE, WIDGET, 1, WIDGET
 func (obj *Image) GetPixbuf() *gdk.Pixbuf {
 	id := obj.Candy().Guify("gtk_image_get_pixbuf", obj).String()
