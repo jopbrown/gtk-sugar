@@ -3,9 +3,13 @@ package sugar
 import (
 	"context"
 	"io"
+	"os"
 	"os/exec"
+	"path/filepath"
 	"time"
 
+	"github.com/jopbrown/gtk-sugar/util/fs"
+	"github.com/jopbrown/gtk-sugar/util/must"
 	"github.com/pkg/errors"
 )
 
@@ -52,6 +56,7 @@ func NewClientWithOptions(connAgent ConnAgent, o *Options) Client {
 	c.cmd = exec.CommandContext(ctx, o.BinPath)
 	c.cancel = cancel
 
+	applyCfgPath(o)
 	if len(o.CfgPath) != 0 {
 		c.cmd.Args = append(c.cmd.Args, "-cfg="+o.CfgPath)
 	}
@@ -120,4 +125,54 @@ func (c *client) Stop() error {
 
 func (c *client) Conn() io.ReadWriter {
 	return c.conn
+}
+
+func applyCfgPath(o *Options) {
+	if len(o.CfgPath) != 0 {
+		return
+	}
+
+	cfgPath := o.CfgPath
+	defer func() {
+		o.CfgPath = cfgPath
+	}()
+
+	if fs.ExistsFile(cfgPath) {
+		return
+	}
+
+	// look at pwd
+	cfgPath = _DEFAULT_CFG_FILENAME
+	if fs.ExistsFile(cfgPath) {
+		return
+	}
+
+	// look at current executable dir
+	cfgPath = filepath.Join(filepath.Dir(must.String(os.Executable())), _DEFAULT_CFG_FILENAME)
+	if fs.ExistsFile(cfgPath) {
+		return
+	}
+
+	// look at gtk-server executable dir
+	binPath, err := exec.LookPath(o.BinPath)
+	if err == nil {
+		cfgPath = filepath.Join(filepath.Dir(binPath), _DEFAULT_CFG_FILENAME)
+		if fs.ExistsFile(cfgPath) {
+			return
+		}
+	}
+
+	// look at /etc
+	cfgPath = filepath.Join("/etc", _DEFAULT_CFG_FILENAME)
+	if fs.ExistsFile(cfgPath) {
+		return
+	}
+
+	// look at /usr/local/etc
+	cfgPath = filepath.Join("/usr/local/etc", _DEFAULT_CFG_FILENAME)
+	if fs.ExistsFile(cfgPath) {
+		return
+	}
+
+	cfgPath = ""
 }

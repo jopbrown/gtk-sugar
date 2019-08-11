@@ -2,12 +2,6 @@ package sugar
 
 import (
 	"context"
-	"os"
-	"os/exec"
-	"path/filepath"
-
-	"github.com/jopbrown/gtk-sugar/util/fs"
-	"github.com/jopbrown/gtk-sugar/util/must"
 )
 
 type Options struct {
@@ -61,52 +55,5 @@ func WithMutex(enable bool) Option {
 func WithContext(ctx context.Context) Option {
 	return func(o *Options) {
 		o.Ctx = ctx
-	}
-}
-
-func LookupCfg() Option {
-	return func(o *Options) {
-		// look at current setting
-		cfgPath := o.CfgPath
-		if fs.ExistsFile(cfgPath) {
-			return
-		}
-
-		defer func() { o.CfgPath = cfgPath }()
-
-		// look at pwd
-		cfgPath = _DEFAULT_CFG_FILENAME
-		if fs.ExistsFile(cfgPath) {
-			return
-		}
-
-		// look at current executable dir
-		cfgPath = filepath.Join(filepath.Dir(must.String(os.Executable())), _DEFAULT_CFG_FILENAME)
-		if fs.ExistsFile(cfgPath) {
-			return
-		}
-
-		// look at gtk-server executable dir
-		binPath, err := exec.LookPath(o.BinPath)
-		if err == nil {
-			cfgPath = filepath.Join(filepath.Dir(binPath), _DEFAULT_CFG_FILENAME)
-			if fs.ExistsFile(cfgPath) {
-				return
-			}
-		}
-
-		// look at /etc
-		cfgPath = filepath.Join("/etc", _DEFAULT_CFG_FILENAME)
-		if fs.ExistsFile(cfgPath) {
-			return
-		}
-
-		// look at /usr/local/etc
-		cfgPath = filepath.Join("/usr/local/etc", _DEFAULT_CFG_FILENAME)
-		if fs.ExistsFile(cfgPath) {
-			return
-		}
-
-		cfgPath = ""
 	}
 }

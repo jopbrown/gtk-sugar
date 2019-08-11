@@ -14,8 +14,7 @@ import (
 var sw = NewStopWatch()
 
 func main() {
-	clt := sugar.NewClient(sugar.ConnStdin(),
-		sugar.WithCfgPath(`../../../cfgs/gtk-server.cfg`))
+	clt := sugar.NewClient(sugar.ConnStdin())
 	err := clt.Start()
 	if err != nil {
 		panic(err)

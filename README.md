@@ -61,7 +61,7 @@ import (
 
 func main() {
 	log.Println("start gtk-server...")
-	clt := sugar.NewClient(sugar.ConnStdin(), sugar.LookupCfg(), sugar.WithDebug(true))
+	clt := sugar.NewClient(sugar.ConnStdin(), sugar.WithDebug(true))
 	err := clt.Start()
 	if err != nil {
 		panic(err)
