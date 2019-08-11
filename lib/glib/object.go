@@ -2,6 +2,13 @@ package glib
 
 import sugar "github.com/jopbrown/gtk-sugar"
 
+type IObject interface {
+	sugar.CandyWrapper
+	RefSink()
+	Unref()
+	StopEmission(name string)
+}
+
 type Object struct {
 	sugar.CandyWrapper
 }

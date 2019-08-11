@@ -8,7 +8,7 @@ import (
 )
 
 type ListStore struct {
-	glib.Object
+	TreeModel
 }
 
 func NewListStore(candy sugar.Candy, id string) *ListStore {
@@ -41,7 +41,7 @@ func (obj *ListStore) Set(iter *TreeIter, cols []int, values []interface{}) {
 		panic(fmt.Sprintf("cols(%d) and values(%d) length not match", len(cols), len(values)))
 	}
 
-	vargs := make(sugar.Varargs, 0, len(cols)+1)
+	vargs := make(sugar.Varargs, 0, len(cols)+len(values)+1)
 	for i, col := range cols {
 		vargs = append(vargs, col, values[i])
 	}
@@ -49,9 +49,9 @@ func (obj *ListStore) Set(iter *TreeIter, cols []int, values []interface{}) {
 	obj.Candy().Guify("gtk_list_store_set", obj, iter, vargs)
 }
 
-// FUNCTION_NAME = gtk_list_store_set_value, NONE, NONE, 4, WIDGET, WIDGET, INT, STRING
+// FUNCTION_NAME = gtk_list_store_set_value, NONE, NONE, 4, WIDGET, WIDGET, INT, WIDGET
 func (obj *ListStore) SetValue(iter *TreeIter, col int, value interface{}) {
-	obj.Candy().Guify("gtk_list_store_set_value", obj, iter, col, value)
+	obj.Candy().Guify("gtk_list_store_set_value", obj, iter, col, glib.GValue(value))
 }
 
 // FUNCTION_NAME = gtk_list_store_clear, NONE, NONE, 1, WIDGET
@@ -85,7 +85,7 @@ func (obj *ListStore) InsertWithValues(iter *TreeIter, position int, cols []int,
 		panic(fmt.Sprintf("cols(%d) and values(%d) length not match", len(cols), len(values)))
 	}
 
-	vargs := make(sugar.Varargs, 0, len(cols)+1)
+	vargs := make(sugar.Varargs, 0, len(cols)+len(values)+1)
 	for i, col := range cols {
 		vargs = append(vargs, col, values[i])
 	}

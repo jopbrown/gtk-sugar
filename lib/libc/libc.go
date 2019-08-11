@@ -1,9 +1,24 @@
 package libc
 
+import sugar "github.com/jopbrown/gtk-sugar"
+
 // FUNCTION_NAME = malloc, NONE, POINTER, 1, INT
+func Malloc(size int) sugar.CandyWrapper {
+	id := Candy().Guify("malloc", size).String()
+	return Candy().NewWrapper(id)
+}
+
 // FUNCTION_NAME = calloc, NONE, POINTER, 2, INT, INT
+
 // FUNCTION_NAME = free, NONE, NONE, 1, POINTER
+func Free(ptr sugar.CandyWrapper) string {
+	return Candy().Guify("free", ptr).String()
+}
+
 // FUNCTION_NAME = memset, NONE, NONE, 3, POINTER, INT, INT
+func Memset(ptr sugar.CandyWrapper, val, size int) string {
+	return Candy().Guify("memset", ptr, val, size).String()
+}
 
 // FUNCTION_NAME = printf, NONE, NONE, 2, STRING, POINTER
 // FUNCTION_NAME = snprintf, NONE, NONE, 4, POINTER, INT, STRING, DOUBLE

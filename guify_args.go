@@ -11,6 +11,7 @@ import (
 
 const (
 	_STRING_NIL               = "NULL"
+	_STRING_EMPTY             = "''"
 	_STRING_WHITE_SPACE_CHARS = " \t\n\r"
 )
 
@@ -36,7 +37,7 @@ func writeArgs(sb *strings.Builder, args []interface{}) {
 			sb.WriteString(_STRING_NIL)
 		case string:
 			if len(v) == 0 {
-				sb.WriteString(_STRING_NIL)
+				sb.WriteString(_STRING_EMPTY)
 			} else {
 				if strings.IndexAny(v, _STRING_WHITE_SPACE_CHARS) > 0 {
 					v = strconv.Quote(v)

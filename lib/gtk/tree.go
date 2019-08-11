@@ -1,7 +1,6 @@
 package gtk
 
 import (
-	"errors"
 	"fmt"
 
 	sugar "github.com/jopbrown/gtk-sugar"
@@ -9,7 +8,7 @@ import (
 )
 
 type TreeIter struct {
-	sugar.CandyWrapper
+	TreeModel
 }
 
 func NewTreeIter(candy sugar.Candy, id string) *TreeIter {
@@ -49,6 +48,15 @@ func (obj *TreePath) Next() bool {
 	return obj.Candy().Guify("gtk_tree_path_next", obj).MustBool()
 }
 
+type ITreeModel interface {
+	sugar.CandyWrapper
+	GetValue(iter *TreeIter, column int) *glib.Value
+	GetIter(path *TreePath) (*TreeIter, bool)
+	GetIterFirst() (*TreeIter, bool)
+	IterNext(iter *TreeIter) bool
+	GetStringFromIter(iter *TreeIter) string
+}
+
 type TreeModel struct {
 	sugar.CandyWrapper
 }
@@ -68,27 +76,19 @@ func (obj *TreeModel) GetValue(iter *TreeIter, column int) *glib.Value {
 }
 
 // FUNCTION_NAME = gtk_tree_model_get_iter, NONE, BOOL, 3, WIDGET, WIDGET, WIDGET
-func (obj *TreeModel) GetIter(path *TreePath) (*TreeIter, error) {
+func (obj *TreeModel) GetIter(path *TreePath) (*TreeIter, bool) {
 	id := obj.Candy().ServerOpaque()
 	iter := NewTreeIter(obj.Candy(), id)
 	ok := obj.Candy().Guify("gtk_tree_model_get_iter", obj, iter, path).MustBool()
-	if ok {
-		glib.Free(iter)
-		return nil, errors.New("gtk_tree_model_get_iter fail to set iter")
-	}
-	return iter, nil
+	return iter, ok
 }
 
-// FUNCTION_NAME = gtk_tree_model_get_iter_first, NONE, NONE, 2, WIDGET, WIDGET
-func (obj *TreeModel) GetIterFirst() (*TreeIter, error) {
+// FUNCTION_NAME = gtk_tree_model_get_iter_first, NONE, BOOL, 2, WIDGET, WIDGET
+func (obj *TreeModel) GetIterFirst() (*TreeIter, bool) {
 	id := obj.Candy().ServerOpaque()
 	iter := NewTreeIter(obj.Candy(), id)
 	ok := obj.Candy().Guify("gtk_tree_model_get_iter_first", obj, iter).MustBool()
-	if ok {
-		glib.Free(iter)
-		return nil, errors.New("gtk_tree_model_get_iter_first fail to set iter")
-	}
-	return iter, nil
+	return iter, ok
 }
 
 // FUNCTION_NAME = gtk_tree_model_iter_next, NONE, BOOL, 2, WIDGET, WIDGET
@@ -118,13 +118,13 @@ func TreeViewNew() *TreeView {
 }
 
 // FUNCTION_NAME = gtk_tree_view_new_with_model, NONE, WIDGET, 1, WIDGET
-func TreeViewNewWithModel(model *TreeModel) *TreeView {
+func TreeViewNewWithModel(model ITreeModel) *TreeView {
 	id := Candy().Guify("gtk_tree_view_new_with_model", model).String()
 	return NewTreeView(Candy(), id)
 }
 
 // FUNCTION_NAME = gtk_tree_view_set_model, NONE, NONE, 2, WIDGET, WIDGET
-func (obj *TreeView) SetModel(model *TreeModel) {
+func (obj *TreeView) SetModel(model ITreeModel) {
 	obj.Candy().Guify("gtk_tree_view_set_model", obj, model)
 }
 
@@ -182,9 +182,40 @@ func NewTreeViewColumn(candy sugar.Candy, id string) *TreeViewColumn {
 }
 
 // FUNCTION_NAME = gtk_tree_view_column_new, clicked, WIDGET, 0
-// FUNCTION_NAME = gtk_tree_view_column_new_with_attributes, clicked, WIDGET, 5, STRING, WIDGET, STRING, INT, NULL
+func TreeViewColumnNew() *TreeViewColumn {
+	id := Candy().Guify("gtk_tree_view_column_new").String()
+	return NewTreeViewColumn(Candy(), id)
+}
+
+// FUNCTION_NAME = gtk_tree_view_column_new_with_attributes, clicked, WIDGET, 3, STRING, WIDGET, VARARGS
+func TreeViewColumnNewWithAttributes(title string, cell ICellRenderer, attributes []string, columns []int) *TreeViewColumn {
+	if len(attributes) != len(columns) {
+		panic(fmt.Sprintf("attributes(%d) and columns(%d) length not match", len(attributes), len(columns)))
+	}
+
+	vargs := make(sugar.Varargs, 0, len(attributes)+len(columns)+1)
+	for i, attr := range attributes {
+		vargs = append(vargs, attr, columns[i])
+	}
+	vargs = append(vargs, nil)
+	id := Candy().Guify("gtk_tree_view_column_new_with_attributes", title, cell, vargs).String()
+	return NewTreeViewColumn(Candy(), id)
+}
+
+func TreeViewColumnNewWithAttribute(title string, cell ICellRenderer, attribute string, column int) *TreeViewColumn {
+	return TreeViewColumnNewWithAttributes(title, cell, []string{attribute}, []int{column})
+}
+
 // FUNCTION_NAME = gtk_tree_view_column_pack_start, NONE, NONE, 3, WIDGET, WIDGET, BOOL
+func (obj *TreeViewColumn) PackStart(cell ICellRenderer, expand bool) {
+	obj.Candy().Guify("gtk_tree_view_column_pack_start", obj, cell, expand)
+}
+
 // FUNCTION_NAME = gtk_tree_view_column_set_title, NONE, NONE, 2, WIDGET, STRING
+func (obj *TreeViewColumn) SetTitle(title string) {
+	obj.Candy().Guify("gtk_tree_view_column_set_title", obj, title)
+}
+
 // FUNCTION_NAME = gtk_tree_view_column_set_resizable, NONE, NONE, 2, WIDGET, BOOL
 func (obj *TreeViewColumn) SetResizable(resizable bool) {
 	obj.Candy().Guify("gtk_tree_view_column_set_resizable", obj, resizable)
@@ -288,6 +319,10 @@ func (obj *TreeStore) Set(iter *TreeIter, cols []int, values []interface{}) {
 	obj.Candy().Guify("gtk_tree_store_set", obj, iter, vargs)
 }
 
+type ICellRenderer interface {
+	sugar.CandyWrapper
+}
+
 type CellRenderer struct {
 	glib.Object
 }
@@ -298,8 +333,18 @@ func NewCellRenderer(candy sugar.Candy, id string) *CellRenderer {
 	return &obj
 }
 
+type CellRendererText struct {
+	CellRenderer
+}
+
+func NewGtkCellRendererText(candy sugar.Candy, id string) *CellRendererText {
+	obj := CellRendererText{}
+	obj.CandyWrapper = candy.NewWrapper(id)
+	return &obj
+}
+
 // FUNCTION_NAME = gtk_cell_renderer_text_new, NONE, WIDGET, 0
-func CellRendererNew() *CellRenderer {
+func CellRendererTextNew() *CellRendererText {
 	id := Candy().Guify("gtk_cell_renderer_text_new").String()
-	return NewCellRenderer(Candy(), id)
+	return NewGtkCellRendererText(Candy(), id)
 }
