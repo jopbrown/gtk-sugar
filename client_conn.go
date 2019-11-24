@@ -50,28 +50,28 @@ func (conn *mutexConn) Close() error {
 
 type ConnAgent func(*client)
 
-type stdinConn struct {
+type stdioConn struct {
 	w io.Writer
 	r io.Reader
 }
 
-func (conn *stdinConn) Open() error {
+func (conn *stdioConn) Open() error {
 	return nil
 }
 
-func (conn *stdinConn) Write(p []byte) (n int, err error) {
+func (conn *stdioConn) Write(p []byte) (n int, err error) {
 	return conn.w.Write(p)
 }
 
-func (conn *stdinConn) Read(p []byte) (n int, err error) {
+func (conn *stdioConn) Read(p []byte) (n int, err error) {
 	return conn.r.Read(p)
 }
 
-func (conn *stdinConn) Close() error {
+func (conn *stdioConn) Close() error {
 	return nil
 }
 
-func ConnStdin() ConnAgent {
+func ConnStdio() ConnAgent {
 	return func(c *client) {
 		w, err := c.cmd.StdinPipe()
 		if err != nil {
@@ -84,7 +84,7 @@ func ConnStdin() ConnAgent {
 		}
 
 		c.cmd.Args = append(c.cmd.Args, "-stdin")
-		c.conn = &stdinConn{w: w, r: r}
+		c.conn = &stdioConn{w: w, r: r}
 	}
 }
 

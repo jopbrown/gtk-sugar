@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	clt := sugar.NewClient(sugar.ConnStdin())
+	clt := sugar.NewClient(sugar.ConnStdio())
 	err := clt.Start()
 	if err != nil {
 		panic(err)

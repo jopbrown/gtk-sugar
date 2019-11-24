@@ -61,7 +61,7 @@ import (
 
 func main() {
 	log.Println("start gtk-server...")
-	clt := sugar.NewClient(sugar.ConnStdin(), sugar.WithDebug(true))
+	clt := sugar.NewClient(sugar.ConnStdio(), sugar.WithDebug(true))
 	err := clt.Start()
 	if err != nil {
 		panic(err)
@@ -117,7 +117,7 @@ import (
 )
 
 func main() {
-	clt := sugar.NewClient(sugar.ConnStdin(), sugar.WithCfgPath(`/cfgs/gtk-server.cfg`))
+	clt := sugar.NewClient(sugar.ConnStdio(), sugar.WithCfgPath(`/cfgs/gtk-server.cfg`))
 	err := clt.Start()
 	if err != nil {
 		panic(err)
@@ -168,7 +168,7 @@ func main() {
 ## TODO
 * Core
 	* [ ] 🏃 Client - launch and communication to GTK-server
-		* [x] stdin(2-way pipes)
+		* [x] stdio(2-way pipes)
 		* [x] fifo(named pipe)
 		* [ ] ipc(message queue)
 		* [ ] tcp/udp
