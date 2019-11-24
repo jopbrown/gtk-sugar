@@ -103,6 +103,11 @@ func (w *Widget) GetToplevel() *Widget {
 	return NewWidget(w.Candy(), id)
 }
 
+// FUNCTION_NAME = gtk_widget_get_name, NONE, STRING, 1, WIDGET,
+func (w *Widget) GetName() string {
+	return w.Candy().Guify("gtk_widget_get_name", w).String()
+}
+
 // FUNCTION_NAME = gtk_widget_set_name, NONE, NONE, 2, WIDGET, STRING
 func (w *Widget) SetName(name string) {
 	w.Candy().Guify("gtk_widget_set_name", w, name)
